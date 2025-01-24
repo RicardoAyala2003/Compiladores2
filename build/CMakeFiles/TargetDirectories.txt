@@ -1,0 +1,3 @@
+/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/CMakeFiles/SimpleLexer.dir
+/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/CMakeFiles/edit_cache.dir
+/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/CMakeFiles/rebuild_cache.dir
