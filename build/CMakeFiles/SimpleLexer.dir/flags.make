@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build
+CXX_INCLUDES = -I/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build -I/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer
 
 CXX_FLAGS = -std=gnu++17
 

@@ -69,11 +69,14 @@ include CMakeFiles/SimpleLexer.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/SimpleLexer.dir/flags.make
 
-SimpleLexer.cpp: /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l
+Tokens.hpp: /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating lexer source file with Reflex"
 	/usr/local/bin/reflex -o SimpleLexer.cpp --header-file=SimpleLexer.hpp /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l
 
-SimpleLexer.hpp: SimpleLexer.cpp
+SimpleLexer.cpp: Tokens.hpp
+	@$(CMAKE_COMMAND) -E touch_nocreate SimpleLexer.cpp
+
+SimpleLexer.hpp: Tokens.hpp
 	@$(CMAKE_COMMAND) -E touch_nocreate SimpleLexer.hpp
 
 CMakeFiles/SimpleLexer.dir/SimpleLexer.cpp.o: CMakeFiles/SimpleLexer.dir/flags.make
@@ -130,6 +133,7 @@ CMakeFiles/SimpleLexer.dir/clean:
 
 CMakeFiles/SimpleLexer.dir/depend: SimpleLexer.cpp
 CMakeFiles/SimpleLexer.dir/depend: SimpleLexer.hpp
+CMakeFiles/SimpleLexer.dir/depend: Tokens.hpp
 	cd /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/CMakeFiles/SimpleLexer.dir/DependInfo.cmake "--color=$(COLOR)"
 .PHONY : CMakeFiles/SimpleLexer.dir/depend
 

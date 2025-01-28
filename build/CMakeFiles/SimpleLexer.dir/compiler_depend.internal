@@ -265,6 +265,7 @@ CMakeFiles/SimpleLexer.dir/Main.cpp.o
 
 CMakeFiles/SimpleLexer.dir/SimpleLexer.cpp.o
  /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleLexer.cpp
+ /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/Tokens.hpp
  /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleLexer.hpp
  /usr/include/alloca.h
  /usr/include/asm-generic/errno-base.h

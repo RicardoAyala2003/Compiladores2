@@ -9,9 +9,21 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 #define REFLEX_OPTION_header_file         "SimpleLexer.hpp"
-#define REFLEX_OPTION_lex                 lex
+#define REFLEX_OPTION_lex                 nextToken
 #define REFLEX_OPTION_lexer               SimpleLexer
 #define REFLEX_OPTION_outfile             "SimpleLexer.cpp"
+#define REFLEX_OPTION_token_type          Token
+
+////////////////////////////////////////////////////////////////////////////////
+//                                                                            //
+//  SECTION 1: %top user code                                                 //
+//                                                                            //
+////////////////////////////////////////////////////////////////////////////////
+
+#line 13 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l"
+
+    #include "Tokens.hpp"
+
 
 ////////////////////////////////////////////////////////////////////////////////
 //                                                                            //
@@ -27,13 +39,12 @@
 //                                                                            //
 ////////////////////////////////////////////////////////////////////////////////
 
-#line 3 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l"
+#line 6 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l"
 
 #include <iostream>
 #include "SimpleLexer.hpp"
+#include "Tokens.hpp"
 
-int num_lines = 0;
-int num_chars = 0;
 
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -42,9 +53,9 @@ int num_chars = 0;
 //                                                                            //
 ////////////////////////////////////////////////////////////////////////////////
 
-int SimpleLexer::lex(void)
+Token SimpleLexer::nextToken(void)
 {
-  static const char *REGEX_INITIAL = "(?m)(\\n)|(.)";
+  static const char *REGEX_INITIAL = "(?m)([\\x09\\x0a\\x0d\\x20]+)|(#.*)|(0[Xx][0-9A-Fa-f]+)|(0[0-7]+)|([1-9][0-9]*)|(0[Bb][01]+)|(.)";
   static const reflex::Pattern PATTERN_INITIAL(REGEX_INITIAL);
   if (!has_matcher())
   {
@@ -57,20 +68,42 @@ int SimpleLexer::lex(void)
           case 0:
             if (matcher().at_end())
             {
-              return int();
+#line 46 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l"
+{ return Token::EndOfFile; }
             }
             else
             {
               out().put(matcher().input());
             }
             break;
-          case 1: // rule /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l:21: \n :
-#line 21 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l"
-{ num_lines++; num_chars++;}
+          case 1: // rule /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l:40: [ \t\r\n]+ :
+#line 40 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l"
+{ }
             break;
-          case 2: // rule /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l:22: . :
-#line 22 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l"
-{ num_chars++;}
+          case 2: // rule /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l:41: #.* :
+#line 41 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l"
+{ }
+            break;
+          case 3: // rule /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l:42: 0[xX][0-9a-fA-F]+ :
+#line 42 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l"
+{ return Token::Hex; }
+            break;
+          case 4: // rule /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l:43: 0[0-7]+ :
+#line 43 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l"
+{ return Token::Oct; }
+            break;
+          case 5: // rule /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l:44: [1-9][0-9]* :
+#line 44 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l"
+{ return Token::Dec; }
+            break;
+          case 6: // rule /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l:45: 0[bB][0-1]+ :
+#line 45 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l"
+{ return Token::Bin; }
+            break;
+          case 7: // rule /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l:47: . :
+#line 47 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l"
+{ return Token::Error; }
+
 
             break;
         }

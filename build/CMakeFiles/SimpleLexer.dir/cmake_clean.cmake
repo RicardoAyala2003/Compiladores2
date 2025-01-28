@@ -7,6 +7,7 @@ file(REMOVE_RECURSE
   "SimpleLexer.cpp"
   "SimpleLexer.hpp"
   "SimpleLexer.pdb"
+  "Tokens.hpp"
 )
 
 # Per-language clean rules from dependency scanning.

@@ -12,9 +12,21 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 #define REFLEX_OPTION_header_file         "SimpleLexer.hpp"
-#define REFLEX_OPTION_lex                 lex
+#define REFLEX_OPTION_lex                 nextToken
 #define REFLEX_OPTION_lexer               SimpleLexer
 #define REFLEX_OPTION_outfile             "SimpleLexer.cpp"
+#define REFLEX_OPTION_token_type          Token
+
+////////////////////////////////////////////////////////////////////////////////
+//                                                                            //
+//  SECTION 1: %top user code                                                 //
+//                                                                            //
+////////////////////////////////////////////////////////////////////////////////
+
+#line 13 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l"
+
+    #include "Tokens.hpp"
+
 
 ////////////////////////////////////////////////////////////////////////////////
 //                                                                            //
@@ -39,13 +51,24 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 class SimpleLexer : public reflex::AbstractLexer<reflex::Matcher> {
-#line 11 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l"
+#line 17 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l"
+
+
+
 
 
 public:
-	int num_lines = 0;
-	int num_chars = 0;
-
+    static const char *tokenToString(Token token) {
+        switch (token) {
+            case Token::EndOfFile: return "EndOfFile";
+            case Token::Error: return "Error";
+            case Token::Hex: return "Hex";
+            case Token::Oct: return "Oct";
+            case Token::Dec: return "Dec";
+            case Token::Bin: return "Bin";
+            default: return "Unknown";
+        }
+    }
 
  public:
   typedef reflex::AbstractLexer<reflex::Matcher> AbstractBaseLexer;
@@ -60,19 +83,19 @@ public:
   }
   static const int INITIAL = 0;
   // the lexer function defined by SECTION 2
-  virtual int lex(void);
+  virtual Token nextToken(void);
   // lexer functions accepting new input to scan
-  int lex(const reflex::Input& input)
+  Token nextToken(const reflex::Input& input)
   {
     in(input);
-    return lex();
+    return nextToken();
   }
-  int lex(const reflex::Input& input, std::ostream *os)
+  Token nextToken(const reflex::Input& input, std::ostream *os)
   {
     in(input);
     if (os)
       out(*os);
-    return lex();
+    return nextToken();
   }
 };
 

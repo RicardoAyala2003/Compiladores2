@@ -1,6 +1,7 @@
 CMakeFiles/SimpleLexer.dir/SimpleLexer.cpp.o: \
  /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleLexer.cpp \
  /usr/include/stdc-predef.h \
+ /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/Tokens.hpp \
  /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleLexer.hpp \
  /usr/local/include/reflex/matcher.h \
  /usr/local/include/reflex/absmatcher.h \

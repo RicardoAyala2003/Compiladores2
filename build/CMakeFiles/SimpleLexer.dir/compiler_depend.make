@@ -263,6 +263,7 @@ CMakeFiles/SimpleLexer.dir/Main.cpp.o: /home/ricardo/Compi2/RE-flex-master/RE-fl
   /usr/local/include/reflex/utf8.h
 
 CMakeFiles/SimpleLexer.dir/SimpleLexer.cpp.o: SimpleLexer.cpp \
+  /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/Tokens.hpp \
   SimpleLexer.hpp \
   /usr/include/alloca.h \
   /usr/include/asm-generic/errno-base.h \
