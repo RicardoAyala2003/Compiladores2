@@ -23,9 +23,9 @@
 //                                                                            //
 ////////////////////////////////////////////////////////////////////////////////
 
-#line 11 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l"
+#line 13 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l"
 
-#include "Tokens.hpp"
+    #include "Tokens.hpp"
 
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -51,10 +51,15 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 class SimpleLexer : public reflex::AbstractLexer<reflex::Matcher> {
-#line 15 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l"
+#line 17 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l"
+
+
+
+
 
 public:
     static const char *tokenToString(Token token) {
+
         switch (token) {
             case Token::EndOfFile: return "EndOfFile";
             case Token::Error: return "Error";
