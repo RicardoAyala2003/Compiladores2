@@ -177,6 +177,30 @@ SimpleLexer.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/SimpleLexer.dir/build.make CMakeFiles/SimpleLexer.dir/SimpleLexer.cpp.s
 .PHONY : SimpleLexer.cpp.s
 
+SimpleParser.o: SimpleParser.cpp.o
+.PHONY : SimpleParser.o
+
+# target to build an object file
+SimpleParser.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SimpleLexer.dir/build.make CMakeFiles/SimpleLexer.dir/SimpleParser.cpp.o
+.PHONY : SimpleParser.cpp.o
+
+SimpleParser.i: SimpleParser.cpp.i
+.PHONY : SimpleParser.i
+
+# target to preprocess a source file
+SimpleParser.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SimpleLexer.dir/build.make CMakeFiles/SimpleLexer.dir/SimpleParser.cpp.i
+.PHONY : SimpleParser.cpp.i
+
+SimpleParser.s: SimpleParser.cpp.s
+.PHONY : SimpleParser.s
+
+# target to generate assembly for a file
+SimpleParser.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SimpleLexer.dir/build.make CMakeFiles/SimpleLexer.dir/SimpleParser.cpp.s
+.PHONY : SimpleParser.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -192,6 +216,9 @@ help:
 	@echo "... SimpleLexer.o"
 	@echo "... SimpleLexer.i"
 	@echo "... SimpleLexer.s"
+	@echo "... SimpleParser.o"
+	@echo "... SimpleParser.i"
+	@echo "... SimpleParser.s"
 .PHONY : help
 
 

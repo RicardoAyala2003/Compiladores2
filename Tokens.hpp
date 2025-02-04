@@ -6,7 +6,7 @@ enum Token
     INT_CONST,
     STRING_LITERAL,
     CONSTANT,
-    IDENTIFIER,
+    IDENTIFIER = 1001,
 
     EndOfFile,
     Error,
@@ -37,9 +37,9 @@ enum Token
     OP_EQUAL,
     OP_NOT_EQUAL,
     OP_LESS_THAN,
-    OP_GREATHER_THAN,
+    OP_GREATER_THAN,
     OP_LESS_EQUAL,
-    OP_GREATHER_EQUAL,
+    OP_GREATER_EQUAL,
 
     OP_BOOL_OR,
     OP_BOOL_AND,
@@ -52,10 +52,10 @@ enum Token
     OPEN_BRACKET,
     CLOSE_BRACKET,
     COMMA,
-    SEMICOLON
+    SEMICOLON,
+    COMMENT
 };
 
 const char *tokenToString(Token token);
 
 #endif
-

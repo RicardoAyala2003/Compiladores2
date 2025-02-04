@@ -1,34 +1,38 @@
 #include <iostream>
-#include <fstream>
 #include "SimpleLexer.hpp"
+#include "SimpleParser.hpp"
 #include "Tokens.hpp"
+#include <fstream>
+#include <unordered_map>
 
-int main(int argc, char *argv[]) {
+int main(int argc, char *argv[])
+{
+    std::ifstream in;
+    in.open(argv[1]);
 
-    if (argc != 2) {
-        std::cerr << "Error: Argumentos inválidos" << std::endl;
+    if (argc != 2)
+    {
+        std::cerr << "Error: Argumentos invalidos" << std::endl;
         return 1;
     }
 
-    std::ifstream in(argv[1]);
-
-    if (!in) {
-        std::cerr << "Error: No se pudo abrir el archivo " << argv[1] << std::endl;
-        return 1;
-    }
+    std::unordered_map<std::string, int> vars;
+    vars.insert({{"a", 1}});
 
     SimpleLexer lexer(in);
-    Token token = lexer.nextToken();
+    Expr::Parser::value_type yylval;
+    Expr::Parser parser(lexer, vars);
+ 
 
-    std::cout << "Token: " << lexer.tokenToString(token) << std::endl;
-
-    while (token != Token::EndOfFile) {
-        token = lexer.nextToken();
-        std::cout << "Tokens: " << lexer.tokenToString(token) << std::endl;
-
-        if (token == Token::Error) {
-            std::cerr << "Error: Token no reconocido" << std::endl;
-        }
+    try
+    {
+        parser.parse();
+        std::cout << "Success\n";
+    }
+    catch (const std::runtime_error &err)
+    {
+        std::cerr << err.what() << '\n';
+        return 1;
     }
 
     return 0;

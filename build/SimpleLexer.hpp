@@ -15,7 +15,7 @@
 #define REFLEX_OPTION_lex                 nextToken
 #define REFLEX_OPTION_lexer               SimpleLexer
 #define REFLEX_OPTION_outfile             "SimpleLexer.cpp"
-#define REFLEX_OPTION_token_type          Token
+#define REFLEX_OPTION_params              Expr::Parser::value_type *yylval
 
 ////////////////////////////////////////////////////////////////////////////////
 //                                                                            //
@@ -25,7 +25,7 @@
 
 #line 13 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l"
 
-    #include "Tokens.hpp"
+    #include "SimpleParser.hpp"
 
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -53,60 +53,7 @@
 class SimpleLexer : public reflex::AbstractLexer<reflex::Matcher> {
 #line 17 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l"
 
-
-
-
-
-public:
-    static const char *tokenToString(Token token) {
-
-        switch (token) {
-            case Token::EndOfFile: return "EndOfFile";
-            case Token::Error: return "Error";
-            case Token::Hex: return "Hex";
-            case Token::Oct: return "Oct";
-            case Token::Dec: return "Dec";
-            case Token::Bin: return "Bin";
-            case Token::KW_CLASS: return "KW_CLASS";
-            case Token::KW_INT: return "KW_INT";
-            case Token::KW_VOID: return "KW_VOID";
-            case Token::KW_REF: return "KW_REF";
-            case Token::KW_IF: return "KW_IF";
-            case Token::KW_ELSE: return "KW_ELSE";
-            case Token::KW_WHILE: return "KW_WHILE";
-            case Token::KW_RETURN: return "KW_RETURN";
-            case Token::KW_PRINT: return "KW_PRINT";
-            case Token::KW_READ: return "KW_READ";
-            case Token::OP_ASSIGN: return "OP_ASSIGN";
-            case Token::OP_BOOL_OR: return "OP_BOOL_OR";
-            case Token::OP_BOOL_AND: return "OP_BOOL_AND";
-            case Token::OP_BOOL_NOT: return "OP_BOOL_NOT";
-            case Token::OP_EQUAL: return "OP_EQUAL";
-            case Token::OP_NOT_EQUAL: return "OP_NOT_EQUAL";
-            case Token::OP_LESS_THAN: return "OP_LESS_THAN";
-            case Token::OP_GREATHER_THAN: return "OP_GREATHER_THAN";
-            case Token::OP_LESS_EQUAL: return "OP_LESS_EQUAL";
-            case Token::OP_GREATHER_EQUAL: return "OP_GREATHER_EQUAL";
-            case Token::OP_ADD: return "OP_ADD";
-            case Token::OP_SUB: return "OP_SUB";
-            case Token::OP_MUL: return "OP_MUL";
-            case Token::OP_DIV: return "OP_DIV";
-            case Token::OP_MOD: return "OP_MOD";
-            case Token::IDENTIFIER: return "IDENTIFIER";
-            case Token::INT_CONST: return "INT_CONST";
-            case Token::STRING_LITERAL: return "STRING_LITERAL";
-            case Token::CONSTANT: return "CONSTANT";
-            case Token::OPEN_CURLY: return "OPEN_CURLY";
-            case Token::CLOSE_CURLY: return "CLOSE_CURLY";
-            case Token::OPEN_PAR: return "OPEN_PAR";
-            case Token::CLOSE_PAR: return "CLOSE_PAR";
-            case Token::OPEN_BRACKET: return "OPEN_BRACKET";
-            case Token::CLOSE_BRACKET: return "CLOSE_BRACKET";
-            case Token::COMMA: return "COMMA";
-            case Token::SEMICOLON: return "SEMICOLON";
-            default: return "Unknown";
-        }
-    }
+using Token = Expr::Parser::token;
 
  public:
   typedef reflex::AbstractLexer<reflex::Matcher> AbstractBaseLexer;
@@ -120,20 +67,21 @@ public:
   {
   }
   static const int INITIAL = 0;
+  static const int COMMENT = 1;
   // the lexer function defined by SECTION 2
-  virtual Token nextToken(void);
+  virtual int nextToken(Expr::Parser::value_type *yylval);
   // lexer functions accepting new input to scan
-  Token nextToken(const reflex::Input& input)
+  int nextToken(const reflex::Input& input, Expr::Parser::value_type *yylval)
   {
     in(input);
-    return nextToken();
+    return nextToken(yylval);
   }
-  Token nextToken(const reflex::Input& input, std::ostream *os)
+  int nextToken(const reflex::Input& input, std::ostream *os, Expr::Parser::value_type *yylval)
   {
     in(input);
     if (os)
       out(*os);
-    return nextToken();
+    return nextToken(yylval);
   }
 };
 
