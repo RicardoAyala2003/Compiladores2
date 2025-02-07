@@ -198,5 +198,4 @@ CMakeFiles/SimpleLexer.dir/SimpleParser.cpp.o: \
  /usr/include/c++/13/bits/stl_stack.h \
  /usr/local/include/reflex/abslexer.h /usr/include/c++/13/sstream \
  /usr/include/c++/13/bits/sstream.tcc /usr/include/error.h \
- /usr/include/x86_64-linux-gnu/bits/error.h \
- /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/Tokens.hpp
+ /usr/include/x86_64-linux-gnu/bits/error.h

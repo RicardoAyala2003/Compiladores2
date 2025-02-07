@@ -42,8 +42,8 @@
 #line 7 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l"
 
 #include <iostream>
-#include "SimpleLexer.hpp"
 #include "SimpleParser.hpp"
+#include "SimpleLexer.hpp"
 
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -54,9 +54,9 @@
 
 int SimpleLexer::nextToken(Expr::Parser::value_type *yylval)
 {
-  static const char *REGEX_INITIAL = "(?m)([\\x09\\x0a\\x0d\\x20]+)|((?:\\Q+\\E))|((?:\\Q-\\E))|((?:\\Q*\\E))|((?:\\Q/\\E))|((?:\\Q(\\E))|((?:\\Q)\\E))|((?:\\Q;\\E))|([A-Z_a-z][0-9A-Z_a-z]*)|([0-9]+)|(.)";
+  static const char *REGEX_INITIAL = "(?m)([\\x09\\x0a\\x0d\\x20]+)|((?:\\Qclass\\E))|((?:\\Qint\\E))|((?:\\Qvoid\\E))|((?:\\Qref\\E))|((?:\\Qif\\E))|((?:\\Qelse\\E))|((?:\\Qwhile\\E))|((?:\\Qreturn\\E))|((?:\\Qprint\\E))|((?:\\Qread\\E))|((?:\\Q+\\E))|((?:\\Q-\\E))|((?:\\Q*\\E))|((?:\\Q/\\E))|((?:\\Q%\\E))|((?:\\Q=\\E))|((?:\\Q||\\E))|((?:\\Q&&\\E))|((?:\\Q!\\E))|((?:\\Q==\\E))|((?:\\Q!=\\E))|((?:\\Q<\\E))|((?:\\Q>\\E))|((?:\\Q<=\\E))|((?:\\Q>=\\E))|((?:\\Q{\\E))|((?:\\Q}\\E))|((?:\\Q(\\E))|((?:\\Q)\\E))|((?:\\Q[\\E))|((?:\\Q]\\E))|((?:\\Q,\\E))|((?:\\Q;\\E))|([A-Z_a-z][0-9A-Z_a-z]*)|([0-9]+)|((?:\\Q\"\\E)(?:\\\\.|[^\"\\x5c])*(?:\\Q\"\\E))|((?:\\Q/*\\E))|((?:\\Q*/\\E))|(.)";
   static const reflex::Pattern PATTERN_INITIAL(REGEX_INITIAL);
-  static const char *REGEX_COMMENT = "(?m)";
+  static const char *REGEX_COMMENT = "(?m)([^\\x2a]+)|((?:\\Q*\\E)+[^\\x2a/])";
   static const reflex::Pattern PATTERN_COMMENT(REGEX_COMMENT);
   if (!has_matcher())
   {
@@ -82,40 +82,144 @@ int SimpleLexer::nextToken(Expr::Parser::value_type *yylval)
             break;
           case 1: // rule /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l:23: [ \t\r\n]+ :
 #line 23 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l"
-{ /* Ignorar espacios en blanco */ }
+{  }
+
 
             break;
-          case 2: // rule /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l:25: "+" :
-#line 25 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l"
+          case 2: // rule /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l:26: "class" :
+#line 26 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l"
+{ return Token::KW_CLASS; }
+            break;
+          case 3: // rule /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l:27: "int" :
+#line 27 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l"
+{ return Token::KW_INT; }
+            break;
+          case 4: // rule /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l:28: "void" :
+#line 28 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l"
+{ return Token::KW_VOID; }
+            break;
+          case 5: // rule /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l:29: "ref" :
+#line 29 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l"
+{ return Token::KW_REF; }
+            break;
+          case 6: // rule /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l:30: "if" :
+#line 30 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l"
+{ return Token::KW_IF; }
+            break;
+          case 7: // rule /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l:31: "else" :
+#line 31 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l"
+{ return Token::KW_ELSE; }
+            break;
+          case 8: // rule /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l:32: "while" :
+#line 32 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l"
+{ return Token::KW_WHILE; }
+            break;
+          case 9: // rule /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l:33: "return" :
+#line 33 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l"
+{ return Token::KW_RETURN; }
+            break;
+          case 10: // rule /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l:34: "print" :
+#line 34 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l"
+{ return Token::KW_PRINT; }
+            break;
+          case 11: // rule /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l:35: "read" :
+#line 35 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l"
+{ return Token::KW_READ; }
+            break;
+          case 12: // rule /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l:36: "+" :
+#line 36 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l"
 { return Token::OP_ADD; }
             break;
-          case 3: // rule /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l:26: "-" :
-#line 26 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l"
+          case 13: // rule /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l:37: "-" :
+#line 37 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l"
 { return Token::OP_SUB; }
             break;
-          case 4: // rule /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l:27: "*" :
-#line 27 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l"
+          case 14: // rule /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l:38: "*" :
+#line 38 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l"
 { return Token::OP_MUL; }
             break;
-          case 5: // rule /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l:28: "/" :
-#line 28 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l"
+          case 15: // rule /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l:39: "/" :
+#line 39 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l"
 { return Token::OP_DIV; }
             break;
-          case 6: // rule /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l:29: "(" :
-#line 29 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l"
+          case 16: // rule /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l:40: "%" :
+#line 40 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l"
+{ return Token::OP_MOD; }
+            break;
+          case 17: // rule /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l:41: "=" :
+#line 41 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l"
+{ return Token::OP_ASSIGN; }
+            break;
+          case 18: // rule /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l:42: "||" :
+#line 42 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l"
+{ return Token::OP_BOOL_OR; }
+            break;
+          case 19: // rule /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l:43: "&&" :
+#line 43 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l"
+{ return Token::OP_BOOL_AND; }
+            break;
+          case 20: // rule /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l:44: "!" :
+#line 44 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l"
+{ return Token::OP_BOOL_NOT; }
+            break;
+          case 21: // rule /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l:45: "==" :
+#line 45 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l"
+{ return Token::OP_EQUAL; }
+            break;
+          case 22: // rule /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l:46: "!=" :
+#line 46 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l"
+{ return Token::OP_NOT_EQUAL; }
+            break;
+          case 23: // rule /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l:47: "<" :
+#line 47 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l"
+{ return Token::OP_LESS_THAN; }
+            break;
+          case 24: // rule /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l:48: ">" :
+#line 48 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l"
+{ return Token::OP_GREATER_THAN; }
+            break;
+          case 25: // rule /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l:49: "<=" :
+#line 49 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l"
+{ return Token::OP_LESS_EQUAL; }
+            break;
+          case 26: // rule /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l:50: ">=" :
+#line 50 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l"
+{ return Token::OP_GREATER_EQUAL; }
+            break;
+          case 27: // rule /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l:51: "{" :
+#line 51 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l"
+{ return Token::OPEN_CURLY; }
+            break;
+          case 28: // rule /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l:52: "}" :
+#line 52 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l"
+{ return Token::CLOSE_CURLY; }
+            break;
+          case 29: // rule /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l:53: "(" :
+#line 53 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l"
 { return Token::OPEN_PAR; }
             break;
-          case 7: // rule /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l:30: ")" :
-#line 30 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l"
+          case 30: // rule /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l:54: ")" :
+#line 54 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l"
 { return Token::CLOSE_PAR; }
             break;
-          case 8: // rule /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l:31: ";" :
-#line 31 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l"
-{ return Token::SEMICOLON; }  // Asegúrate de que este token esté definido
-
+          case 31: // rule /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l:55: "[" :
+#line 55 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l"
+{ return Token::OPEN_BRACKET; }
             break;
-          case 9: // rule /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l:33: [a-zA-Z_][a-zA-Z0-9_]* :
-#line 33 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l"
+          case 32: // rule /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l:56: "]" :
+#line 56 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l"
+{ return Token::CLOSE_BRACKET; }
+            break;
+          case 33: // rule /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l:57: "," :
+#line 57 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l"
+{ return Token::COMMA; }
+            break;
+          case 34: // rule /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l:58: ";" :
+#line 58 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l"
+{ return Token::SEMICOLON; }
+            break;
+          case 35: // rule /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l:59: [a-zA-Z_][a-zA-Z0-9_]* :
+#line 59 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l"
 {
     yylval->emplace<std::string>(text());
     std::cout << "Identificador: " << text() << std::endl;
@@ -123,8 +227,8 @@ int SimpleLexer::nextToken(Expr::Parser::value_type *yylval)
 }
 
             break;
-          case 10: // rule /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l:39: [0-9]+ :
-#line 39 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l"
+          case 36: // rule /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l:65: [0-9]+ :
+#line 65 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l"
 {
     yylval->emplace<int>(std::stoi(text()));
     std::cout << "Número: " << text() << std::endl;
@@ -132,8 +236,25 @@ int SimpleLexer::nextToken(Expr::Parser::value_type *yylval)
 }
 
             break;
-          case 11: // rule /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l:45: . :
-#line 45 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l"
+          case 37: // rule /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l:71: "\""(\\.|[^\\"])*"\"" :
+#line 71 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l"
+{
+    yylval->emplace<std::string>(text());
+    return Token::STRING_LITERAL;
+}
+
+
+            break;
+          case 38: // rule /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l:77: "/*" :
+#line 77 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l"
+{ this->start(COMMENT); }
+            break;
+          case 39: // rule /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l:80: "*/" :
+#line 80 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l"
+{ this->start(INITIAL); }
+            break;
+          case 40: // rule /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l:81: . :
+#line 81 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l"
 { return Token::ERROR; }
 
             break;
@@ -152,6 +273,14 @@ int SimpleLexer::nextToken(Expr::Parser::value_type *yylval)
             {
               out().put(matcher().input());
             }
+            break;
+          case 1: // rule /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l:78: [^*]+ :
+#line 78 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l"
+{  }
+            break;
+          case 2: // rule /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l:79: "*"+[^*/] :
+#line 79 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l"
+{  }
             break;
         }
         break;

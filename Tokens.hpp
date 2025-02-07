@@ -6,7 +6,7 @@ enum Token
     INT_CONST,
     STRING_LITERAL,
     CONSTANT,
-    IDENTIFIER = 1001,
+    IDENTIFIER,
 
     EndOfFile,
     Error,

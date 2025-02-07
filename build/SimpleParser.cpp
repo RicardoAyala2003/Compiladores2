@@ -37,16 +37,13 @@
 
 
 // First part of user prologue.
-#line 17 "SimpleParser.y"
+#line 18 "SimpleParser.y"
 
 #include <iostream>
 #include <stdexcept>
 #include "SimpleLexer.hpp"
 #include "error.h"
-#include "Tokens.hpp" 
 
-// Declaramos la función de análisis léxico.
-int yylex();
 void yyerror(const char *s);
 
 #define yylex(arg) lexer.nextToken(arg)
@@ -54,7 +51,7 @@ void yyerror(const char *s);
 void yyerror(const char* msg);
 
 namespace Expr {
-    void Parser::error (const std::string& msg)
+    void Parser::error(const std::string& msg)
     {
         std::cerr << "Error de sintaxis: " << msg << '\n';
     }
@@ -64,8 +61,7 @@ void yyerror(const char* msg) {
     std::cerr << "Syntax error: " << msg << std::endl;
 }
 
-
-#line 69 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 65 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
 
 
 #include "SimpleParser.hpp"
@@ -142,12 +138,12 @@ void yyerror(const char* msg) {
 #define YYERROR         goto yyerrorlab
 #define YYRECOVERING()  (!!yyerrstatus_)
 
-#line 10 "SimpleParser.y"
-namespace Expr {
-#line 148 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 11 "SimpleParser.y"
+namespace  Expr  {
+#line 144 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
 
   /// Build a parser object.
-  Parser::Parser (SimpleLexer& lexer_yyarg, std::unordered_map<std::string, int>& vars_yyarg)
+   Parser :: Parser  (SimpleLexer& lexer_yyarg, std::unordered_map<std::string, int>& vars_yyarg)
 #if YYDEBUG
     : yydebug_ (false),
       yycdebug_ (&std::cerr),
@@ -158,10 +154,10 @@ namespace Expr {
       vars (vars_yyarg)
   {}
 
-  Parser::~Parser ()
+   Parser ::~ Parser  ()
   {}
 
-  Parser::syntax_error::~syntax_error () YY_NOEXCEPT YY_NOTHROW
+   Parser ::syntax_error::~syntax_error () YY_NOEXCEPT YY_NOTHROW
   {}
 
   /*---------.
@@ -170,7 +166,7 @@ namespace Expr {
 
   // basic_symbol.
   template <typename Base>
-  Parser::basic_symbol<Base>::basic_symbol (const basic_symbol& that)
+   Parser ::basic_symbol<Base>::basic_symbol (const basic_symbol& that)
     : Base (that)
     , value ()
   {
@@ -184,6 +180,8 @@ namespace Expr {
         break;
 
       case symbol_kind::S_IDENTIFIER: // "identifier"
+      case symbol_kind::S_STRING_LITERAL: // "string"
+      case symbol_kind::S_CONSTANT: // "constant"
         value.copy< std::string > (YY_MOVE (that.value));
         break;
 
@@ -197,8 +195,8 @@ namespace Expr {
 
 
   template <typename Base>
-  Parser::symbol_kind_type
-  Parser::basic_symbol<Base>::type_get () const YY_NOEXCEPT
+   Parser ::symbol_kind_type
+   Parser ::basic_symbol<Base>::type_get () const YY_NOEXCEPT
   {
     return this->kind ();
   }
@@ -206,14 +204,14 @@ namespace Expr {
 
   template <typename Base>
   bool
-  Parser::basic_symbol<Base>::empty () const YY_NOEXCEPT
+   Parser ::basic_symbol<Base>::empty () const YY_NOEXCEPT
   {
     return this->kind () == symbol_kind::S_YYEMPTY;
   }
 
   template <typename Base>
   void
-  Parser::basic_symbol<Base>::move (basic_symbol& s)
+   Parser ::basic_symbol<Base>::move (basic_symbol& s)
   {
     super_type::move (s);
     switch (this->kind ())
@@ -226,6 +224,8 @@ namespace Expr {
         break;
 
       case symbol_kind::S_IDENTIFIER: // "identifier"
+      case symbol_kind::S_STRING_LITERAL: // "string"
+      case symbol_kind::S_CONSTANT: // "constant"
         value.move< std::string > (YY_MOVE (s.value));
         break;
 
@@ -236,50 +236,50 @@ namespace Expr {
   }
 
   // by_kind.
-  Parser::by_kind::by_kind () YY_NOEXCEPT
+   Parser ::by_kind::by_kind () YY_NOEXCEPT
     : kind_ (symbol_kind::S_YYEMPTY)
   {}
 
 #if 201103L <= YY_CPLUSPLUS
-  Parser::by_kind::by_kind (by_kind&& that) YY_NOEXCEPT
+   Parser ::by_kind::by_kind (by_kind&& that) YY_NOEXCEPT
     : kind_ (that.kind_)
   {
     that.clear ();
   }
 #endif
 
-  Parser::by_kind::by_kind (const by_kind& that) YY_NOEXCEPT
+   Parser ::by_kind::by_kind (const by_kind& that) YY_NOEXCEPT
     : kind_ (that.kind_)
   {}
 
-  Parser::by_kind::by_kind (token_kind_type t) YY_NOEXCEPT
+   Parser ::by_kind::by_kind (token_kind_type t) YY_NOEXCEPT
     : kind_ (yytranslate_ (t))
   {}
 
 
 
   void
-  Parser::by_kind::clear () YY_NOEXCEPT
+   Parser ::by_kind::clear () YY_NOEXCEPT
   {
     kind_ = symbol_kind::S_YYEMPTY;
   }
 
   void
-  Parser::by_kind::move (by_kind& that)
+   Parser ::by_kind::move (by_kind& that)
   {
     kind_ = that.kind_;
     that.clear ();
   }
 
-  Parser::symbol_kind_type
-  Parser::by_kind::kind () const YY_NOEXCEPT
+   Parser ::symbol_kind_type
+   Parser ::by_kind::kind () const YY_NOEXCEPT
   {
     return kind_;
   }
 
 
-  Parser::symbol_kind_type
-  Parser::by_kind::type_get () const YY_NOEXCEPT
+   Parser ::symbol_kind_type
+   Parser ::by_kind::type_get () const YY_NOEXCEPT
   {
     return this->kind ();
   }
@@ -287,33 +287,33 @@ namespace Expr {
 
 
   // by_state.
-  Parser::by_state::by_state () YY_NOEXCEPT
+   Parser ::by_state::by_state () YY_NOEXCEPT
     : state (empty_state)
   {}
 
-  Parser::by_state::by_state (const by_state& that) YY_NOEXCEPT
+   Parser ::by_state::by_state (const by_state& that) YY_NOEXCEPT
     : state (that.state)
   {}
 
   void
-  Parser::by_state::clear () YY_NOEXCEPT
+   Parser ::by_state::clear () YY_NOEXCEPT
   {
     state = empty_state;
   }
 
   void
-  Parser::by_state::move (by_state& that)
+   Parser ::by_state::move (by_state& that)
   {
     state = that.state;
     that.clear ();
   }
 
-  Parser::by_state::by_state (state_type s) YY_NOEXCEPT
+   Parser ::by_state::by_state (state_type s) YY_NOEXCEPT
     : state (s)
   {}
 
-  Parser::symbol_kind_type
-  Parser::by_state::kind () const YY_NOEXCEPT
+   Parser ::symbol_kind_type
+   Parser ::by_state::kind () const YY_NOEXCEPT
   {
     if (state == empty_state)
       return symbol_kind::S_YYEMPTY;
@@ -321,10 +321,10 @@ namespace Expr {
       return YY_CAST (symbol_kind_type, yystos_[+state]);
   }
 
-  Parser::stack_symbol_type::stack_symbol_type ()
+   Parser ::stack_symbol_type::stack_symbol_type ()
   {}
 
-  Parser::stack_symbol_type::stack_symbol_type (YY_RVREF (stack_symbol_type) that)
+   Parser ::stack_symbol_type::stack_symbol_type (YY_RVREF (stack_symbol_type) that)
     : super_type (YY_MOVE (that.state))
   {
     switch (that.kind ())
@@ -337,6 +337,8 @@ namespace Expr {
         break;
 
       case symbol_kind::S_IDENTIFIER: // "identifier"
+      case symbol_kind::S_STRING_LITERAL: // "string"
+      case symbol_kind::S_CONSTANT: // "constant"
         value.YY_MOVE_OR_COPY< std::string > (YY_MOVE (that.value));
         break;
 
@@ -350,7 +352,7 @@ namespace Expr {
 #endif
   }
 
-  Parser::stack_symbol_type::stack_symbol_type (state_type s, YY_MOVE_REF (symbol_type) that)
+   Parser ::stack_symbol_type::stack_symbol_type (state_type s, YY_MOVE_REF (symbol_type) that)
     : super_type (s)
   {
     switch (that.kind ())
@@ -363,6 +365,8 @@ namespace Expr {
         break;
 
       case symbol_kind::S_IDENTIFIER: // "identifier"
+      case symbol_kind::S_STRING_LITERAL: // "string"
+      case symbol_kind::S_CONSTANT: // "constant"
         value.move< std::string > (YY_MOVE (that.value));
         break;
 
@@ -375,8 +379,8 @@ namespace Expr {
   }
 
 #if YY_CPLUSPLUS < 201103L
-  Parser::stack_symbol_type&
-  Parser::stack_symbol_type::operator= (const stack_symbol_type& that)
+   Parser ::stack_symbol_type&
+   Parser ::stack_symbol_type::operator= (const stack_symbol_type& that)
   {
     state = that.state;
     switch (that.kind ())
@@ -389,6 +393,8 @@ namespace Expr {
         break;
 
       case symbol_kind::S_IDENTIFIER: // "identifier"
+      case symbol_kind::S_STRING_LITERAL: // "string"
+      case symbol_kind::S_CONSTANT: // "constant"
         value.copy< std::string > (that.value);
         break;
 
@@ -399,8 +405,8 @@ namespace Expr {
     return *this;
   }
 
-  Parser::stack_symbol_type&
-  Parser::stack_symbol_type::operator= (stack_symbol_type& that)
+   Parser ::stack_symbol_type&
+   Parser ::stack_symbol_type::operator= (stack_symbol_type& that)
   {
     state = that.state;
     switch (that.kind ())
@@ -413,6 +419,8 @@ namespace Expr {
         break;
 
       case symbol_kind::S_IDENTIFIER: // "identifier"
+      case symbol_kind::S_STRING_LITERAL: // "string"
+      case symbol_kind::S_CONSTANT: // "constant"
         value.move< std::string > (that.value);
         break;
 
@@ -428,7 +436,7 @@ namespace Expr {
 
   template <typename Base>
   void
-  Parser::yy_destroy_ (const char* yymsg, basic_symbol<Base>& yysym) const
+   Parser ::yy_destroy_ (const char* yymsg, basic_symbol<Base>& yysym) const
   {
     if (yymsg)
       YY_SYMBOL_PRINT (yymsg, yysym);
@@ -437,7 +445,7 @@ namespace Expr {
 #if YYDEBUG
   template <typename Base>
   void
-  Parser::yy_print_ (std::ostream& yyo, const basic_symbol<Base>& yysym) const
+   Parser ::yy_print_ (std::ostream& yyo, const basic_symbol<Base>& yysym) const
   {
     std::ostream& yyoutput = yyo;
     YY_USE (yyoutput);
@@ -455,7 +463,7 @@ namespace Expr {
 #endif
 
   void
-  Parser::yypush_ (const char* m, YY_MOVE_REF (stack_symbol_type) sym)
+   Parser ::yypush_ (const char* m, YY_MOVE_REF (stack_symbol_type) sym)
   {
     if (m)
       YY_SYMBOL_PRINT (m, sym);
@@ -463,7 +471,7 @@ namespace Expr {
   }
 
   void
-  Parser::yypush_ (const char* m, state_type s, YY_MOVE_REF (symbol_type) sym)
+   Parser ::yypush_ (const char* m, state_type s, YY_MOVE_REF (symbol_type) sym)
   {
 #if 201103L <= YY_CPLUSPLUS
     yypush_ (m, stack_symbol_type (s, std::move (sym)));
@@ -474,40 +482,40 @@ namespace Expr {
   }
 
   void
-  Parser::yypop_ (int n) YY_NOEXCEPT
+   Parser ::yypop_ (int n) YY_NOEXCEPT
   {
     yystack_.pop (n);
   }
 
 #if YYDEBUG
   std::ostream&
-  Parser::debug_stream () const
+   Parser ::debug_stream () const
   {
     return *yycdebug_;
   }
 
   void
-  Parser::set_debug_stream (std::ostream& o)
+   Parser ::set_debug_stream (std::ostream& o)
   {
     yycdebug_ = &o;
   }
 
 
-  Parser::debug_level_type
-  Parser::debug_level () const
+   Parser ::debug_level_type
+   Parser ::debug_level () const
   {
     return yydebug_;
   }
 
   void
-  Parser::set_debug_level (debug_level_type l)
+   Parser ::set_debug_level (debug_level_type l)
   {
     yydebug_ = l;
   }
 #endif // YYDEBUG
 
-  Parser::state_type
-  Parser::yy_lr_goto_state_ (state_type yystate, int yysym)
+   Parser ::state_type
+   Parser ::yy_lr_goto_state_ (state_type yystate, int yysym)
   {
     int yyr = yypgoto_[yysym - YYNTOKENS] + yystate;
     if (0 <= yyr && yyr <= yylast_ && yycheck_[yyr] == yystate)
@@ -517,25 +525,25 @@ namespace Expr {
   }
 
   bool
-  Parser::yy_pact_value_is_default_ (int yyvalue) YY_NOEXCEPT
+   Parser ::yy_pact_value_is_default_ (int yyvalue) YY_NOEXCEPT
   {
     return yyvalue == yypact_ninf_;
   }
 
   bool
-  Parser::yy_table_value_is_error_ (int yyvalue) YY_NOEXCEPT
+   Parser ::yy_table_value_is_error_ (int yyvalue) YY_NOEXCEPT
   {
     return yyvalue == yytable_ninf_;
   }
 
   int
-  Parser::operator() ()
+   Parser ::operator() ()
   {
     return parse ();
   }
 
   int
-  Parser::parse ()
+   Parser ::parse ()
   {
     int yyn;
     /// Length of the RHS of the rule being reduced.
@@ -677,6 +685,8 @@ namespace Expr {
         break;
 
       case symbol_kind::S_IDENTIFIER: // "identifier"
+      case symbol_kind::S_STRING_LITERAL: // "string"
+      case symbol_kind::S_CONSTANT: // "constant"
         yylhs.value.emplace< std::string > ();
         break;
 
@@ -695,37 +705,37 @@ namespace Expr {
           switch (yyn)
             {
   case 3: // statement: expr
-#line 65 "SimpleParser.y"
+#line 104 "SimpleParser.y"
            { std::cout << "Resultado: " << yystack_[0].value.as < int > () << '\n'; }
-#line 701 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 711 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 6: // expr: expr "+" term
-#line 75 "SimpleParser.y"
+#line 113 "SimpleParser.y"
                        { yylhs.value.as < int > () = yystack_[2].value.as < int > () + yystack_[0].value.as < int > (); }
-#line 707 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 717 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 7: // expr: expr "-" term
-#line 76 "SimpleParser.y"
+#line 114 "SimpleParser.y"
                        { yylhs.value.as < int > () = yystack_[2].value.as < int > () - yystack_[0].value.as < int > (); }
-#line 713 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 723 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 8: // expr: term
-#line 77 "SimpleParser.y"
+#line 115 "SimpleParser.y"
                       { yylhs.value.as < int > () = yystack_[0].value.as < int > (); }
-#line 719 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 729 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 9: // term: term "*" factor
-#line 81 "SimpleParser.y"
+#line 119 "SimpleParser.y"
                          { yylhs.value.as < int > () = yystack_[2].value.as < int > () * yystack_[0].value.as < int > (); }
-#line 725 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 735 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 10: // term: term "/" factor
-#line 82 "SimpleParser.y"
+#line 120 "SimpleParser.y"
                          {
           if (yystack_[0].value.as < int > () == 0) {
               yyerror("Division by zero");
@@ -734,43 +744,43 @@ namespace Expr {
               yylhs.value.as < int > () = yystack_[2].value.as < int > () / yystack_[0].value.as < int > ();
           }
       }
-#line 738 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 748 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 11: // term: factor
-#line 90 "SimpleParser.y"
+#line 128 "SimpleParser.y"
              { yylhs.value.as < int > () = yystack_[0].value.as < int > (); }
-#line 744 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 754 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 12: // factor: "number"
-#line 94 "SimpleParser.y"
+#line 132 "SimpleParser.y"
                 { yylhs.value.as < int > () = yystack_[0].value.as < int > (); }
-#line 750 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 760 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
-  case 13: // factor: OPEN_PAR expr CLOSE_PAR
-#line 95 "SimpleParser.y"
+  case 13: // factor: "(" expr ")"
+#line 133 "SimpleParser.y"
                               { yylhs.value.as < int > () = yystack_[1].value.as < int > (); }
-#line 756 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 766 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 14: // factor: "identifier"
-#line 96 "SimpleParser.y"
+#line 134 "SimpleParser.y"
                  {
           auto it = vars.find(yystack_[0].value.as < std::string > ());
-          if(it == vars.end()){
+          if (it == vars.end()){
               yyerror(("Unknown Variable " + yystack_[0].value.as < std::string > ()).c_str());
               YYABORT;
           } else {
               yylhs.value.as < int > () = it->second;
           }
       }
-#line 770 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 780 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
 
-#line 774 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 784 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
 
             default:
               break;
@@ -939,7 +949,7 @@ namespace Expr {
   }
 
   void
-  Parser::error (const syntax_error& yyexc)
+   Parser ::error (const syntax_error& yyexc)
   {
     error (yyexc.what ());
   }
@@ -950,7 +960,7 @@ namespace Expr {
      apostrophe, a comma, or backslash (other than backslash-backslash).
      YYSTR is taken from yytname.  */
   std::string
-  Parser::yytnamerr_ (const char *yystr)
+   Parser ::yytnamerr_ (const char *yystr)
   {
     if (*yystr == '"')
       {
@@ -985,21 +995,21 @@ namespace Expr {
   }
 
   std::string
-  Parser::symbol_name (symbol_kind_type yysymbol)
+   Parser ::symbol_name (symbol_kind_type yysymbol)
   {
     return yytnamerr_ (yytname_[yysymbol]);
   }
 
 
 
-  // Parser::context.
-  Parser::context::context (const Parser& yyparser, const symbol_type& yyla)
+  //  Parser ::context.
+   Parser ::context::context (const  Parser & yyparser, const symbol_type& yyla)
     : yyparser_ (yyparser)
     , yyla_ (yyla)
   {}
 
   int
-  Parser::context::expected_tokens (symbol_kind_type yyarg[], int yyargn) const
+   Parser ::context::expected_tokens (symbol_kind_type yyarg[], int yyargn) const
   {
     // Actual number of expected tokens
     int yycount = 0;
@@ -1038,7 +1048,7 @@ namespace Expr {
 
 
   int
-  Parser::yy_syntax_error_arguments_ (const context& yyctx,
+   Parser ::yy_syntax_error_arguments_ (const context& yyctx,
                                                  symbol_kind_type yyarg[], int yyargn) const
   {
     /* There are many possibilities here to consider:
@@ -1078,7 +1088,7 @@ namespace Expr {
 
   // Generate an error message.
   std::string
-  Parser::yysyntax_error_ (const context& yyctx) const
+   Parser ::yysyntax_error_ (const context& yyctx) const
   {
     // Its maximum.
     enum { YYARGS_MAX = 5 };
@@ -1118,73 +1128,71 @@ namespace Expr {
   }
 
 
-  const signed char Parser::yypact_ninf_ = -6;
+  const signed char  Parser ::yypact_ninf_ = -36;
 
-  const signed char Parser::yytable_ninf_ = -1;
+  const signed char  Parser ::yytable_ninf_ = -1;
 
   const signed char
-  Parser::yypact_[] =
+   Parser ::yypact_[] =
   {
-      -4,    -4,    -6,    -6,     2,    -5,     1,     5,     6,    -6,
-      -3,    -6,    -6,    -4,    -4,    -4,    -4,    -4,    -6,     9,
-       6,     6,    -6,    -6,    -6
+     -35,   -35,   -36,   -36,    14,   -24,   -35,   -25,   -20,   -36,
+     -27,   -36,   -36,   -23,   -35,   -35,   -35,   -35,   -36,   -36,
+     -20,   -20,   -36,   -36
   };
 
   const signed char
-  Parser::yydefact_[] =
+   Parser ::yydefact_[] =
   {
        0,     0,    12,    14,     0,     0,     2,     3,     8,    11,
-       0,     1,     5,     0,     0,     0,     0,     0,    13,     0,
-       6,     7,     9,    10,     4
+       0,     1,     5,     0,     0,     0,     0,     0,    13,     4,
+       6,     7,     9,    10
   };
 
   const signed char
-  Parser::yypgoto_[] =
+   Parser ::yypgoto_[] =
   {
-      -6,    -6,     7,    -6,    14,    -1,     0
+     -36,   -36,     9,   -36,    17,    -9,    -4
   };
 
   const signed char
-  Parser::yydefgoto_[] =
+   Parser ::yydefgoto_[] =
   {
        0,     4,     5,     6,     7,     8,     9
   };
 
   const signed char
-  Parser::yytable_[] =
+   Parser ::yytable_[] =
   {
-      14,    15,    11,     1,    12,    18,     2,     3,    14,    15,
-      13,    16,    17,    20,    21,    10,    22,    23,    24,     0,
-      19
+       1,    14,    15,    14,    15,    20,    21,     2,     3,    18,
+      16,    17,    22,    23,    11,    13,    12,    19,    10
   };
 
   const signed char
-  Parser::yycheck_[] =
+   Parser ::yycheck_[] =
   {
-       3,     4,     0,     7,     9,     8,    10,    11,     3,     4,
-       9,     5,     6,    14,    15,     1,    16,    17,     9,    -1,
-      13
+      35,    28,    29,    28,    29,    14,    15,    42,    43,    36,
+      30,    31,    16,    17,     0,     6,    40,    40,     1
   };
 
   const signed char
-  Parser::yystos_[] =
+   Parser ::yystos_[] =
   {
-       0,     7,    10,    11,    14,    15,    16,    17,    18,    19,
-      17,     0,     9,     9,     3,     4,     5,     6,     8,    15,
-      18,    18,    19,    19,     9
+       0,    35,    42,    43,    48,    49,    50,    51,    52,    53,
+      51,     0,    40,    49,    28,    29,    30,    31,    36,    40,
+      52,    52,    53,    53
   };
 
   const signed char
-  Parser::yyr1_[] =
+   Parser ::yyr1_[] =
   {
-       0,    13,    14,    15,    16,    16,    17,    17,    17,    18,
-      18,    18,    19,    19,    19
+       0,    47,    48,    49,    50,    50,    51,    51,    51,    52,
+      52,    52,    53,    53,    53
   };
 
   const signed char
-  Parser::yyr2_[] =
+   Parser ::yyr2_[] =
   {
-       0,     2,     1,     1,     4,     2,     3,     3,     1,     3,
+       0,     2,     1,     1,     3,     2,     3,     3,     1,     3,
        3,     1,     1,     3,     1
   };
 
@@ -1193,26 +1201,31 @@ namespace Expr {
   // YYTNAME[SYMBOL-NUM] -- String name of the symbol SYMBOL-NUM.
   // First, the terminals, then, starting at \a YYNTOKENS, nonterminals.
   const char*
-  const Parser::yytname_[] =
+  const  Parser ::yytname_[] =
   {
-  "\"end of file\"", "error", "\"invalid token\"", "\"+\"", "\"-\"",
-  "\"*\"", "\"/\"", "OPEN_PAR", "CLOSE_PAR", "SEMICOLON", "\"number\"",
-  "\"identifier\"", "\"unknown\"", "$accept", "input", "statement",
-  "statement_list", "expr", "term", "factor", YY_NULLPTR
+  "\"end of file\"", "error", "\"invalid token\"", "\"EndOfFile\"",
+  "\"Hex\"", "\"Oct\"", "\"Dec\"", "\"Bin\"", "\"class\"", "\"int\"",
+  "\"void\"", "\"ref\"", "\"if\"", "\"else\"", "\"while\"", "\"return\"",
+  "\"print\"", "\"read\"", "\"=\"", "\"||\"", "\"&&\"", "\"!\"", "\"==\"",
+  "\"!=\"", "\"<\"", "\">\"", "\"<=\"", "\">=\"", "\"+\"", "\"-\"",
+  "\"*\"", "\"/\"", "\"%\"", "\"{\"", "\"}\"", "\"(\"", "\")\"", "\"[\"",
+  "\"]\"", "\",\"", "\";\"", "\"comment\"", "\"number\"", "\"identifier\"",
+  "\"string\"", "\"constant\"", "\"error\"", "$accept", "input",
+  "statement", "statement_list", "expr", "term", "factor", YY_NULLPTR
   };
 #endif
 
 
 #if YYDEBUG
-  const signed char
-  Parser::yyrline_[] =
+  const unsigned char
+   Parser ::yyrline_[] =
   {
-       0,    60,    60,    65,    69,    70,    75,    76,    77,    81,
-      82,    90,    94,    95,    96
+       0,   100,   100,   104,   108,   109,   113,   114,   115,   119,
+     120,   128,   132,   133,   134
   };
 
   void
-  Parser::yy_stack_print_ () const
+   Parser ::yy_stack_print_ () const
   {
     *yycdebug_ << "Stack now";
     for (stack_type::const_iterator
@@ -1224,7 +1237,7 @@ namespace Expr {
   }
 
   void
-  Parser::yy_reduce_print_ (int yyrule) const
+   Parser ::yy_reduce_print_ (int yyrule) const
   {
     int yylno = yyrline_[yyrule];
     int yynrhs = yyr2_[yyrule];
@@ -1238,8 +1251,8 @@ namespace Expr {
   }
 #endif // YYDEBUG
 
-  Parser::symbol_kind_type
-  Parser::yytranslate_ (int t) YY_NOEXCEPT
+   Parser ::symbol_kind_type
+   Parser ::yytranslate_ (int t) YY_NOEXCEPT
   {
     // YYTRANSLATE[TOKEN-NUM] -- Symbol number corresponding to
     // TOKEN-NUM as returned by yylex.
@@ -1273,10 +1286,14 @@ namespace Expr {
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     1,     2,     3,     4,
-       5,     6,     7,     8,     9,    10,    11,    12
+       5,     6,     7,     8,     9,    10,    11,    12,    13,    14,
+      15,    16,    17,    18,    19,    20,    21,    22,    23,    24,
+      25,    26,    27,    28,    29,    30,    31,    32,    33,    34,
+      35,    36,    37,    38,    39,    40,    41,    42,    43,    44,
+      45,    46
     };
     // Last valid token kind.
-    const int code_max = 267;
+    const int code_max = 301;
 
     if (t <= 0)
       return symbol_kind::S_YYEOF;
@@ -1286,8 +1303,9 @@ namespace Expr {
       return symbol_kind::S_YYUNDEF;
   }
 
-#line 10 "SimpleParser.y"
-} // Expr
-#line 1292 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 11 "SimpleParser.y"
+} //  Expr 
+#line 1309 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
 
-#line 107 "SimpleParser.y"
+#line 145 "SimpleParser.y"
+
