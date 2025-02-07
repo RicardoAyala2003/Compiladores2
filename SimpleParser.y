@@ -97,8 +97,22 @@ void yyerror(const char* msg) {
 %%
 
 input:
-      statement_list
+      program
+    | statement_list
     ;
+
+    variable_decl_list:
+  
+    ;
+
+method_decl_list:
+
+    ;
+
+program:
+      KW_CLASS IDENTIFIER OPEN_CURLY variable_decl_list method_decl_list CLOSE_CURLY
+    ;
+
 
 statement:
       expr { std::cout << "Resultado: " << $1 << '\n'; }

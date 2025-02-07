@@ -1,9 +1,7 @@
 program -> KW_CLASS IDENTIFIER OPEN_CURLY
             ( variable_decl )*
-            ( method_decl )*
-
-    
-          CLOSE_CURLY
+            ( method_decl )* 
+            CLOSE_CURLY
 
 variable_decl -> type IDENTIFIER ( COMMA IDENTIFIER )* SEMICOLON
 # type -> KW_INT [ OPEN_BRACKET CONSTANT CLOSE_BRACKET ]
@@ -84,3 +82,142 @@ primary ->  CONSTANT
 
 
 CONSTANT -> INT_CONST | HEX_CONST | BINARIO
+
+
+
+// BNF
+
+
+
+
+<input> ::= <program>
+
+<program> ::= KW_CLASS IDENTIFIER OPEN_CURLY <variable_decl_list> <method_decl_list> CLOSE_CURLY
+
+<variable_decl_list> ::= <variable_decl_list> <variable_decl>
+                       | ε
+
+<variable_decl> ::= <type> IDENTIFIER <id_list> SEMICOLON
+
+<id_list> ::= COMMA IDENTIFIER <id_list>
+            | ε
+
+<type> ::= KW_INT <optional_bracket>
+
+<optional_bracket> ::= OPEN_BRACKET CONSTANT CLOSE_BRACKET
+                     | ε
+
+<method_decl_list> ::= <method_decl_list> <method_decl>
+                     | ε
+
+<method_decl> ::= <method_type> IDENTIFIER OPEN_PAR <opt_param_decl_list> CLOSE_PAR
+                  OPEN_CURLY <variable_decl_list> <stmt_list> CLOSE_CURLY
+
+<method_type> ::= KW_INT
+                | KW_VOID
+
+<opt_param_decl_list> ::= <param_decl_list>
+                        | ε
+
+<param_decl_list> ::= <param_decl> <param_decl_list_tail>
+
+<param_decl_list_tail> ::= COMMA <param_decl> <param_decl_list_tail>
+                         | ε
+
+<param_decl> ::= <optional_ref> <type> IDENTIFIER
+
+<optional_ref> ::= KW_REF
+                 | ε
+
+<stmt_list> ::= <stmt> <stmt_list>
+              | ε
+
+<stmt> ::= <assign_stmt>
+         | <if_stmt>
+         | <while_stmt>
+         | <call_stmt>
+         | <return_stmt>
+         | <print_stmt>
+         | <read_stmt>
+
+<assign_stmt> ::= IDENTIFIER <optional_index> OP_ASSIGN <expression> SEMICOLON
+
+<optional_index> ::= OPEN_BRACKET <expression> CLOSE_BRACKET
+                   | ε
+
+<return_stmt> ::= KW_RETURN <expression> SEMICOLON
+
+<if_stmt> ::= KW_IF OPEN_PAR <expression> CLOSE_PAR <block> <optional_else>
+
+<optional_else> ::= KW_ELSE <block>
+                  | ε
+
+<block> ::= OPEN_CURLY <stmt_list> CLOSE_CURLY
+
+<while_stmt> ::= KW_WHILE OPEN_PAR <expression> CLOSE_PAR <block>
+
+<call_stmt> ::= IDENTIFIER OPEN_PAR <optional_expression_list> CLOSE_PAR SEMICOLON
+
+<optional_expression_list> ::= <expression_list>
+                             | ε
+
+<expression_list> ::= <expression> <expression_list_tail>
+
+<expression_list_tail> ::= COMMA <expression> <expression_list_tail>
+                         | ε
+
+<print_stmt> ::= KW_PRINT OPEN_PAR <print_arg> CLOSE_PAR SEMICOLON
+
+<print_arg> ::= <expression>
+              | STRING_LITERAL
+
+<read_stmt> ::= KW_READ OPEN_PAR IDENTIFIER CLOSE_PAR SEMICOLON
+
+<expression> ::= <boolean_expression>
+
+<boolean_expression> ::= <boolean_term> <boolean_expression_tail>
+
+<boolean_expression_tail> ::= OP_BOOL_OR <boolean_term> <boolean_expression_tail>
+                             | ε
+
+<boolean_term> ::= <boolean_factor> <boolean_term_tail>
+
+<boolean_term_tail> ::= OP_BOOL_AND <boolean_factor> <boolean_term_tail>
+                      | ε
+
+<boolean_factor> ::= <relational_expression>
+                   | OP_BOOL_NOT <boolean_factor>
+
+<relational_expression> ::= <arithmetic_expression> OP_EQUAL <arithmetic_expression>
+                          | <arithmetic_expression> OP_NOT_EQUAL <arithmetic_expression>
+                          | <arithmetic_expression> OP_LESS_THAN <arithmetic_expression>
+                          | <arithmetic_expression> OP_GREATER_THAN <arithmetic_expression>
+                          | <arithmetic_expression> OP_LESS_EQUAL <arithmetic_expression>
+                          | <arithmetic_expression> OP_GREATER_EQUAL <arithmetic_expression>
+                          | <arithmetic_expression>
+
+<arithmetic_expression> ::= <term> <arithmetic_expression_tail>
+
+<arithmetic_expression_tail> ::= ( OP_ADD | OP_SUB ) <term> <arithmetic_expression_tail>
+                                | ε
+
+<term> ::= <factor> <term_tail>
+
+<term_tail> ::= ( OP_MUL | OP_DIV | OP_MOD ) <factor> <term_tail>
+              | ε
+
+<factor> ::= <optional_sign> <primary>
+
+<optional_sign> ::= OP_ADD
+                  | OP_SUB
+                  | ε
+
+<primary> ::= CONSTANT
+            | IDENTIFIER
+            | IDENTIFIER OPEN_BRACKET <expression> CLOSE_BRACKET
+            | IDENTIFIER OPEN_PAR <optional_expression_list> CLOSE_PAR
+            | OPEN_PAR <expression> CLOSE_PAR
+
+<CONSTANT> ::= INT_CONST
+             | HEX_CONST
+             | BINARIO
