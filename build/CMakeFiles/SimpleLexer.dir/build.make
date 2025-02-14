@@ -69,14 +69,14 @@ include CMakeFiles/SimpleLexer.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/SimpleLexer.dir/flags.make
 
-Tokens.hpp: /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l
+tokens.hpp: /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating lexer source file with Reflex"
 	/usr/local/bin/reflex -o SimpleLexer.cpp --header-file=SimpleLexer.hpp /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleLexer.l
 
-SimpleLexer.cpp: Tokens.hpp
+SimpleLexer.cpp: tokens.hpp
 	@$(CMAKE_COMMAND) -E touch_nocreate SimpleLexer.cpp
 
-SimpleLexer.hpp: Tokens.hpp
+SimpleLexer.hpp: tokens.hpp
 	@$(CMAKE_COMMAND) -E touch_nocreate SimpleLexer.hpp
 
 SimpleParser.cpp: /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/SimpleParser.y
@@ -86,10 +86,17 @@ SimpleParser.cpp: /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer
 SimpleParser.hpp: SimpleParser.cpp
 	@$(CMAKE_COMMAND) -E touch_nocreate SimpleParser.hpp
 
+ExprAst.cpp: /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Generating AST source file with TreeCC"
+	/usr/local/bin/treecc -o ExprAst.cpp -h ExprAst.hpp /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc
+
+ExprAst.hpp: ExprAst.cpp
+	@$(CMAKE_COMMAND) -E touch_nocreate ExprAst.hpp
+
 CMakeFiles/SimpleLexer.dir/SimpleLexer.cpp.o: CMakeFiles/SimpleLexer.dir/flags.make
 CMakeFiles/SimpleLexer.dir/SimpleLexer.cpp.o: SimpleLexer.cpp
 CMakeFiles/SimpleLexer.dir/SimpleLexer.cpp.o: CMakeFiles/SimpleLexer.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/SimpleLexer.dir/SimpleLexer.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/SimpleLexer.dir/SimpleLexer.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/SimpleLexer.dir/SimpleLexer.cpp.o -MF CMakeFiles/SimpleLexer.dir/SimpleLexer.cpp.o.d -o CMakeFiles/SimpleLexer.dir/SimpleLexer.cpp.o -c /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleLexer.cpp
 
 CMakeFiles/SimpleLexer.dir/SimpleLexer.cpp.i: cmake_force
@@ -103,7 +110,7 @@ CMakeFiles/SimpleLexer.dir/SimpleLexer.cpp.s: cmake_force
 CMakeFiles/SimpleLexer.dir/SimpleParser.cpp.o: CMakeFiles/SimpleLexer.dir/flags.make
 CMakeFiles/SimpleLexer.dir/SimpleParser.cpp.o: SimpleParser.cpp
 CMakeFiles/SimpleLexer.dir/SimpleParser.cpp.o: CMakeFiles/SimpleLexer.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/SimpleLexer.dir/SimpleParser.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/SimpleLexer.dir/SimpleParser.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/SimpleLexer.dir/SimpleParser.cpp.o -MF CMakeFiles/SimpleLexer.dir/SimpleParser.cpp.o.d -o CMakeFiles/SimpleLexer.dir/SimpleParser.cpp.o -c /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp
 
 CMakeFiles/SimpleLexer.dir/SimpleParser.cpp.i: cmake_force
@@ -114,10 +121,24 @@ CMakeFiles/SimpleLexer.dir/SimpleParser.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/SimpleLexer.dir/SimpleParser.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp -o CMakeFiles/SimpleLexer.dir/SimpleParser.cpp.s
 
+CMakeFiles/SimpleLexer.dir/ExprAst.cpp.o: CMakeFiles/SimpleLexer.dir/flags.make
+CMakeFiles/SimpleLexer.dir/ExprAst.cpp.o: ExprAst.cpp
+CMakeFiles/SimpleLexer.dir/ExprAst.cpp.o: CMakeFiles/SimpleLexer.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/SimpleLexer.dir/ExprAst.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/SimpleLexer.dir/ExprAst.cpp.o -MF CMakeFiles/SimpleLexer.dir/ExprAst.cpp.o.d -o CMakeFiles/SimpleLexer.dir/ExprAst.cpp.o -c /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/ExprAst.cpp
+
+CMakeFiles/SimpleLexer.dir/ExprAst.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/SimpleLexer.dir/ExprAst.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/ExprAst.cpp > CMakeFiles/SimpleLexer.dir/ExprAst.cpp.i
+
+CMakeFiles/SimpleLexer.dir/ExprAst.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/SimpleLexer.dir/ExprAst.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/ExprAst.cpp -o CMakeFiles/SimpleLexer.dir/ExprAst.cpp.s
+
 CMakeFiles/SimpleLexer.dir/Main.cpp.o: CMakeFiles/SimpleLexer.dir/flags.make
 CMakeFiles/SimpleLexer.dir/Main.cpp.o: /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/Main.cpp
 CMakeFiles/SimpleLexer.dir/Main.cpp.o: CMakeFiles/SimpleLexer.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/SimpleLexer.dir/Main.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/SimpleLexer.dir/Main.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/SimpleLexer.dir/Main.cpp.o -MF CMakeFiles/SimpleLexer.dir/Main.cpp.o.d -o CMakeFiles/SimpleLexer.dir/Main.cpp.o -c /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/Main.cpp
 
 CMakeFiles/SimpleLexer.dir/Main.cpp.i: cmake_force
@@ -132,6 +153,7 @@ CMakeFiles/SimpleLexer.dir/Main.cpp.s: cmake_force
 SimpleLexer_OBJECTS = \
 "CMakeFiles/SimpleLexer.dir/SimpleLexer.cpp.o" \
 "CMakeFiles/SimpleLexer.dir/SimpleParser.cpp.o" \
+"CMakeFiles/SimpleLexer.dir/ExprAst.cpp.o" \
 "CMakeFiles/SimpleLexer.dir/Main.cpp.o"
 
 # External object files for target SimpleLexer
@@ -139,11 +161,12 @@ SimpleLexer_EXTERNAL_OBJECTS =
 
 SimpleLexer: CMakeFiles/SimpleLexer.dir/SimpleLexer.cpp.o
 SimpleLexer: CMakeFiles/SimpleLexer.dir/SimpleParser.cpp.o
+SimpleLexer: CMakeFiles/SimpleLexer.dir/ExprAst.cpp.o
 SimpleLexer: CMakeFiles/SimpleLexer.dir/Main.cpp.o
 SimpleLexer: CMakeFiles/SimpleLexer.dir/build.make
 SimpleLexer: /usr/local/lib/libreflex_static_lib.a
 SimpleLexer: CMakeFiles/SimpleLexer.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable SimpleLexer"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable SimpleLexer"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/SimpleLexer.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -154,11 +177,13 @@ CMakeFiles/SimpleLexer.dir/clean:
 	$(CMAKE_COMMAND) -P CMakeFiles/SimpleLexer.dir/cmake_clean.cmake
 .PHONY : CMakeFiles/SimpleLexer.dir/clean
 
+CMakeFiles/SimpleLexer.dir/depend: ExprAst.cpp
+CMakeFiles/SimpleLexer.dir/depend: ExprAst.hpp
 CMakeFiles/SimpleLexer.dir/depend: SimpleLexer.cpp
 CMakeFiles/SimpleLexer.dir/depend: SimpleLexer.hpp
 CMakeFiles/SimpleLexer.dir/depend: SimpleParser.cpp
 CMakeFiles/SimpleLexer.dir/depend: SimpleParser.hpp
-CMakeFiles/SimpleLexer.dir/depend: Tokens.hpp
+CMakeFiles/SimpleLexer.dir/depend: tokens.hpp
 	cd /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/CMakeFiles/SimpleLexer.dir/DependInfo.cmake "--color=$(COLOR)"
 .PHONY : CMakeFiles/SimpleLexer.dir/depend
 

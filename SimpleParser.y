@@ -1,17 +1,17 @@
 %require "3.0"
 %language "c++"
-
-%parse-param { SimpleLexer& lexer }
-%parse-param { std::unordered_map<std::string, int>& vars }
-
+%parse-param {SimpleLexer& lexer}
+%parse-param {Ast::Node *&root}
 %define parse.trace
+
 %define parse.error verbose
 %define api.value.type variant
-%define api.parser.class { Parser }
-%define api.namespace { Expr }
+%define api.parser.class {Parser}
+%define api.namespace {Expr}
 
 %code requires {
     #include <unordered_map>
+    #include "ExprAst.hpp"
     class SimpleLexer;
 }
 
@@ -20,15 +20,18 @@
 #include <stdexcept>
 #include "SimpleLexer.hpp"
 #include "error.h"
+#include "Tokens.hpp"
 
+
+int yylex();
 void yyerror(const char *s);
 
-#define yylex(arg) lexer.nextToken(arg)
+#define yylex(arg) (lexer.nextToken(arg) ? : 0) // Retorna 0 si falla
 
 void yyerror(const char* msg);
 
 namespace Expr {
-    void Parser::error(const std::string& msg)
+    void Parser::error (const std::string& msg)
     {
         std::cerr << "Error de sintaxis: " << msg << '\n';
     }
@@ -37,123 +40,99 @@ namespace Expr {
 void yyerror(const char* msg) {
     std::cerr << "Syntax error: " << msg << std::endl;
 }
+
 %}
 
 
-%token EndOfFile         "EndOfFile"
-%token Hex               "Hex"
-%token Oct               "Oct"
-%token Dec               "Dec"
-%token Bin               "Bin"
+%token OP_ADD "+"
+%token OP_SUB "-"
+%token OP_MUL "*"
+%token OP_DIV "/"
+%token OPEN_PAR CLOSE_PAR SEMICOLON
+%token<int> INT_CONST "number"
+%token<std::string> IDENTIFIER "identifier"
+%token ERROR "unknown"
 
-%token KW_CLASS          "class"
-%token KW_INT            "int"
-%token KW_VOID           "void"
-%token KW_REF            "ref"
-%token KW_IF             "if"
-%token KW_ELSE           "else"
-%token KW_WHILE          "while"
-%token KW_RETURN         "return"
-%token KW_PRINT          "print"
-%token KW_READ           "read"
-
-%token OP_ASSIGN         "="
-%token OP_BOOL_OR        "||"
-%token OP_BOOL_AND       "&&"
-%token OP_BOOL_NOT       "!"
-%token OP_EQUAL          "=="
-%token OP_NOT_EQUAL      "!="
-%token OP_LESS_THAN      "<"
-%token OP_GREATER_THAN   ">"
-%token OP_LESS_EQUAL     "<="
-%token OP_GREATER_EQUAL  ">="
-
-%token OP_ADD            "+"
-%token OP_SUB            "-"
-%token OP_MUL            "*"
-%token OP_DIV            "/"
-%token OP_MOD            "%"
-
-%token OPEN_CURLY        "{"
-%token CLOSE_CURLY       "}"
-%token OPEN_PAR          "("
-%token CLOSE_PAR         ")"
-%token OPEN_BRACKET      "["
-%token CLOSE_BRACKET     "]"
-%token COMMA             ","
-%token SEMICOLON         ";"
-%token COMMENT           "comment"
-
-%token<int> INT_CONST    "number"
-%token<std::string> IDENTIFIER      "identifier"
-%token<std::string> STRING_LITERAL  "string"
-%token<std::string> CONSTANT        "constant"
-
-%token ERROR             "error"
-
-/* Declaración de tipos semánticos para las no terminales usadas en la gramática */
-%type <int> expr term factor
+%type <Ast::Node *> statement_list statement expr term factor
 
 %%
 
 input:
-      program
-    | statement_list
-    ;
-
-    variable_decl_list:
-  
-    ;
-
-method_decl_list:
-
-    ;
-
-program:
-      KW_CLASS IDENTIFIER OPEN_CURLY variable_decl_list method_decl_list CLOSE_CURLY
-    ;
-
+      statement_list SEMICOLON {
+            root = new Ast::Program($1);
+            std::cout << "Análisis exitoso: programa válido." << std::endl;
+      }
+    | /* entrada vacía */ {
+            root = nullptr;
+            yyerror("Entrada vacía detectada");
+      }
+;
 
 statement:
-      expr { std::cout << "Resultado: " << $1 << '\n'; }
-    ;
+      expr { $$ = $1; }
+;
 
 statement_list:
-      statement_list statement SEMICOLON
-    | statement SEMICOLON
-    ;
+      statement_list SEMICOLON statement {
+            if ($1 && $3) {
+                $$ = new Ast::LineSeq($1, $3);
+            } else {
+                yyerror("Nodo nulo en statement_list");
+                $$ = nullptr;
+            }
+        }
+    | statement { 
+            if ($1) {
+                $$ = new Ast::LineSeq($1, nullptr); 
+            } else {
+                yyerror("Nodo nulo en statement_list simple");
+                $$ = nullptr;
+            }
+        }
+;
 
 expr:
-      expr OP_ADD term { $$ = $1 + $3; }
-    | expr OP_SUB term { $$ = $1 - $3; }
-    | term            { $$ = $1; }
-    ;
+      expr OP_ADD term { 
+            $$ = new Ast::AddExpr($1, $3); 
+        }
+    | expr OP_SUB term { 
+            $$ = new Ast::SubExpr($1, $3); 
+        }
+    | term             { 
+            $$ = $1; 
+        }
+;
 
 term:
-      term OP_MUL factor { $$ = $1 * $3; }
+      term OP_MUL factor { 
+            $$ = new Ast::MulExpr($1, $3); 
+        }
     | term OP_DIV factor {
-          if ($3 == 0) {
-              yyerror("Division by zero");
-              YYABORT;
-          } else {
-              $$ = $1 / $3;
-          }
-      }
-    | factor { $$ = $1; }
-    ;
+            $$ = new Ast::DivExpr($1, $3);
+        } 
+    | factor { 
+            $$ = $1; 
+        }
+;
 
 factor:
-      INT_CONST { $$ = $1; }
-    | OPEN_PAR expr CLOSE_PAR { $$ = $2; }
-    | IDENTIFIER {
-          auto it = vars.find($1);
-          if (it == vars.end()){
-              yyerror(("Unknown Variable " + $1).c_str());
-              YYABORT;
+      INT_CONST {
+          std::cout << "num: " << $1 << std::endl;
+          $$ = new Ast::Number($1);
+      }
+    | OPEN_PAR expr CLOSE_PAR {
+          std::cout << "par" << std::endl;
+          if ($2 == nullptr) {
+              yyerror("Expresión nula dentro de paréntesis");
+              $$ = nullptr;
           } else {
-              $$ = it->second;
+              $$ = $2;
           }
       }
-    ;
+    | IDENTIFIER {
+          std::cout << "ident: " << $1 << std::endl;
+          $$ = new Ast::Identifier($1);
+      }
+;
 
 %%

@@ -33,7 +33,7 @@
 
 /**
  ** \file /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.hpp
- ** Define the  Expr ::parser class.
+ ** Define the Expr::parser class.
  */
 
 // C++ LALR(1) parser skeleton written by Akim Demaille.
@@ -45,12 +45,13 @@
 #ifndef YY_YY_HOME_RICARDO_COMPI2_RE_FLEX_MASTER_RE_FLEX_MASTER_SIMPLELEXER_BUILD_SIMPLEPARSER_HPP_INCLUDED
 # define YY_YY_HOME_RICARDO_COMPI2_RE_FLEX_MASTER_RE_FLEX_MASTER_SIMPLELEXER_BUILD_SIMPLEPARSER_HPP_INCLUDED
 // "%code requires" blocks.
-#line 13 "SimpleParser.y"
+#line 12 "SimpleParser.y"
 
     #include <unordered_map>
+    #include "ExprAst.hpp"
     class SimpleLexer;
 
-#line 54 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.hpp"
+#line 55 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.hpp"
 
 
 # include <cstdlib> // std::abort
@@ -184,15 +185,15 @@
 # define YYDEBUG 1
 #endif
 
-#line 11 "SimpleParser.y"
-namespace  Expr  {
-#line 190 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.hpp"
+#line 10 "SimpleParser.y"
+namespace Expr {
+#line 191 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.hpp"
 
 
 
 
   /// A Bison parser.
-  class  Parser 
+  class Parser
   {
   public:
 #ifdef YYSTYPE
@@ -382,16 +383,18 @@ namespace  Expr  {
     /// An auxiliary type to compute the largest semantic type.
     union union_type
     {
-      // "number"
+      // statement
+      // statement_list
       // expr
       // term
       // factor
-      char dummy1[sizeof (int)];
+      char dummy1[sizeof (Ast::Node *)];
+
+      // "number"
+      char dummy2[sizeof (int)];
 
       // "identifier"
-      // "string"
-      // "constant"
-      char dummy2[sizeof (std::string)];
+      char dummy3[sizeof (std::string)];
     };
 
     /// The size of the largest semantic type.
@@ -435,50 +438,16 @@ namespace  Expr  {
     YYEOF = 0,                     // "end of file"
     YYerror = 256,                 // error
     YYUNDEF = 257,                 // "invalid token"
-    EndOfFile = 258,               // "EndOfFile"
-    Hex = 259,                     // "Hex"
-    Oct = 260,                     // "Oct"
-    Dec = 261,                     // "Dec"
-    Bin = 262,                     // "Bin"
-    KW_CLASS = 263,                // "class"
-    KW_INT = 264,                  // "int"
-    KW_VOID = 265,                 // "void"
-    KW_REF = 266,                  // "ref"
-    KW_IF = 267,                   // "if"
-    KW_ELSE = 268,                 // "else"
-    KW_WHILE = 269,                // "while"
-    KW_RETURN = 270,               // "return"
-    KW_PRINT = 271,                // "print"
-    KW_READ = 272,                 // "read"
-    OP_ASSIGN = 273,               // "="
-    OP_BOOL_OR = 274,              // "||"
-    OP_BOOL_AND = 275,             // "&&"
-    OP_BOOL_NOT = 276,             // "!"
-    OP_EQUAL = 277,                // "=="
-    OP_NOT_EQUAL = 278,            // "!="
-    OP_LESS_THAN = 279,            // "<"
-    OP_GREATER_THAN = 280,         // ">"
-    OP_LESS_EQUAL = 281,           // "<="
-    OP_GREATER_EQUAL = 282,        // ">="
-    OP_ADD = 283,                  // "+"
-    OP_SUB = 284,                  // "-"
-    OP_MUL = 285,                  // "*"
-    OP_DIV = 286,                  // "/"
-    OP_MOD = 287,                  // "%"
-    OPEN_CURLY = 288,              // "{"
-    CLOSE_CURLY = 289,             // "}"
-    OPEN_PAR = 290,                // "("
-    CLOSE_PAR = 291,               // ")"
-    OPEN_BRACKET = 292,            // "["
-    CLOSE_BRACKET = 293,           // "]"
-    COMMA = 294,                   // ","
-    SEMICOLON = 295,               // ";"
-    COMMENT = 296,                 // "comment"
-    INT_CONST = 297,               // "number"
-    IDENTIFIER = 298,              // "identifier"
-    STRING_LITERAL = 299,          // "string"
-    CONSTANT = 300,                // "constant"
-    ERROR = 301                    // "error"
+    OP_ADD = 258,                  // "+"
+    OP_SUB = 259,                  // "-"
+    OP_MUL = 260,                  // "*"
+    OP_DIV = 261,                  // "/"
+    OPEN_PAR = 262,                // OPEN_PAR
+    CLOSE_PAR = 263,               // CLOSE_PAR
+    SEMICOLON = 264,               // SEMICOLON
+    INT_CONST = 265,               // "number"
+    IDENTIFIER = 266,              // "identifier"
+    ERROR = 267                    // "unknown"
       };
       /// Backward compatibility alias (Bison 3.6).
       typedef token_kind_type yytokentype;
@@ -495,62 +464,28 @@ namespace  Expr  {
     {
       enum symbol_kind_type
       {
-        YYNTOKENS = 47, ///< Number of tokens.
+        YYNTOKENS = 13, ///< Number of tokens.
         S_YYEMPTY = -2,
         S_YYEOF = 0,                             // "end of file"
         S_YYerror = 1,                           // error
         S_YYUNDEF = 2,                           // "invalid token"
-        S_EndOfFile = 3,                         // "EndOfFile"
-        S_Hex = 4,                               // "Hex"
-        S_Oct = 5,                               // "Oct"
-        S_Dec = 6,                               // "Dec"
-        S_Bin = 7,                               // "Bin"
-        S_KW_CLASS = 8,                          // "class"
-        S_KW_INT = 9,                            // "int"
-        S_KW_VOID = 10,                          // "void"
-        S_KW_REF = 11,                           // "ref"
-        S_KW_IF = 12,                            // "if"
-        S_KW_ELSE = 13,                          // "else"
-        S_KW_WHILE = 14,                         // "while"
-        S_KW_RETURN = 15,                        // "return"
-        S_KW_PRINT = 16,                         // "print"
-        S_KW_READ = 17,                          // "read"
-        S_OP_ASSIGN = 18,                        // "="
-        S_OP_BOOL_OR = 19,                       // "||"
-        S_OP_BOOL_AND = 20,                      // "&&"
-        S_OP_BOOL_NOT = 21,                      // "!"
-        S_OP_EQUAL = 22,                         // "=="
-        S_OP_NOT_EQUAL = 23,                     // "!="
-        S_OP_LESS_THAN = 24,                     // "<"
-        S_OP_GREATER_THAN = 25,                  // ">"
-        S_OP_LESS_EQUAL = 26,                    // "<="
-        S_OP_GREATER_EQUAL = 27,                 // ">="
-        S_OP_ADD = 28,                           // "+"
-        S_OP_SUB = 29,                           // "-"
-        S_OP_MUL = 30,                           // "*"
-        S_OP_DIV = 31,                           // "/"
-        S_OP_MOD = 32,                           // "%"
-        S_OPEN_CURLY = 33,                       // "{"
-        S_CLOSE_CURLY = 34,                      // "}"
-        S_OPEN_PAR = 35,                         // "("
-        S_CLOSE_PAR = 36,                        // ")"
-        S_OPEN_BRACKET = 37,                     // "["
-        S_CLOSE_BRACKET = 38,                    // "]"
-        S_COMMA = 39,                            // ","
-        S_SEMICOLON = 40,                        // ";"
-        S_COMMENT = 41,                          // "comment"
-        S_INT_CONST = 42,                        // "number"
-        S_IDENTIFIER = 43,                       // "identifier"
-        S_STRING_LITERAL = 44,                   // "string"
-        S_CONSTANT = 45,                         // "constant"
-        S_ERROR = 46,                            // "error"
-        S_YYACCEPT = 47,                         // $accept
-        S_input = 48,                            // input
-        S_statement = 49,                        // statement
-        S_statement_list = 50,                   // statement_list
-        S_expr = 51,                             // expr
-        S_term = 52,                             // term
-        S_factor = 53                            // factor
+        S_OP_ADD = 3,                            // "+"
+        S_OP_SUB = 4,                            // "-"
+        S_OP_MUL = 5,                            // "*"
+        S_OP_DIV = 6,                            // "/"
+        S_OPEN_PAR = 7,                          // OPEN_PAR
+        S_CLOSE_PAR = 8,                         // CLOSE_PAR
+        S_SEMICOLON = 9,                         // SEMICOLON
+        S_INT_CONST = 10,                        // "number"
+        S_IDENTIFIER = 11,                       // "identifier"
+        S_ERROR = 12,                            // "unknown"
+        S_YYACCEPT = 13,                         // $accept
+        S_input = 14,                            // input
+        S_statement = 15,                        // statement
+        S_statement_list = 16,                   // statement_list
+        S_expr = 17,                             // expr
+        S_term = 18,                             // term
+        S_factor = 19                            // factor
       };
     };
 
@@ -585,16 +520,19 @@ namespace  Expr  {
       {
         switch (this->kind ())
     {
-      case symbol_kind::S_INT_CONST: // "number"
+      case symbol_kind::S_statement: // statement
+      case symbol_kind::S_statement_list: // statement_list
       case symbol_kind::S_expr: // expr
       case symbol_kind::S_term: // term
       case symbol_kind::S_factor: // factor
+        value.move< Ast::Node * > (std::move (that.value));
+        break;
+
+      case symbol_kind::S_INT_CONST: // "number"
         value.move< int > (std::move (that.value));
         break;
 
       case symbol_kind::S_IDENTIFIER: // "identifier"
-      case symbol_kind::S_STRING_LITERAL: // "string"
-      case symbol_kind::S_CONSTANT: // "constant"
         value.move< std::string > (std::move (that.value));
         break;
 
@@ -616,6 +554,18 @@ namespace  Expr  {
 #else
       basic_symbol (typename Base::kind_type t)
         : Base (t)
+      {}
+#endif
+
+#if 201103L <= YY_CPLUSPLUS
+      basic_symbol (typename Base::kind_type t, Ast::Node *&& v)
+        : Base (t)
+        , value (std::move (v))
+      {}
+#else
+      basic_symbol (typename Base::kind_type t, const Ast::Node *& v)
+        : Base (t)
+        , value (v)
       {}
 #endif
 
@@ -667,16 +617,19 @@ namespace  Expr  {
         // Value type destructor.
 switch (yykind)
     {
-      case symbol_kind::S_INT_CONST: // "number"
+      case symbol_kind::S_statement: // statement
+      case symbol_kind::S_statement_list: // statement_list
       case symbol_kind::S_expr: // expr
       case symbol_kind::S_term: // term
       case symbol_kind::S_factor: // factor
+        value.template destroy< Ast::Node * > ();
+        break;
+
+      case symbol_kind::S_INT_CONST: // "number"
         value.template destroy< int > ();
         break;
 
       case symbol_kind::S_IDENTIFIER: // "identifier"
-      case symbol_kind::S_STRING_LITERAL: // "string"
-      case symbol_kind::S_CONSTANT: // "constant"
         value.template destroy< std::string > ();
         break;
 
@@ -690,7 +643,7 @@ switch (yykind)
       /// The user-facing name of this symbol.
       std::string name () const YY_NOEXCEPT
       {
-        return  Parser ::symbol_name (this->kind ());
+        return Parser::symbol_name (this->kind ());
       }
 
       /// Backward compatibility (Bison 3.6).
@@ -792,14 +745,14 @@ switch (yykind)
     };
 
     /// Build a parser object.
-     Parser  (SimpleLexer& lexer_yyarg, std::unordered_map<std::string, int>& vars_yyarg);
-    virtual ~ Parser  ();
+    Parser (SimpleLexer& lexer_yyarg, Ast::Node *&root_yyarg);
+    virtual ~Parser ();
 
 #if 201103L <= YY_CPLUSPLUS
     /// Non copyable.
-     Parser  (const  Parser &) = delete;
+    Parser (const Parser&) = delete;
     /// Non copyable.
-     Parser & operator= (const  Parser &) = delete;
+    Parser& operator= (const Parser&) = delete;
 #endif
 
     /// Parse.  An alias for parse ().
@@ -884,381 +837,6 @@ switch (yykind)
 #if 201103L <= YY_CPLUSPLUS
       static
       symbol_type
-      make_EndOfFile ()
-      {
-        return symbol_type (token::EndOfFile);
-      }
-#else
-      static
-      symbol_type
-      make_EndOfFile ()
-      {
-        return symbol_type (token::EndOfFile);
-      }
-#endif
-#if 201103L <= YY_CPLUSPLUS
-      static
-      symbol_type
-      make_Hex ()
-      {
-        return symbol_type (token::Hex);
-      }
-#else
-      static
-      symbol_type
-      make_Hex ()
-      {
-        return symbol_type (token::Hex);
-      }
-#endif
-#if 201103L <= YY_CPLUSPLUS
-      static
-      symbol_type
-      make_Oct ()
-      {
-        return symbol_type (token::Oct);
-      }
-#else
-      static
-      symbol_type
-      make_Oct ()
-      {
-        return symbol_type (token::Oct);
-      }
-#endif
-#if 201103L <= YY_CPLUSPLUS
-      static
-      symbol_type
-      make_Dec ()
-      {
-        return symbol_type (token::Dec);
-      }
-#else
-      static
-      symbol_type
-      make_Dec ()
-      {
-        return symbol_type (token::Dec);
-      }
-#endif
-#if 201103L <= YY_CPLUSPLUS
-      static
-      symbol_type
-      make_Bin ()
-      {
-        return symbol_type (token::Bin);
-      }
-#else
-      static
-      symbol_type
-      make_Bin ()
-      {
-        return symbol_type (token::Bin);
-      }
-#endif
-#if 201103L <= YY_CPLUSPLUS
-      static
-      symbol_type
-      make_KW_CLASS ()
-      {
-        return symbol_type (token::KW_CLASS);
-      }
-#else
-      static
-      symbol_type
-      make_KW_CLASS ()
-      {
-        return symbol_type (token::KW_CLASS);
-      }
-#endif
-#if 201103L <= YY_CPLUSPLUS
-      static
-      symbol_type
-      make_KW_INT ()
-      {
-        return symbol_type (token::KW_INT);
-      }
-#else
-      static
-      symbol_type
-      make_KW_INT ()
-      {
-        return symbol_type (token::KW_INT);
-      }
-#endif
-#if 201103L <= YY_CPLUSPLUS
-      static
-      symbol_type
-      make_KW_VOID ()
-      {
-        return symbol_type (token::KW_VOID);
-      }
-#else
-      static
-      symbol_type
-      make_KW_VOID ()
-      {
-        return symbol_type (token::KW_VOID);
-      }
-#endif
-#if 201103L <= YY_CPLUSPLUS
-      static
-      symbol_type
-      make_KW_REF ()
-      {
-        return symbol_type (token::KW_REF);
-      }
-#else
-      static
-      symbol_type
-      make_KW_REF ()
-      {
-        return symbol_type (token::KW_REF);
-      }
-#endif
-#if 201103L <= YY_CPLUSPLUS
-      static
-      symbol_type
-      make_KW_IF ()
-      {
-        return symbol_type (token::KW_IF);
-      }
-#else
-      static
-      symbol_type
-      make_KW_IF ()
-      {
-        return symbol_type (token::KW_IF);
-      }
-#endif
-#if 201103L <= YY_CPLUSPLUS
-      static
-      symbol_type
-      make_KW_ELSE ()
-      {
-        return symbol_type (token::KW_ELSE);
-      }
-#else
-      static
-      symbol_type
-      make_KW_ELSE ()
-      {
-        return symbol_type (token::KW_ELSE);
-      }
-#endif
-#if 201103L <= YY_CPLUSPLUS
-      static
-      symbol_type
-      make_KW_WHILE ()
-      {
-        return symbol_type (token::KW_WHILE);
-      }
-#else
-      static
-      symbol_type
-      make_KW_WHILE ()
-      {
-        return symbol_type (token::KW_WHILE);
-      }
-#endif
-#if 201103L <= YY_CPLUSPLUS
-      static
-      symbol_type
-      make_KW_RETURN ()
-      {
-        return symbol_type (token::KW_RETURN);
-      }
-#else
-      static
-      symbol_type
-      make_KW_RETURN ()
-      {
-        return symbol_type (token::KW_RETURN);
-      }
-#endif
-#if 201103L <= YY_CPLUSPLUS
-      static
-      symbol_type
-      make_KW_PRINT ()
-      {
-        return symbol_type (token::KW_PRINT);
-      }
-#else
-      static
-      symbol_type
-      make_KW_PRINT ()
-      {
-        return symbol_type (token::KW_PRINT);
-      }
-#endif
-#if 201103L <= YY_CPLUSPLUS
-      static
-      symbol_type
-      make_KW_READ ()
-      {
-        return symbol_type (token::KW_READ);
-      }
-#else
-      static
-      symbol_type
-      make_KW_READ ()
-      {
-        return symbol_type (token::KW_READ);
-      }
-#endif
-#if 201103L <= YY_CPLUSPLUS
-      static
-      symbol_type
-      make_OP_ASSIGN ()
-      {
-        return symbol_type (token::OP_ASSIGN);
-      }
-#else
-      static
-      symbol_type
-      make_OP_ASSIGN ()
-      {
-        return symbol_type (token::OP_ASSIGN);
-      }
-#endif
-#if 201103L <= YY_CPLUSPLUS
-      static
-      symbol_type
-      make_OP_BOOL_OR ()
-      {
-        return symbol_type (token::OP_BOOL_OR);
-      }
-#else
-      static
-      symbol_type
-      make_OP_BOOL_OR ()
-      {
-        return symbol_type (token::OP_BOOL_OR);
-      }
-#endif
-#if 201103L <= YY_CPLUSPLUS
-      static
-      symbol_type
-      make_OP_BOOL_AND ()
-      {
-        return symbol_type (token::OP_BOOL_AND);
-      }
-#else
-      static
-      symbol_type
-      make_OP_BOOL_AND ()
-      {
-        return symbol_type (token::OP_BOOL_AND);
-      }
-#endif
-#if 201103L <= YY_CPLUSPLUS
-      static
-      symbol_type
-      make_OP_BOOL_NOT ()
-      {
-        return symbol_type (token::OP_BOOL_NOT);
-      }
-#else
-      static
-      symbol_type
-      make_OP_BOOL_NOT ()
-      {
-        return symbol_type (token::OP_BOOL_NOT);
-      }
-#endif
-#if 201103L <= YY_CPLUSPLUS
-      static
-      symbol_type
-      make_OP_EQUAL ()
-      {
-        return symbol_type (token::OP_EQUAL);
-      }
-#else
-      static
-      symbol_type
-      make_OP_EQUAL ()
-      {
-        return symbol_type (token::OP_EQUAL);
-      }
-#endif
-#if 201103L <= YY_CPLUSPLUS
-      static
-      symbol_type
-      make_OP_NOT_EQUAL ()
-      {
-        return symbol_type (token::OP_NOT_EQUAL);
-      }
-#else
-      static
-      symbol_type
-      make_OP_NOT_EQUAL ()
-      {
-        return symbol_type (token::OP_NOT_EQUAL);
-      }
-#endif
-#if 201103L <= YY_CPLUSPLUS
-      static
-      symbol_type
-      make_OP_LESS_THAN ()
-      {
-        return symbol_type (token::OP_LESS_THAN);
-      }
-#else
-      static
-      symbol_type
-      make_OP_LESS_THAN ()
-      {
-        return symbol_type (token::OP_LESS_THAN);
-      }
-#endif
-#if 201103L <= YY_CPLUSPLUS
-      static
-      symbol_type
-      make_OP_GREATER_THAN ()
-      {
-        return symbol_type (token::OP_GREATER_THAN);
-      }
-#else
-      static
-      symbol_type
-      make_OP_GREATER_THAN ()
-      {
-        return symbol_type (token::OP_GREATER_THAN);
-      }
-#endif
-#if 201103L <= YY_CPLUSPLUS
-      static
-      symbol_type
-      make_OP_LESS_EQUAL ()
-      {
-        return symbol_type (token::OP_LESS_EQUAL);
-      }
-#else
-      static
-      symbol_type
-      make_OP_LESS_EQUAL ()
-      {
-        return symbol_type (token::OP_LESS_EQUAL);
-      }
-#endif
-#if 201103L <= YY_CPLUSPLUS
-      static
-      symbol_type
-      make_OP_GREATER_EQUAL ()
-      {
-        return symbol_type (token::OP_GREATER_EQUAL);
-      }
-#else
-      static
-      symbol_type
-      make_OP_GREATER_EQUAL ()
-      {
-        return symbol_type (token::OP_GREATER_EQUAL);
-      }
-#endif
-#if 201103L <= YY_CPLUSPLUS
-      static
-      symbol_type
       make_OP_ADD ()
       {
         return symbol_type (token::OP_ADD);
@@ -1319,51 +897,6 @@ switch (yykind)
 #if 201103L <= YY_CPLUSPLUS
       static
       symbol_type
-      make_OP_MOD ()
-      {
-        return symbol_type (token::OP_MOD);
-      }
-#else
-      static
-      symbol_type
-      make_OP_MOD ()
-      {
-        return symbol_type (token::OP_MOD);
-      }
-#endif
-#if 201103L <= YY_CPLUSPLUS
-      static
-      symbol_type
-      make_OPEN_CURLY ()
-      {
-        return symbol_type (token::OPEN_CURLY);
-      }
-#else
-      static
-      symbol_type
-      make_OPEN_CURLY ()
-      {
-        return symbol_type (token::OPEN_CURLY);
-      }
-#endif
-#if 201103L <= YY_CPLUSPLUS
-      static
-      symbol_type
-      make_CLOSE_CURLY ()
-      {
-        return symbol_type (token::CLOSE_CURLY);
-      }
-#else
-      static
-      symbol_type
-      make_CLOSE_CURLY ()
-      {
-        return symbol_type (token::CLOSE_CURLY);
-      }
-#endif
-#if 201103L <= YY_CPLUSPLUS
-      static
-      symbol_type
       make_OPEN_PAR ()
       {
         return symbol_type (token::OPEN_PAR);
@@ -1394,51 +927,6 @@ switch (yykind)
 #if 201103L <= YY_CPLUSPLUS
       static
       symbol_type
-      make_OPEN_BRACKET ()
-      {
-        return symbol_type (token::OPEN_BRACKET);
-      }
-#else
-      static
-      symbol_type
-      make_OPEN_BRACKET ()
-      {
-        return symbol_type (token::OPEN_BRACKET);
-      }
-#endif
-#if 201103L <= YY_CPLUSPLUS
-      static
-      symbol_type
-      make_CLOSE_BRACKET ()
-      {
-        return symbol_type (token::CLOSE_BRACKET);
-      }
-#else
-      static
-      symbol_type
-      make_CLOSE_BRACKET ()
-      {
-        return symbol_type (token::CLOSE_BRACKET);
-      }
-#endif
-#if 201103L <= YY_CPLUSPLUS
-      static
-      symbol_type
-      make_COMMA ()
-      {
-        return symbol_type (token::COMMA);
-      }
-#else
-      static
-      symbol_type
-      make_COMMA ()
-      {
-        return symbol_type (token::COMMA);
-      }
-#endif
-#if 201103L <= YY_CPLUSPLUS
-      static
-      symbol_type
       make_SEMICOLON ()
       {
         return symbol_type (token::SEMICOLON);
@@ -1449,21 +937,6 @@ switch (yykind)
       make_SEMICOLON ()
       {
         return symbol_type (token::SEMICOLON);
-      }
-#endif
-#if 201103L <= YY_CPLUSPLUS
-      static
-      symbol_type
-      make_COMMENT ()
-      {
-        return symbol_type (token::COMMENT);
-      }
-#else
-      static
-      symbol_type
-      make_COMMENT ()
-      {
-        return symbol_type (token::COMMENT);
       }
 #endif
 #if 201103L <= YY_CPLUSPLUS
@@ -1499,36 +972,6 @@ switch (yykind)
 #if 201103L <= YY_CPLUSPLUS
       static
       symbol_type
-      make_STRING_LITERAL (std::string v)
-      {
-        return symbol_type (token::STRING_LITERAL, std::move (v));
-      }
-#else
-      static
-      symbol_type
-      make_STRING_LITERAL (const std::string& v)
-      {
-        return symbol_type (token::STRING_LITERAL, v);
-      }
-#endif
-#if 201103L <= YY_CPLUSPLUS
-      static
-      symbol_type
-      make_CONSTANT (std::string v)
-      {
-        return symbol_type (token::CONSTANT, std::move (v));
-      }
-#else
-      static
-      symbol_type
-      make_CONSTANT (const std::string& v)
-      {
-        return symbol_type (token::CONSTANT, v);
-      }
-#endif
-#if 201103L <= YY_CPLUSPLUS
-      static
-      symbol_type
       make_ERROR ()
       {
         return symbol_type (token::ERROR);
@@ -1546,7 +989,7 @@ switch (yykind)
     class context
     {
     public:
-      context (const  Parser & yyparser, const symbol_type& yyla);
+      context (const Parser& yyparser, const symbol_type& yyla);
       const symbol_type& lookahead () const YY_NOEXCEPT { return yyla_; }
       symbol_kind_type token () const YY_NOEXCEPT { return yyla_.kind (); }
       /// Put in YYARG at most YYARGN of the expected tokens, and return the
@@ -1555,16 +998,16 @@ switch (yykind)
       int expected_tokens (symbol_kind_type yyarg[], int yyargn) const;
 
     private:
-      const  Parser & yyparser_;
+      const Parser& yyparser_;
       const symbol_type& yyla_;
     };
 
   private:
 #if YY_CPLUSPLUS < 201103L
     /// Non copyable.
-     Parser  (const  Parser &);
+    Parser (const Parser&);
     /// Non copyable.
-     Parser & operator= (const  Parser &);
+    Parser& operator= (const Parser&);
 #endif
 
 
@@ -1869,7 +1312,7 @@ switch (yykind)
     /// Constants.
     enum
     {
-      yylast_ = 18,     ///< Last index in yytable_.
+      yylast_ = 17,     ///< Last index in yytable_.
       yynnts_ = 7,  ///< Number of nonterminal symbols.
       yyfinal_ = 11 ///< Termination state number.
     };
@@ -1877,14 +1320,14 @@ switch (yykind)
 
     // User arguments.
     SimpleLexer& lexer;
-    std::unordered_map<std::string, int>& vars;
+    Ast::Node *&root;
 
   };
 
 
-#line 11 "SimpleParser.y"
-} //  Expr 
-#line 1888 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.hpp"
+#line 10 "SimpleParser.y"
+} // Expr
+#line 1331 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.hpp"
 
 
 

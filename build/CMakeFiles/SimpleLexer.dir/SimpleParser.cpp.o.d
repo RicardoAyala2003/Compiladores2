@@ -159,8 +159,10 @@ CMakeFiles/SimpleLexer.dir/SimpleParser.cpp.o: \
  /usr/include/c++/13/ext/aligned_buffer.h \
  /usr/include/c++/13/bits/enable_special_members.h \
  /usr/include/c++/13/bits/node_handle.h \
- /usr/include/c++/13/bits/erase_if.h /usr/include/c++/13/vector \
- /usr/include/c++/13/bits/stl_uninitialized.h \
+ /usr/include/c++/13/bits/erase_if.h \
+ /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/ExprAst.hpp \
+ /usr/include/c++/13/sstream /usr/include/c++/13/bits/sstream.tcc \
+ /usr/include/c++/13/vector /usr/include/c++/13/bits/stl_uninitialized.h \
  /usr/include/c++/13/bits/stl_vector.h \
  /usr/include/c++/13/bits/stl_bvector.h \
  /usr/include/c++/13/bits/vector.tcc /usr/local/include/reflex/matcher.h \
@@ -196,6 +198,6 @@ CMakeFiles/SimpleLexer.dir/SimpleParser.cpp.o: \
  /usr/include/c++/13/stack /usr/include/c++/13/deque \
  /usr/include/c++/13/bits/stl_deque.h /usr/include/c++/13/bits/deque.tcc \
  /usr/include/c++/13/bits/stl_stack.h \
- /usr/local/include/reflex/abslexer.h /usr/include/c++/13/sstream \
- /usr/include/c++/13/bits/sstream.tcc /usr/include/error.h \
- /usr/include/x86_64-linux-gnu/bits/error.h
+ /usr/local/include/reflex/abslexer.h \
+ /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/error.h \
+ /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/Tokens.hpp

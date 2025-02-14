@@ -1,0 +1,170 @@
+%option lang = "C++"
+%option namespace = "Ast"
+
+%decls%{
+    #include <string>
+    #include <iostream>
+    #include <sstream>
+    #include <unordered_map>
+    using string_t = std::string;
+    using symbol_table = std::unordered_map<std::string, int>;
+%}
+
+%{
+    #include "ExprAst.hpp"
+%}
+
+%node Node %abstract %typedef
+
+
+%node Program Node = {
+    Node *lines;
+}
+
+%node LineSeq Node = {
+    Node *first_line;
+      Node *rest_lines;
+}
+
+%node Expr Node %abstract 
+
+%node Number Expr = {
+    int value;
+}
+
+%node Identifier Expr = {
+    string_t name;
+}
+
+
+%node BinaryExpr Expr %abstract = {
+    
+    Node *left;
+    Node *right;
+}
+
+%node AddExpr BinaryExpr = {}
+%node SubExpr BinaryExpr = {}
+%node MulExpr BinaryExpr = {}
+%node DivExpr BinaryExpr = {}
+
+%operation %virtual string_t toString(Node *this) = {""}
+%operation int eval(Node *node, symbol_table& vars) = {0}
+
+toString(Program){
+    std::ostringstream os;
+    os << "Program(" << lines->toString() << ")";
+    return os.str();
+}
+
+toString(LineSeq){
+    std::ostringstream os;
+    os << "LineSeq(" << first_line->toString() << '\n';
+    
+    if(rest_lines){
+        os << ", " << rest_lines->toString() << ")";
+    }
+    return os.str();
+}
+
+toString(Number){
+    std::ostringstream os;
+    os << "Number(" << value << ")";
+    return os.str();
+}
+
+toString(Identifier){
+    std::ostringstream os;
+    os << "Identifier(" << name << ")";
+    return os.str();
+}
+
+toString(BinaryExpr){
+    std::ostringstream os;
+    os << "BinaryExpr(" 
+       << left->toString() 
+       << ", " << right->toString() 
+       << ")";
+    return os.str();
+}
+
+toString(AddExpr){
+    std::ostringstream os;
+    os << "AddExpr(" << left->toString() 
+       << ", " << right->toString() 
+       << ")";
+    return os.str();
+}
+
+toString(SubExpr){
+    std::ostringstream os;
+    os << "SubExpr(" << left->toString()
+       << ", " << right->toString() 
+       << ")";
+    return os.str();
+}
+
+toString(MulExpr){
+    std::ostringstream os;
+    os << "MulExpr(" << left->toString() 
+       << ", " << right->toString() 
+       << ")";
+    return os.str();
+}
+
+toString(DivExpr){
+    std::ostringstream os;
+    os << "DivExpr(" << left->toString() << ", " << right->toString() << ")";
+    return os.str();
+}
+
+
+
+eval(Program){
+    return eval(node->lines, vars);
+}
+
+eval(LineSeq){
+    int val1 = eval(node->first_line, vars);
+    int val2 = 0;
+
+    if(node->rest_lines){
+        val2 = eval(node->rest_lines, vars);
+    }
+
+    return val1 + val2;
+}
+
+eval(Identifier){
+    auto it = vars.find(node->name);
+    if(it == vars.end()){
+        throw std::runtime_error("Variable not found");
+    }
+    return it->second;
+}
+
+eval(Number){
+    return node->value;
+}
+
+eval(AddExpr){
+    return eval(node->left, vars) + eval(node->right, vars);
+}
+
+eval(SubExpr){
+    return eval(node->left, vars) - eval(node->right, vars);
+}
+
+eval(MulExpr){
+    return eval(node->left, vars) * eval(node->right, vars);
+}
+
+eval(DivExpr){
+    int val2 = eval(node->right, vars);
+    if(val2 == 0){
+        throw std::runtime_error("Division by zero");
+    }else{
+        return eval(node->left, vars) / val2;
+    }
+
+}

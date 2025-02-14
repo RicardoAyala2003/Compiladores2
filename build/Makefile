@@ -129,6 +129,30 @@ SimpleLexer/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/SimpleLexer.dir/build.make CMakeFiles/SimpleLexer.dir/build
 .PHONY : SimpleLexer/fast
 
+ExprAst.o: ExprAst.cpp.o
+.PHONY : ExprAst.o
+
+# target to build an object file
+ExprAst.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SimpleLexer.dir/build.make CMakeFiles/SimpleLexer.dir/ExprAst.cpp.o
+.PHONY : ExprAst.cpp.o
+
+ExprAst.i: ExprAst.cpp.i
+.PHONY : ExprAst.i
+
+# target to preprocess a source file
+ExprAst.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SimpleLexer.dir/build.make CMakeFiles/SimpleLexer.dir/ExprAst.cpp.i
+.PHONY : ExprAst.cpp.i
+
+ExprAst.s: ExprAst.cpp.s
+.PHONY : ExprAst.s
+
+# target to generate assembly for a file
+ExprAst.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SimpleLexer.dir/build.make CMakeFiles/SimpleLexer.dir/ExprAst.cpp.s
+.PHONY : ExprAst.cpp.s
+
 Main.o: Main.cpp.o
 .PHONY : Main.o
 
@@ -210,6 +234,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... SimpleLexer"
+	@echo "... ExprAst.o"
+	@echo "... ExprAst.i"
+	@echo "... ExprAst.s"
 	@echo "... Main.o"
 	@echo "... Main.i"
 	@echo "... Main.s"
