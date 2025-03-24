@@ -43,29 +43,31 @@
 #include <stdexcept>
 #include "SimpleLexer.hpp"
 #include "error.h"
-#include "Tokens.hpp"
+#include "Tokens.hpp" 
 
-
+// Declaramos la función de análisis léxico.
 int yylex();
-void yyerror(const char *s);
 
-#define yylex(arg) (lexer.nextToken(arg) ? : 0) // Retorna 0 si falla
-
-void yyerror(const char* msg);
+#define yylex(arg) lexer.nextToken(arg) 
 
 namespace Expr {
     void Parser::error (const std::string& msg)
     {
-        std::cerr << "Error de sintaxis: " << msg << '\n';
+       std::cerr << "Error: " << msg << " on line " << lexer.lineno() << '\n';
     }
 }
 
+
+
 void yyerror(const char* msg) {
-    std::cerr << "Syntax error: " << msg << std::endl;
+     std::cerr << "Error: " << msg << " on line " << '\n';
 }
 
 
-#line 69 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+
+
+
+#line 71 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
 
 
 #include "SimpleParser.hpp"
@@ -144,7 +146,7 @@ void yyerror(const char* msg) {
 
 #line 10 "SimpleParser.y"
 namespace Expr {
-#line 148 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 150 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
 
   /// Build a parser object.
   Parser::Parser (SimpleLexer& lexer_yyarg, Ast::Node *&root_yyarg)
@@ -176,19 +178,56 @@ namespace Expr {
   {
     switch (this->kind ())
     {
-      case symbol_kind::S_statement: // statement
-      case symbol_kind::S_statement_list: // statement_list
-      case symbol_kind::S_expr: // expr
+      case symbol_kind::S_program: // program
+      case symbol_kind::S_varmethod_decl_list: // varmethod_decl_list
+      case symbol_kind::S_variable_decl_list: // variable_decl_list
+      case symbol_kind::S_variable_decl_Body: // variable_decl_Body
+      case symbol_kind::S_variable_decl: // variable_decl
+      case symbol_kind::S_array_optional: // array_optional
+      case symbol_kind::S_ident_list: // ident_list
+      case symbol_kind::S_type: // type
+      case symbol_kind::S_method_decl_list: // method_decl_list
+      case symbol_kind::S_method_decl: // method_decl
+      case symbol_kind::S_method_body: // method_body
+      case symbol_kind::S_method_type: // method_type
+      case symbol_kind::S_opt_param_decl_list: // opt_param_decl_list
+      case symbol_kind::S_param_list: // param_list
+      case symbol_kind::S_param_decl: // param_decl
+      case symbol_kind::S_ref_optional: // ref_optional
+      case symbol_kind::S_stmt_list: // stmt_list
+      case symbol_kind::S_array_access: // array_access
+      case symbol_kind::S_array_access_opt: // array_access_opt
+      case symbol_kind::S_assign_stmt: // assign_stmt
+      case symbol_kind::S_call_stmt: // call_stmt
+      case symbol_kind::S_stmt: // stmt
+      case symbol_kind::S_return_stmt: // return_stmt
+      case symbol_kind::S_if_stmt: // if_stmt
+      case symbol_kind::S_else_optional: // else_optional
+      case symbol_kind::S_block: // block
+      case symbol_kind::S_while_stmt: // while_stmt
+      case symbol_kind::S_call_param_list: // call_param_list
+      case symbol_kind::S_call_param_rest: // call_param_rest
+      case symbol_kind::S_print_stmt: // print_stmt
+      case symbol_kind::S_print_param: // print_param
+      case symbol_kind::S_read_stmt: // read_stmt
+      case symbol_kind::S_expression: // expression
+      case symbol_kind::S_boolean_expression: // boolean_expression
+      case symbol_kind::S_boolean_term: // boolean_term
+      case symbol_kind::S_boolean_factor: // boolean_factor
+      case symbol_kind::S_arithmetic_expression: // arithmetic_expression
+      case symbol_kind::S_relational_expression: // relational_expression
       case symbol_kind::S_term: // term
       case symbol_kind::S_factor: // factor
         value.copy< Ast::Node * > (YY_MOVE (that.value));
         break;
 
-      case symbol_kind::S_INT_CONST: // "number"
+      case symbol_kind::S_INT_CONST: // INT_CONST
+      case symbol_kind::S_CONSTANT: // CONSTANT
         value.copy< int > (YY_MOVE (that.value));
         break;
 
-      case symbol_kind::S_IDENTIFIER: // "identifier"
+      case symbol_kind::S_IDENTIFIER: // IDENTIFIER
+      case symbol_kind::S_STRING_LITERAL: // STRING_LITERAL
         value.copy< std::string > (YY_MOVE (that.value));
         break;
 
@@ -223,19 +262,56 @@ namespace Expr {
     super_type::move (s);
     switch (this->kind ())
     {
-      case symbol_kind::S_statement: // statement
-      case symbol_kind::S_statement_list: // statement_list
-      case symbol_kind::S_expr: // expr
+      case symbol_kind::S_program: // program
+      case symbol_kind::S_varmethod_decl_list: // varmethod_decl_list
+      case symbol_kind::S_variable_decl_list: // variable_decl_list
+      case symbol_kind::S_variable_decl_Body: // variable_decl_Body
+      case symbol_kind::S_variable_decl: // variable_decl
+      case symbol_kind::S_array_optional: // array_optional
+      case symbol_kind::S_ident_list: // ident_list
+      case symbol_kind::S_type: // type
+      case symbol_kind::S_method_decl_list: // method_decl_list
+      case symbol_kind::S_method_decl: // method_decl
+      case symbol_kind::S_method_body: // method_body
+      case symbol_kind::S_method_type: // method_type
+      case symbol_kind::S_opt_param_decl_list: // opt_param_decl_list
+      case symbol_kind::S_param_list: // param_list
+      case symbol_kind::S_param_decl: // param_decl
+      case symbol_kind::S_ref_optional: // ref_optional
+      case symbol_kind::S_stmt_list: // stmt_list
+      case symbol_kind::S_array_access: // array_access
+      case symbol_kind::S_array_access_opt: // array_access_opt
+      case symbol_kind::S_assign_stmt: // assign_stmt
+      case symbol_kind::S_call_stmt: // call_stmt
+      case symbol_kind::S_stmt: // stmt
+      case symbol_kind::S_return_stmt: // return_stmt
+      case symbol_kind::S_if_stmt: // if_stmt
+      case symbol_kind::S_else_optional: // else_optional
+      case symbol_kind::S_block: // block
+      case symbol_kind::S_while_stmt: // while_stmt
+      case symbol_kind::S_call_param_list: // call_param_list
+      case symbol_kind::S_call_param_rest: // call_param_rest
+      case symbol_kind::S_print_stmt: // print_stmt
+      case symbol_kind::S_print_param: // print_param
+      case symbol_kind::S_read_stmt: // read_stmt
+      case symbol_kind::S_expression: // expression
+      case symbol_kind::S_boolean_expression: // boolean_expression
+      case symbol_kind::S_boolean_term: // boolean_term
+      case symbol_kind::S_boolean_factor: // boolean_factor
+      case symbol_kind::S_arithmetic_expression: // arithmetic_expression
+      case symbol_kind::S_relational_expression: // relational_expression
       case symbol_kind::S_term: // term
       case symbol_kind::S_factor: // factor
         value.move< Ast::Node * > (YY_MOVE (s.value));
         break;
 
-      case symbol_kind::S_INT_CONST: // "number"
+      case symbol_kind::S_INT_CONST: // INT_CONST
+      case symbol_kind::S_CONSTANT: // CONSTANT
         value.move< int > (YY_MOVE (s.value));
         break;
 
-      case symbol_kind::S_IDENTIFIER: // "identifier"
+      case symbol_kind::S_IDENTIFIER: // IDENTIFIER
+      case symbol_kind::S_STRING_LITERAL: // STRING_LITERAL
         value.move< std::string > (YY_MOVE (s.value));
         break;
 
@@ -339,19 +415,56 @@ namespace Expr {
   {
     switch (that.kind ())
     {
-      case symbol_kind::S_statement: // statement
-      case symbol_kind::S_statement_list: // statement_list
-      case symbol_kind::S_expr: // expr
+      case symbol_kind::S_program: // program
+      case symbol_kind::S_varmethod_decl_list: // varmethod_decl_list
+      case symbol_kind::S_variable_decl_list: // variable_decl_list
+      case symbol_kind::S_variable_decl_Body: // variable_decl_Body
+      case symbol_kind::S_variable_decl: // variable_decl
+      case symbol_kind::S_array_optional: // array_optional
+      case symbol_kind::S_ident_list: // ident_list
+      case symbol_kind::S_type: // type
+      case symbol_kind::S_method_decl_list: // method_decl_list
+      case symbol_kind::S_method_decl: // method_decl
+      case symbol_kind::S_method_body: // method_body
+      case symbol_kind::S_method_type: // method_type
+      case symbol_kind::S_opt_param_decl_list: // opt_param_decl_list
+      case symbol_kind::S_param_list: // param_list
+      case symbol_kind::S_param_decl: // param_decl
+      case symbol_kind::S_ref_optional: // ref_optional
+      case symbol_kind::S_stmt_list: // stmt_list
+      case symbol_kind::S_array_access: // array_access
+      case symbol_kind::S_array_access_opt: // array_access_opt
+      case symbol_kind::S_assign_stmt: // assign_stmt
+      case symbol_kind::S_call_stmt: // call_stmt
+      case symbol_kind::S_stmt: // stmt
+      case symbol_kind::S_return_stmt: // return_stmt
+      case symbol_kind::S_if_stmt: // if_stmt
+      case symbol_kind::S_else_optional: // else_optional
+      case symbol_kind::S_block: // block
+      case symbol_kind::S_while_stmt: // while_stmt
+      case symbol_kind::S_call_param_list: // call_param_list
+      case symbol_kind::S_call_param_rest: // call_param_rest
+      case symbol_kind::S_print_stmt: // print_stmt
+      case symbol_kind::S_print_param: // print_param
+      case symbol_kind::S_read_stmt: // read_stmt
+      case symbol_kind::S_expression: // expression
+      case symbol_kind::S_boolean_expression: // boolean_expression
+      case symbol_kind::S_boolean_term: // boolean_term
+      case symbol_kind::S_boolean_factor: // boolean_factor
+      case symbol_kind::S_arithmetic_expression: // arithmetic_expression
+      case symbol_kind::S_relational_expression: // relational_expression
       case symbol_kind::S_term: // term
       case symbol_kind::S_factor: // factor
         value.YY_MOVE_OR_COPY< Ast::Node * > (YY_MOVE (that.value));
         break;
 
-      case symbol_kind::S_INT_CONST: // "number"
+      case symbol_kind::S_INT_CONST: // INT_CONST
+      case symbol_kind::S_CONSTANT: // CONSTANT
         value.YY_MOVE_OR_COPY< int > (YY_MOVE (that.value));
         break;
 
-      case symbol_kind::S_IDENTIFIER: // "identifier"
+      case symbol_kind::S_IDENTIFIER: // IDENTIFIER
+      case symbol_kind::S_STRING_LITERAL: // STRING_LITERAL
         value.YY_MOVE_OR_COPY< std::string > (YY_MOVE (that.value));
         break;
 
@@ -370,19 +483,56 @@ namespace Expr {
   {
     switch (that.kind ())
     {
-      case symbol_kind::S_statement: // statement
-      case symbol_kind::S_statement_list: // statement_list
-      case symbol_kind::S_expr: // expr
+      case symbol_kind::S_program: // program
+      case symbol_kind::S_varmethod_decl_list: // varmethod_decl_list
+      case symbol_kind::S_variable_decl_list: // variable_decl_list
+      case symbol_kind::S_variable_decl_Body: // variable_decl_Body
+      case symbol_kind::S_variable_decl: // variable_decl
+      case symbol_kind::S_array_optional: // array_optional
+      case symbol_kind::S_ident_list: // ident_list
+      case symbol_kind::S_type: // type
+      case symbol_kind::S_method_decl_list: // method_decl_list
+      case symbol_kind::S_method_decl: // method_decl
+      case symbol_kind::S_method_body: // method_body
+      case symbol_kind::S_method_type: // method_type
+      case symbol_kind::S_opt_param_decl_list: // opt_param_decl_list
+      case symbol_kind::S_param_list: // param_list
+      case symbol_kind::S_param_decl: // param_decl
+      case symbol_kind::S_ref_optional: // ref_optional
+      case symbol_kind::S_stmt_list: // stmt_list
+      case symbol_kind::S_array_access: // array_access
+      case symbol_kind::S_array_access_opt: // array_access_opt
+      case symbol_kind::S_assign_stmt: // assign_stmt
+      case symbol_kind::S_call_stmt: // call_stmt
+      case symbol_kind::S_stmt: // stmt
+      case symbol_kind::S_return_stmt: // return_stmt
+      case symbol_kind::S_if_stmt: // if_stmt
+      case symbol_kind::S_else_optional: // else_optional
+      case symbol_kind::S_block: // block
+      case symbol_kind::S_while_stmt: // while_stmt
+      case symbol_kind::S_call_param_list: // call_param_list
+      case symbol_kind::S_call_param_rest: // call_param_rest
+      case symbol_kind::S_print_stmt: // print_stmt
+      case symbol_kind::S_print_param: // print_param
+      case symbol_kind::S_read_stmt: // read_stmt
+      case symbol_kind::S_expression: // expression
+      case symbol_kind::S_boolean_expression: // boolean_expression
+      case symbol_kind::S_boolean_term: // boolean_term
+      case symbol_kind::S_boolean_factor: // boolean_factor
+      case symbol_kind::S_arithmetic_expression: // arithmetic_expression
+      case symbol_kind::S_relational_expression: // relational_expression
       case symbol_kind::S_term: // term
       case symbol_kind::S_factor: // factor
         value.move< Ast::Node * > (YY_MOVE (that.value));
         break;
 
-      case symbol_kind::S_INT_CONST: // "number"
+      case symbol_kind::S_INT_CONST: // INT_CONST
+      case symbol_kind::S_CONSTANT: // CONSTANT
         value.move< int > (YY_MOVE (that.value));
         break;
 
-      case symbol_kind::S_IDENTIFIER: // "identifier"
+      case symbol_kind::S_IDENTIFIER: // IDENTIFIER
+      case symbol_kind::S_STRING_LITERAL: // STRING_LITERAL
         value.move< std::string > (YY_MOVE (that.value));
         break;
 
@@ -401,19 +551,56 @@ namespace Expr {
     state = that.state;
     switch (that.kind ())
     {
-      case symbol_kind::S_statement: // statement
-      case symbol_kind::S_statement_list: // statement_list
-      case symbol_kind::S_expr: // expr
+      case symbol_kind::S_program: // program
+      case symbol_kind::S_varmethod_decl_list: // varmethod_decl_list
+      case symbol_kind::S_variable_decl_list: // variable_decl_list
+      case symbol_kind::S_variable_decl_Body: // variable_decl_Body
+      case symbol_kind::S_variable_decl: // variable_decl
+      case symbol_kind::S_array_optional: // array_optional
+      case symbol_kind::S_ident_list: // ident_list
+      case symbol_kind::S_type: // type
+      case symbol_kind::S_method_decl_list: // method_decl_list
+      case symbol_kind::S_method_decl: // method_decl
+      case symbol_kind::S_method_body: // method_body
+      case symbol_kind::S_method_type: // method_type
+      case symbol_kind::S_opt_param_decl_list: // opt_param_decl_list
+      case symbol_kind::S_param_list: // param_list
+      case symbol_kind::S_param_decl: // param_decl
+      case symbol_kind::S_ref_optional: // ref_optional
+      case symbol_kind::S_stmt_list: // stmt_list
+      case symbol_kind::S_array_access: // array_access
+      case symbol_kind::S_array_access_opt: // array_access_opt
+      case symbol_kind::S_assign_stmt: // assign_stmt
+      case symbol_kind::S_call_stmt: // call_stmt
+      case symbol_kind::S_stmt: // stmt
+      case symbol_kind::S_return_stmt: // return_stmt
+      case symbol_kind::S_if_stmt: // if_stmt
+      case symbol_kind::S_else_optional: // else_optional
+      case symbol_kind::S_block: // block
+      case symbol_kind::S_while_stmt: // while_stmt
+      case symbol_kind::S_call_param_list: // call_param_list
+      case symbol_kind::S_call_param_rest: // call_param_rest
+      case symbol_kind::S_print_stmt: // print_stmt
+      case symbol_kind::S_print_param: // print_param
+      case symbol_kind::S_read_stmt: // read_stmt
+      case symbol_kind::S_expression: // expression
+      case symbol_kind::S_boolean_expression: // boolean_expression
+      case symbol_kind::S_boolean_term: // boolean_term
+      case symbol_kind::S_boolean_factor: // boolean_factor
+      case symbol_kind::S_arithmetic_expression: // arithmetic_expression
+      case symbol_kind::S_relational_expression: // relational_expression
       case symbol_kind::S_term: // term
       case symbol_kind::S_factor: // factor
         value.copy< Ast::Node * > (that.value);
         break;
 
-      case symbol_kind::S_INT_CONST: // "number"
+      case symbol_kind::S_INT_CONST: // INT_CONST
+      case symbol_kind::S_CONSTANT: // CONSTANT
         value.copy< int > (that.value);
         break;
 
-      case symbol_kind::S_IDENTIFIER: // "identifier"
+      case symbol_kind::S_IDENTIFIER: // IDENTIFIER
+      case symbol_kind::S_STRING_LITERAL: // STRING_LITERAL
         value.copy< std::string > (that.value);
         break;
 
@@ -430,19 +617,56 @@ namespace Expr {
     state = that.state;
     switch (that.kind ())
     {
-      case symbol_kind::S_statement: // statement
-      case symbol_kind::S_statement_list: // statement_list
-      case symbol_kind::S_expr: // expr
+      case symbol_kind::S_program: // program
+      case symbol_kind::S_varmethod_decl_list: // varmethod_decl_list
+      case symbol_kind::S_variable_decl_list: // variable_decl_list
+      case symbol_kind::S_variable_decl_Body: // variable_decl_Body
+      case symbol_kind::S_variable_decl: // variable_decl
+      case symbol_kind::S_array_optional: // array_optional
+      case symbol_kind::S_ident_list: // ident_list
+      case symbol_kind::S_type: // type
+      case symbol_kind::S_method_decl_list: // method_decl_list
+      case symbol_kind::S_method_decl: // method_decl
+      case symbol_kind::S_method_body: // method_body
+      case symbol_kind::S_method_type: // method_type
+      case symbol_kind::S_opt_param_decl_list: // opt_param_decl_list
+      case symbol_kind::S_param_list: // param_list
+      case symbol_kind::S_param_decl: // param_decl
+      case symbol_kind::S_ref_optional: // ref_optional
+      case symbol_kind::S_stmt_list: // stmt_list
+      case symbol_kind::S_array_access: // array_access
+      case symbol_kind::S_array_access_opt: // array_access_opt
+      case symbol_kind::S_assign_stmt: // assign_stmt
+      case symbol_kind::S_call_stmt: // call_stmt
+      case symbol_kind::S_stmt: // stmt
+      case symbol_kind::S_return_stmt: // return_stmt
+      case symbol_kind::S_if_stmt: // if_stmt
+      case symbol_kind::S_else_optional: // else_optional
+      case symbol_kind::S_block: // block
+      case symbol_kind::S_while_stmt: // while_stmt
+      case symbol_kind::S_call_param_list: // call_param_list
+      case symbol_kind::S_call_param_rest: // call_param_rest
+      case symbol_kind::S_print_stmt: // print_stmt
+      case symbol_kind::S_print_param: // print_param
+      case symbol_kind::S_read_stmt: // read_stmt
+      case symbol_kind::S_expression: // expression
+      case symbol_kind::S_boolean_expression: // boolean_expression
+      case symbol_kind::S_boolean_term: // boolean_term
+      case symbol_kind::S_boolean_factor: // boolean_factor
+      case symbol_kind::S_arithmetic_expression: // arithmetic_expression
+      case symbol_kind::S_relational_expression: // relational_expression
       case symbol_kind::S_term: // term
       case symbol_kind::S_factor: // factor
         value.move< Ast::Node * > (that.value);
         break;
 
-      case symbol_kind::S_INT_CONST: // "number"
+      case symbol_kind::S_INT_CONST: // INT_CONST
+      case symbol_kind::S_CONSTANT: // CONSTANT
         value.move< int > (that.value);
         break;
 
-      case symbol_kind::S_IDENTIFIER: // "identifier"
+      case symbol_kind::S_IDENTIFIER: // IDENTIFIER
+      case symbol_kind::S_STRING_LITERAL: // STRING_LITERAL
         value.move< std::string > (that.value);
         break;
 
@@ -699,19 +923,56 @@ namespace Expr {
          when using variants.  */
       switch (yyr1_[yyn])
     {
-      case symbol_kind::S_statement: // statement
-      case symbol_kind::S_statement_list: // statement_list
-      case symbol_kind::S_expr: // expr
+      case symbol_kind::S_program: // program
+      case symbol_kind::S_varmethod_decl_list: // varmethod_decl_list
+      case symbol_kind::S_variable_decl_list: // variable_decl_list
+      case symbol_kind::S_variable_decl_Body: // variable_decl_Body
+      case symbol_kind::S_variable_decl: // variable_decl
+      case symbol_kind::S_array_optional: // array_optional
+      case symbol_kind::S_ident_list: // ident_list
+      case symbol_kind::S_type: // type
+      case symbol_kind::S_method_decl_list: // method_decl_list
+      case symbol_kind::S_method_decl: // method_decl
+      case symbol_kind::S_method_body: // method_body
+      case symbol_kind::S_method_type: // method_type
+      case symbol_kind::S_opt_param_decl_list: // opt_param_decl_list
+      case symbol_kind::S_param_list: // param_list
+      case symbol_kind::S_param_decl: // param_decl
+      case symbol_kind::S_ref_optional: // ref_optional
+      case symbol_kind::S_stmt_list: // stmt_list
+      case symbol_kind::S_array_access: // array_access
+      case symbol_kind::S_array_access_opt: // array_access_opt
+      case symbol_kind::S_assign_stmt: // assign_stmt
+      case symbol_kind::S_call_stmt: // call_stmt
+      case symbol_kind::S_stmt: // stmt
+      case symbol_kind::S_return_stmt: // return_stmt
+      case symbol_kind::S_if_stmt: // if_stmt
+      case symbol_kind::S_else_optional: // else_optional
+      case symbol_kind::S_block: // block
+      case symbol_kind::S_while_stmt: // while_stmt
+      case symbol_kind::S_call_param_list: // call_param_list
+      case symbol_kind::S_call_param_rest: // call_param_rest
+      case symbol_kind::S_print_stmt: // print_stmt
+      case symbol_kind::S_print_param: // print_param
+      case symbol_kind::S_read_stmt: // read_stmt
+      case symbol_kind::S_expression: // expression
+      case symbol_kind::S_boolean_expression: // boolean_expression
+      case symbol_kind::S_boolean_term: // boolean_term
+      case symbol_kind::S_boolean_factor: // boolean_factor
+      case symbol_kind::S_arithmetic_expression: // arithmetic_expression
+      case symbol_kind::S_relational_expression: // relational_expression
       case symbol_kind::S_term: // term
       case symbol_kind::S_factor: // factor
         yylhs.value.emplace< Ast::Node * > ();
         break;
 
-      case symbol_kind::S_INT_CONST: // "number"
+      case symbol_kind::S_INT_CONST: // INT_CONST
+      case symbol_kind::S_CONSTANT: // CONSTANT
         yylhs.value.emplace< int > ();
         break;
 
-      case symbol_kind::S_IDENTIFIER: // "identifier"
+      case symbol_kind::S_IDENTIFIER: // IDENTIFIER
+      case symbol_kind::S_STRING_LITERAL: // STRING_LITERAL
         yylhs.value.emplace< std::string > ();
         break;
 
@@ -729,138 +990,698 @@ namespace Expr {
         {
           switch (yyn)
             {
-  case 2: // input: statement_list SEMICOLON
-#line 61 "SimpleParser.y"
-                               {
-            root = new Ast::Program(yystack_[1].value.as < Ast::Node * > ());
-            std::cout << "Análisis exitoso: programa válido." << std::endl;
+  case 2: // input: program
+#line 77 "SimpleParser.y"
+               { root = yystack_[0].value.as < Ast::Node * > ();}
+#line 997 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+    break;
+
+  case 3: // program: KW_CLASS IDENTIFIER OPEN_CURLY varmethod_decl_list method_decl_list CLOSE_CURLY
+#line 81 "SimpleParser.y"
+                                                                                      {
+             yylhs.value.as < Ast::Node * > () = new Ast::Program(yystack_[4].value.as < std::string > (), yystack_[2].value.as < Ast::Node * > (), yystack_[1].value.as < Ast::Node * > ());
       }
-#line 739 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1005 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
-  case 3: // input: %empty
-#line 65 "SimpleParser.y"
-                           {
-            root = nullptr;
-            yyerror("Entrada vacía detectada");
+  case 4: // varmethod_decl_list: KW_INT IDENTIFIER method_body method_decl_list
+#line 89 "SimpleParser.y"
+                                                     { 
+         yylhs.value.as < Ast::Node * > () =  new Ast::VarMethodDeclList(new Ast::MethodDeclList(new Ast::MethodDecl(new Ast::MethodType("INT"), yystack_[2].value.as < std::string > (), yystack_[1].value.as < Ast::Node * > ()) , yystack_[0].value.as < Ast::Node * > ()), nullptr);
       }
-#line 748 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1013 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
-  case 4: // statement: expr
-#line 72 "SimpleParser.y"
-           { yylhs.value.as < Ast::Node * > () = yystack_[0].value.as < Ast::Node * > (); }
-#line 754 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+  case 5: // varmethod_decl_list: KW_INT IDENTIFIER method_body
+#line 93 "SimpleParser.y"
+                                    { 
+         yylhs.value.as < Ast::Node * > () = new Ast::VarMethodDeclList(new Ast::MethodDeclList(new Ast::MethodDecl(new Ast::MethodType("INT"), yystack_[1].value.as < std::string > (), yystack_[0].value.as < Ast::Node * > ()) , nullptr), nullptr);     
+      }
+#line 1021 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
-  case 5: // statement_list: statement_list SEMICOLON statement
-#line 76 "SimpleParser.y"
-                                         {
-            if (yystack_[2].value.as < Ast::Node * > () && yystack_[0].value.as < Ast::Node * > ()) {
-                yylhs.value.as < Ast::Node * > () = new Ast::LineSeq(yystack_[2].value.as < Ast::Node * > (), yystack_[0].value.as < Ast::Node * > ());
-            } else {
-                yyerror("Nodo nulo en statement_list");
-                yylhs.value.as < Ast::Node * > () = nullptr;
-            }
-        }
-#line 767 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+  case 6: // varmethod_decl_list: variable_decl variable_decl_list varmethod_decl_list
+#line 97 "SimpleParser.y"
+                                                          { 
+        yylhs.value.as < Ast::Node * > () = new Ast::VarMethodDeclList(new Ast::VariableDeclList(yystack_[2].value.as < Ast::Node * > (), yystack_[1].value.as < Ast::Node * > ()),  yystack_[0].value.as < Ast::Node * > ());
+      }
+#line 1029 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
-  case 6: // statement_list: statement
-#line 84 "SimpleParser.y"
-                { 
-            if (yystack_[0].value.as < Ast::Node * > ()) {
-                yylhs.value.as < Ast::Node * > () = new Ast::LineSeq(yystack_[0].value.as < Ast::Node * > (), nullptr); 
-            } else {
-                yyerror("Nodo nulo en statement_list simple");
-                yylhs.value.as < Ast::Node * > () = nullptr;
-            }
-        }
-#line 780 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+  case 7: // varmethod_decl_list: variable_decl varmethod_decl_list
+#line 100 "SimpleParser.y"
+                                         { 
+        yylhs.value.as < Ast::Node * > () = new Ast::VarMethodDeclList( new Ast::VariableDeclList(yystack_[1].value.as < Ast::Node * > (), nullptr), yystack_[0].value.as < Ast::Node * > ());
+      }
+#line 1037 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
-  case 7: // expr: expr "+" term
-#line 95 "SimpleParser.y"
+  case 8: // varmethod_decl_list: variable_decl variable_decl_list
+#line 104 "SimpleParser.y"
+                                       { 
+        yylhs.value.as < Ast::Node * > () = new Ast::VarMethodDeclList(new Ast::VariableDeclList(yystack_[1].value.as < Ast::Node * > (), yystack_[0].value.as < Ast::Node * > ()),  nullptr);
+      }
+#line 1045 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+    break;
+
+  case 9: // varmethod_decl_list: variable_decl
+#line 107 "SimpleParser.y"
+                      {
+        yylhs.value.as < Ast::Node * > () = new Ast::VarMethodDeclList(new Ast::VariableDeclList(yystack_[0].value.as < Ast::Node * > (), nullptr),  nullptr);
+      }
+#line 1053 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+    break;
+
+  case 10: // varmethod_decl_list: %empty
+#line 110 "SimpleParser.y"
+               {}
+#line 1059 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+    break;
+
+  case 11: // variable_decl_list: variable_decl variable_decl_list
+#line 114 "SimpleParser.y"
+                                       { 
+        yylhs.value.as < Ast::Node * > () = new Ast::VariableDeclList(yystack_[1].value.as < Ast::Node * > (), yystack_[0].value.as < Ast::Node * > ());
+      }
+#line 1067 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+    break;
+
+  case 12: // variable_decl_list: variable_decl
+#line 117 "SimpleParser.y"
+                     {
+      yylhs.value.as < Ast::Node * > () = new Ast::VariableDeclList(yystack_[0].value.as < Ast::Node * > (), nullptr);
+      }
+#line 1075 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+    break;
+
+  case 13: // variable_decl_list: %empty
+#line 120 "SimpleParser.y"
+               {}
+#line 1081 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+    break;
+
+  case 14: // variable_decl_Body: ident_list SEMICOLON
+#line 124 "SimpleParser.y"
                        { 
-            yylhs.value.as < Ast::Node * > () = new Ast::AddExpr(yystack_[2].value.as < Ast::Node * > (), yystack_[0].value.as < Ast::Node * > ()); 
-        }
-#line 788 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+      yylhs.value.as < Ast::Node * > () = new Ast::VariableDecl_Body(yystack_[1].value.as < Ast::Node * > ()); 
+      }
+#line 1089 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
-  case 8: // expr: expr "-" term
-#line 98 "SimpleParser.y"
-                       { 
+  case 15: // variable_decl: KW_INT IDENTIFIER OPEN_BRACKET INT_CONST CLOSE_BRACKET variable_decl_Body
+#line 130 "SimpleParser.y"
+                                                                                 {
+            yylhs.value.as < Ast::Node * > () = new Ast::VariableDecl(new Ast::Type("INT", new Ast::ArrayOptional(yystack_[2].value.as < int > ())), yystack_[4].value.as < std::string > (), yystack_[0].value.as < Ast::Node * > ());
+      }
+#line 1097 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+    break;
+
+  case 16: // variable_decl: KW_INT IDENTIFIER variable_decl_Body
+#line 133 "SimpleParser.y"
+                                              {
+            yylhs.value.as < Ast::Node * > () = new Ast::VariableDecl(new Ast::Type("INT", nullptr), yystack_[1].value.as < std::string > (), yystack_[0].value.as < Ast::Node * > ());
+       }
+#line 1105 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+    break;
+
+  case 17: // array_optional: OPEN_BRACKET INT_CONST CLOSE_BRACKET
+#line 140 "SimpleParser.y"
+                                           { 
+            yylhs.value.as < Ast::Node * > () = new Ast::ArrayOptional(yystack_[1].value.as < int > ()); 
+      }
+#line 1113 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+    break;
+
+  case 18: // array_optional: %empty
+#line 143 "SimpleParser.y"
+               {}
+#line 1119 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+    break;
+
+  case 19: // ident_list: COMMA IDENTIFIER ident_list
+#line 147 "SimpleParser.y"
+                                  { 
+            yylhs.value.as < Ast::Node * > () = new Ast::IdentList(yystack_[1].value.as < std::string > (), yystack_[0].value.as < Ast::Node * > ()); 
+      }
+#line 1127 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+    break;
+
+  case 20: // ident_list: %empty
+#line 150 "SimpleParser.y"
+               {}
+#line 1133 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+    break;
+
+  case 21: // type: KW_INT array_optional
+#line 154 "SimpleParser.y"
+                            { 
+            yylhs.value.as < Ast::Node * > () = new Ast::Type("INT", yystack_[0].value.as < Ast::Node * > ()); 
+      }
+#line 1141 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+    break;
+
+  case 22: // method_decl_list: method_decl method_decl_list
+#line 161 "SimpleParser.y"
+                                   {
+          yylhs.value.as < Ast::Node * > () = new Ast::MethodDeclList(yystack_[1].value.as < Ast::Node * > (), yystack_[0].value.as < Ast::Node * > ()); 
+       
+      }
+#line 1150 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+    break;
+
+  case 23: // method_decl_list: %empty
+#line 165 "SimpleParser.y"
+                 {}
+#line 1156 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+    break;
+
+  case 24: // method_decl: method_type IDENTIFIER method_body
+#line 169 "SimpleParser.y"
+                                        {
+        yylhs.value.as < Ast::Node * > () = new Ast::MethodDecl(yystack_[2].value.as < Ast::Node * > (), yystack_[1].value.as < std::string > (), yystack_[0].value.as < Ast::Node * > ());
+      }
+#line 1164 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+    break;
+
+  case 25: // method_body: OPEN_PAR opt_param_decl_list CLOSE_PAR OPEN_CURLY variable_decl_list stmt_list CLOSE_CURLY
+#line 175 "SimpleParser.y"
+                                                                                                 {
+      yylhs.value.as < Ast::Node * > () = new Ast::MethodDecl_Body(yystack_[5].value.as < Ast::Node * > (), yystack_[2].value.as < Ast::Node * > (), yystack_[1].value.as < Ast::Node * > ()); 
+      }
+#line 1172 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+    break;
+
+  case 26: // method_type: KW_INT
+#line 181 "SimpleParser.y"
+             {     
+            yylhs.value.as < Ast::Node * > () = new Ast::MethodType("INT");
+      }
+#line 1180 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+    break;
+
+  case 27: // method_type: KW_VOID
+#line 184 "SimpleParser.y"
+              { 
+            yylhs.value.as < Ast::Node * > () = new Ast::MethodType("VOID"); 
+      }
+#line 1188 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+    break;
+
+  case 28: // opt_param_decl_list: param_decl param_list
+#line 190 "SimpleParser.y"
+                            {  
+         yylhs.value.as < Ast::Node * > () = new Ast::OptParamDeclList(yystack_[1].value.as < Ast::Node * > (), yystack_[0].value.as < Ast::Node * > ()); 
+      }
+#line 1196 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+    break;
+
+  case 29: // opt_param_decl_list: %empty
+#line 193 "SimpleParser.y"
+              {}
+#line 1202 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+    break;
+
+  case 30: // param_list: COMMA param_decl param_list
+#line 197 "SimpleParser.y"
+                                  {   
+            yylhs.value.as < Ast::Node * > () = new Ast::ParamList(yystack_[1].value.as < Ast::Node * > (), yystack_[0].value.as < Ast::Node * > ());
+      }
+#line 1210 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+    break;
+
+  case 31: // param_list: %empty
+#line 200 "SimpleParser.y"
+                {}
+#line 1216 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+    break;
+
+  case 32: // param_decl: ref_optional type IDENTIFIER
+#line 204 "SimpleParser.y"
+                                   {    
+            yylhs.value.as < Ast::Node * > () = new Ast::ParamDecl(yystack_[2].value.as < Ast::Node * > (), yystack_[1].value.as < Ast::Node * > (), yystack_[0].value.as < std::string > ());
+      }
+#line 1224 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+    break;
+
+  case 33: // ref_optional: KW_REF
+#line 210 "SimpleParser.y"
+             {   
+            yylhs.value.as < Ast::Node * > () = new Ast::RefOptional(true); 
+      }
+#line 1232 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+    break;
+
+  case 34: // ref_optional: %empty
+#line 213 "SimpleParser.y"
+               {}
+#line 1238 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+    break;
+
+  case 35: // stmt_list: stmt stmt_list
+#line 217 "SimpleParser.y"
+                     { 
+         yylhs.value.as < Ast::Node * > () = new Ast::StmtList(yystack_[1].value.as < Ast::Node * > (), yystack_[0].value.as < Ast::Node * > ()); 
+      }
+#line 1246 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+    break;
+
+  case 36: // stmt_list: %empty
+#line 220 "SimpleParser.y"
+                 {}
+#line 1252 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+    break;
+
+  case 37: // array_access: OPEN_BRACKET expression CLOSE_BRACKET
+#line 224 "SimpleParser.y"
+                                            { 
+            yylhs.value.as < Ast::Node * > () = new Ast::ArrayAccess(yystack_[1].value.as < Ast::Node * > ());
+           
+      }
+#line 1261 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+    break;
+
+  case 38: // array_access_opt: array_access
+#line 231 "SimpleParser.y"
+                   { yylhs.value.as < Ast::Node * > () = yystack_[0].value.as < Ast::Node * > (); }
+#line 1267 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+    break;
+
+  case 39: // array_access_opt: %empty
+#line 232 "SimpleParser.y"
+             {  }
+#line 1273 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+    break;
+
+  case 40: // assign_stmt: IDENTIFIER array_access_opt OP_ASSIGN expression SEMICOLON
+#line 237 "SimpleParser.y"
+                                                                 {
+            yylhs.value.as < Ast::Node * > () = new Ast::AssignStmt(yystack_[4].value.as < std::string > (), yystack_[3].value.as < Ast::Node * > (), yystack_[1].value.as < Ast::Node * > ());
+      }
+#line 1281 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+    break;
+
+  case 41: // call_stmt: IDENTIFIER OPEN_PAR call_param_list CLOSE_PAR SEMICOLON
+#line 244 "SimpleParser.y"
+                                                            {
+         yylhs.value.as < Ast::Node * > () = new Ast::CallStmt(yystack_[4].value.as < std::string > (), yystack_[2].value.as < Ast::Node * > ());
+    }
+#line 1289 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+    break;
+
+  case 42: // stmt: call_stmt
+#line 249 "SimpleParser.y"
+                {
+          yylhs.value.as < Ast::Node * > () = yystack_[0].value.as < Ast::Node * > ();
+      }
+#line 1297 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+    break;
+
+  case 43: // stmt: assign_stmt
+#line 253 "SimpleParser.y"
+                  {
+          yylhs.value.as < Ast::Node * > () = yystack_[0].value.as < Ast::Node * > ();
+      }
+#line 1305 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+    break;
+
+  case 44: // stmt: return_stmt
+#line 257 "SimpleParser.y"
+                  {
+          yylhs.value.as < Ast::Node * > () = yystack_[0].value.as < Ast::Node * > ();
+      }
+#line 1313 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+    break;
+
+  case 45: // stmt: if_stmt
+#line 260 "SimpleParser.y"
+              {   
+          yylhs.value.as < Ast::Node * > () = yystack_[0].value.as < Ast::Node * > ();
+      }
+#line 1321 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+    break;
+
+  case 46: // stmt: while_stmt
+#line 263 "SimpleParser.y"
+                 {  
+          yylhs.value.as < Ast::Node * > () = yystack_[0].value.as < Ast::Node * > ();
+      }
+#line 1329 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+    break;
+
+  case 47: // stmt: print_stmt
+#line 266 "SimpleParser.y"
+                 { 
+          yylhs.value.as < Ast::Node * > () = yystack_[0].value.as < Ast::Node * > ();
+      }
+#line 1337 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+    break;
+
+  case 48: // stmt: read_stmt
+#line 269 "SimpleParser.y"
+                {  
+          yylhs.value.as < Ast::Node * > () = yystack_[0].value.as < Ast::Node * > ();
+      }
+#line 1345 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+    break;
+
+  case 49: // return_stmt: KW_RETURN expression SEMICOLON
+#line 275 "SimpleParser.y"
+                                     {     
+            yylhs.value.as < Ast::Node * > () = new Ast::ReturnStmt(yystack_[1].value.as < Ast::Node * > ()); 
+      }
+#line 1353 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+    break;
+
+  case 50: // if_stmt: KW_IF OPEN_PAR expression CLOSE_PAR block else_optional
+#line 281 "SimpleParser.y"
+                                                              {   
+            yylhs.value.as < Ast::Node * > () = new Ast::IfStmt(yystack_[3].value.as < Ast::Node * > (), yystack_[1].value.as < Ast::Node * > (), yystack_[0].value.as < Ast::Node * > ()); 
+      }
+#line 1361 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+    break;
+
+  case 51: // else_optional: KW_ELSE block
+#line 287 "SimpleParser.y"
+                    { 
+            yylhs.value.as < Ast::Node * > () = new Ast::ElseOptional(yystack_[0].value.as < Ast::Node * > ());
+      }
+#line 1369 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+    break;
+
+  case 52: // else_optional: %empty
+#line 290 "SimpleParser.y"
+               {}
+#line 1375 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+    break;
+
+  case 53: // block: OPEN_CURLY stmt_list CLOSE_CURLY
+#line 294 "SimpleParser.y"
+                                       {    
+            yylhs.value.as < Ast::Node * > () = new Ast::Block(yystack_[1].value.as < Ast::Node * > ());
+      }
+#line 1383 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+    break;
+
+  case 54: // while_stmt: KW_WHILE OPEN_PAR expression CLOSE_PAR block
+#line 300 "SimpleParser.y"
+                                                   {        
+            yylhs.value.as < Ast::Node * > () = new Ast::WhileStmt(yystack_[2].value.as < Ast::Node * > (), yystack_[0].value.as < Ast::Node * > ());
+      }
+#line 1391 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+    break;
+
+  case 55: // call_param_list: expression call_param_rest
+#line 308 "SimpleParser.y"
+                                 {       
+            yylhs.value.as < Ast::Node * > () = new Ast::CallParamList(yystack_[1].value.as < Ast::Node * > (), yystack_[0].value.as < Ast::Node * > ());
+      }
+#line 1399 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+    break;
+
+  case 56: // call_param_list: %empty
+#line 311 "SimpleParser.y"
+               {}
+#line 1405 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+    break;
+
+  case 57: // call_param_rest: COMMA expression call_param_rest
+#line 315 "SimpleParser.y"
+                                       {          
+            yylhs.value.as < Ast::Node * > () = new Ast::CallParamRest(yystack_[1].value.as < Ast::Node * > (), yystack_[0].value.as < Ast::Node * > ());
+      }
+#line 1413 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+    break;
+
+  case 58: // call_param_rest: %empty
+#line 318 "SimpleParser.y"
+                {}
+#line 1419 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+    break;
+
+  case 59: // print_stmt: KW_PRINT OPEN_PAR print_param CLOSE_PAR SEMICOLON
+#line 322 "SimpleParser.y"
+                                                        {
+     yylhs.value.as < Ast::Node * > () = new Ast::PrintStmt(yystack_[2].value.as < Ast::Node * > ()); 
+      }
+#line 1427 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+    break;
+
+  case 60: // print_param: expression
+#line 328 "SimpleParser.y"
+                 {      
+      yylhs.value.as < Ast::Node * > () = new Ast::PrintParam(yystack_[0].value.as < Ast::Node * > (), ""); 
+      }
+#line 1435 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+    break;
+
+  case 61: // print_param: STRING_LITERAL
+#line 331 "SimpleParser.y"
+                     {    
+       yylhs.value.as < Ast::Node * > () = new Ast::PrintParam(nullptr, yystack_[0].value.as < std::string > ());
+   }
+#line 1443 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+    break;
+
+  case 62: // read_stmt: KW_READ OPEN_PAR IDENTIFIER CLOSE_PAR SEMICOLON
+#line 337 "SimpleParser.y"
+                                                      {           
+            yylhs.value.as < Ast::Node * > () = new Ast::ReadStmt(yystack_[2].value.as < std::string > ()); 
+      }
+#line 1451 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+    break;
+
+  case 63: // expression: boolean_expression
+#line 343 "SimpleParser.y"
+                         {            
+            yylhs.value.as < Ast::Node * > () = yystack_[0].value.as < Ast::Node * > (); 
+      }
+#line 1459 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+    break;
+
+  case 64: // boolean_expression: boolean_expression OP_BOOL_OR boolean_term
+#line 348 "SimpleParser.y"
+                                                 { 
+             yylhs.value.as < Ast::Node * > () = new Ast::OrBoolean(yystack_[2].value.as < Ast::Node * > (), yystack_[0].value.as < Ast::Node * > ());
+        }
+#line 1467 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+    break;
+
+  case 65: // boolean_expression: boolean_term
+#line 351 "SimpleParser.y"
+                     {      
+            yylhs.value.as < Ast::Node * > () = yystack_[0].value.as < Ast::Node * > ();
+      }
+#line 1475 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+    break;
+
+  case 66: // boolean_term: boolean_term OP_BOOL_AND boolean_factor
+#line 358 "SimpleParser.y"
+                                              {            
+            yylhs.value.as < Ast::Node * > () = new Ast::AndBoolean(yystack_[2].value.as < Ast::Node * > (), yystack_[0].value.as < Ast::Node * > ());
+        }
+#line 1483 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+    break;
+
+  case 67: // boolean_term: boolean_factor
+#line 361 "SimpleParser.y"
+                       {            
+            yylhs.value.as < Ast::Node * > () = yystack_[0].value.as < Ast::Node * > ();
+        }
+#line 1491 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+    break;
+
+  case 68: // boolean_factor: OP_BOOL_NOT boolean_factor
+#line 367 "SimpleParser.y"
+                                 {          
+            yylhs.value.as < Ast::Node * > () = new Ast::UnaryNotBoolean(yystack_[0].value.as < Ast::Node * > ()); 
+        }
+#line 1499 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+    break;
+
+  case 69: // boolean_factor: OPEN_PAR boolean_expression CLOSE_PAR
+#line 370 "SimpleParser.y"
+                                              {    
+            yylhs.value.as < Ast::Node * > () = yystack_[1].value.as < Ast::Node * > ();
+        }
+#line 1507 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+    break;
+
+  case 70: // boolean_factor: relational_expression
+#line 373 "SimpleParser.y"
+                              {     
+            yylhs.value.as < Ast::Node * > () = yystack_[0].value.as < Ast::Node * > (); 
+        }
+#line 1515 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+    break;
+
+  case 71: // arithmetic_expression: arithmetic_expression OP_SUB term
+#line 379 "SimpleParser.y"
+                                        {    
             yylhs.value.as < Ast::Node * > () = new Ast::SubExpr(yystack_[2].value.as < Ast::Node * > (), yystack_[0].value.as < Ast::Node * > ()); 
         }
-#line 796 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1523 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
-  case 9: // expr: term
-#line 101 "SimpleParser.y"
-                       { 
+  case 72: // arithmetic_expression: arithmetic_expression OP_ADD term
+#line 382 "SimpleParser.y"
+                                          {        
+            yylhs.value.as < Ast::Node * > () = new Ast::SumExpr(yystack_[2].value.as < Ast::Node * > (), yystack_[0].value.as < Ast::Node * > ()); 
+        }
+#line 1531 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+    break;
+
+  case 73: // arithmetic_expression: term
+#line 385 "SimpleParser.y"
+             {   
             yylhs.value.as < Ast::Node * > () = yystack_[0].value.as < Ast::Node * > (); 
         }
-#line 804 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1539 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
-  case 10: // term: term "*" factor
-#line 107 "SimpleParser.y"
-                         { 
+  case 74: // relational_expression: arithmetic_expression OP_EQUAL arithmetic_expression
+#line 391 "SimpleParser.y"
+                                                                  {                   
+                  yylhs.value.as < Ast::Node * > () = new Ast::EqualBoolean(yystack_[2].value.as < Ast::Node * > (), yystack_[0].value.as < Ast::Node * > ());
+            }
+#line 1547 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+    break;
+
+  case 75: // relational_expression: arithmetic_expression OP_NOT_EQUAL arithmetic_expression
+#line 394 "SimpleParser.y"
+                                                                       {      
+                  yylhs.value.as < Ast::Node * > () = new Ast::NEqualBoolean(yystack_[2].value.as < Ast::Node * > (), yystack_[0].value.as < Ast::Node * > ());
+            }
+#line 1555 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+    break;
+
+  case 76: // relational_expression: arithmetic_expression OP_LESS_THAN arithmetic_expression
+#line 397 "SimpleParser.y"
+                                                                       {                  
+                   yylhs.value.as < Ast::Node * > () = new Ast::Less_ThanBoolean(yystack_[2].value.as < Ast::Node * > (), yystack_[0].value.as < Ast::Node * > ());
+            }
+#line 1563 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+    break;
+
+  case 77: // relational_expression: arithmetic_expression OP_GREATER_THAN arithmetic_expression
+#line 400 "SimpleParser.y"
+                                                                          {                   
+                   yylhs.value.as < Ast::Node * > () = new Ast::Greater_ThanBoolean(yystack_[2].value.as < Ast::Node * > (), yystack_[0].value.as < Ast::Node * > ());
+            }
+#line 1571 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+    break;
+
+  case 78: // relational_expression: arithmetic_expression OP_LESS_EQUAL arithmetic_expression
+#line 403 "SimpleParser.y"
+                                                                        {                  
+                   yylhs.value.as < Ast::Node * > () = new Ast::LessEqualBoolean(yystack_[2].value.as < Ast::Node * > (), yystack_[0].value.as < Ast::Node * > ());
+            }
+#line 1579 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+    break;
+
+  case 79: // relational_expression: arithmetic_expression OP_GREATER_EQUAL arithmetic_expression
+#line 406 "SimpleParser.y"
+                                                                           {                  
+                  yylhs.value.as < Ast::Node * > () = new Ast::GreaterEqualBoolean(yystack_[2].value.as < Ast::Node * > (), yystack_[0].value.as < Ast::Node * > ());
+            }
+#line 1587 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+    break;
+
+  case 80: // relational_expression: arithmetic_expression
+#line 409 "SimpleParser.y"
+                              {                    
+                   yylhs.value.as < Ast::Node * > () = yystack_[0].value.as < Ast::Node * > ();
+            }
+#line 1595 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+    break;
+
+  case 81: // term: term OP_MUL factor
+#line 415 "SimpleParser.y"
+                         {            
             yylhs.value.as < Ast::Node * > () = new Ast::MulExpr(yystack_[2].value.as < Ast::Node * > (), yystack_[0].value.as < Ast::Node * > ()); 
         }
-#line 812 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1603 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
-  case 11: // term: term "/" factor
-#line 110 "SimpleParser.y"
-                         {
-            yylhs.value.as < Ast::Node * > () = new Ast::DivExpr(yystack_[2].value.as < Ast::Node * > (), yystack_[0].value.as < Ast::Node * > ());
+  case 82: // term: term OP_DIV factor
+#line 418 "SimpleParser.y"
+                           {
+            yylhs.value.as < Ast::Node * > () = new Ast::DivExpr(yystack_[2].value.as < Ast::Node * > (), yystack_[0].value.as < Ast::Node * > ()); 
         }
-#line 820 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1611 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
-  case 12: // term: factor
-#line 113 "SimpleParser.y"
-             { 
+  case 83: // term: term OP_MOD factor
+#line 421 "SimpleParser.y"
+                           {           
+            yylhs.value.as < Ast::Node * > () = new Ast::ModExpr(yystack_[2].value.as < Ast::Node * > (), yystack_[0].value.as < Ast::Node * > ()); 
+        }
+#line 1619 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+    break;
+
+  case 84: // term: factor
+#line 424 "SimpleParser.y"
+               {      
             yylhs.value.as < Ast::Node * > () = yystack_[0].value.as < Ast::Node * > (); 
         }
-#line 828 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1627 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
-  case 13: // factor: "number"
-#line 119 "SimpleParser.y"
-                {
-          std::cout << "num: " << yystack_[0].value.as < int > () << std::endl;
-          yylhs.value.as < Ast::Node * > () = new Ast::Number(yystack_[0].value.as < int > ());
+  case 85: // factor: OP_ADD factor
+#line 431 "SimpleParser.y"
+                      {
+            yylhs.value.as < Ast::Node * > () = new Ast::UnaryAddExpr(yystack_[0].value.as < Ast::Node * > ());
       }
-#line 837 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1635 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
-  case 14: // factor: OPEN_PAR expr CLOSE_PAR
-#line 123 "SimpleParser.y"
-                              {
-          std::cout << "par" << std::endl;
-          if (yystack_[1].value.as < Ast::Node * > () == nullptr) {
-              yyerror("Expresión nula dentro de paréntesis");
-              yylhs.value.as < Ast::Node * > () = nullptr;
-          } else {
-              yylhs.value.as < Ast::Node * > () = yystack_[1].value.as < Ast::Node * > ();
-          }
+  case 86: // factor: OP_SUB factor
+#line 434 "SimpleParser.y"
+                      {
+            yylhs.value.as < Ast::Node * > () = new Ast::UnarySubExpr(yystack_[0].value.as < Ast::Node * > ()); 
       }
-#line 851 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1643 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
-  case 15: // factor: "identifier"
-#line 132 "SimpleParser.y"
-                 {
-          std::cout << "ident: " << yystack_[0].value.as < std::string > () << std::endl;
-          yylhs.value.as < Ast::Node * > () = new Ast::Identifier(yystack_[0].value.as < std::string > ());
+  case 87: // factor: INT_CONST
+#line 438 "SimpleParser.y"
+                { yylhs.value.as < Ast::Node * > () = new Ast::Number(yystack_[0].value.as < int > ());    
+            yylhs.value.as < Ast::Node * > () = new Ast::Number(yystack_[0].value.as < int > ()); 
       }
-#line 860 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1651 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+    break;
+
+  case 88: // factor: OPEN_PAR arithmetic_expression CLOSE_PAR
+#line 441 "SimpleParser.y"
+                                                 { yylhs.value.as < Ast::Node * > () = yystack_[1].value.as < Ast::Node * > (); }
+#line 1657 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+    break;
+
+  case 89: // factor: IDENTIFIER
+#line 442 "SimpleParser.y"
+                   {
+          yylhs.value.as < Ast::Node * > () = new Ast::Identifier(yystack_[0].value.as < std::string > ());  
+      }
+#line 1665 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+    break;
+
+  case 90: // factor: IDENTIFIER OPEN_PAR call_param_list CLOSE_PAR
+#line 445 "SimpleParser.y"
+                                                      { 
+            yylhs.value.as < Ast::Node * > () = new Ast::FunctionCall(yystack_[3].value.as < std::string > (), yystack_[1].value.as < Ast::Node * > ()); 
+        }
+#line 1673 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+    break;
+
+  case 91: // factor: IDENTIFIER array_access
+#line 448 "SimpleParser.y"
+                                {       
+            yylhs.value.as < Ast::Node * > () = new Ast::ArrayVariable(yystack_[1].value.as < std::string > (), yystack_[0].value.as < Ast::Node * > ()); 
+        }
+#line 1681 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
 
-#line 864 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1685 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
 
             default:
               break;
@@ -1208,72 +2029,171 @@ namespace Expr {
   }
 
 
-  const signed char Parser::yypact_ninf_ = -6;
+  const short Parser::yypact_ninf_ = -131;
 
-  const signed char Parser::yytable_ninf_ = -1;
+  const signed char Parser::yytable_ninf_ = -35;
 
-  const signed char
+  const short
   Parser::yypact_[] =
   {
-      -4,    -4,    -6,    -6,     2,    -6,    -5,     5,     6,    -6,
-      -3,    -6,    -4,    -4,    -4,    -4,    -4,    -6,    -6,     6,
-       6,    -6,    -6
+       1,    25,    34,  -131,     3,  -131,    41,    51,    37,    41,
+      23,  -131,  -131,    27,    37,    54,  -131,    41,    41,    -8,
+      74,    73,  -131,    46,    37,  -131,  -131,    52,  -131,    41,
+    -131,    45,    62,    93,    75,    76,  -131,  -131,  -131,    83,
+     106,  -131,    81,   119,    76,  -131,   111,    62,   123,  -131,
+    -131,  -131,   122,    68,   111,  -131,    85,    60,    63,    89,
+      90,    24,    91,    92,    94,  -131,  -131,    68,  -131,  -131,
+    -131,  -131,  -131,  -131,  -131,    24,    24,  -131,   112,    24,
+      24,  -131,    77,    24,    28,    28,    24,    95,   110,   113,
+    -131,    82,  -131,    39,  -131,    20,   131,  -131,  -131,    96,
+      97,    99,    24,    98,   102,    24,  -131,  -131,    28,  -131,
+    -131,    -9,    67,  -131,    24,    24,    28,    28,    28,    28,
+      28,    28,    28,    28,    28,    28,    28,  -131,   103,  -131,
+     104,   101,    24,  -131,  -131,   105,   109,   109,   107,   -24,
+    -131,  -131,   113,  -131,   -12,   -12,   -12,   -12,   -12,   -12,
+      39,    39,  -131,  -131,  -131,   108,   114,  -131,    97,  -131,
+      68,   133,  -131,  -131,  -131,  -131,  -131,   115,   109,  -131,
+    -131,  -131
   };
 
   const signed char
   Parser::yydefact_[] =
   {
-       3,     0,    13,    15,     0,     6,     0,     4,     9,    12,
-       0,     1,     2,     0,     0,     0,     0,    14,     5,     7,
-       8,    10,    11
+       0,     0,     0,     2,     0,     1,    10,     0,    23,     9,
+      20,    26,    27,     0,    23,     0,     7,     8,     9,    29,
+       0,     0,    16,     0,     5,     3,    22,     0,     6,     8,
+      33,     0,    31,     0,     0,    20,    14,     4,    24,     0,
+      34,    28,    18,     0,    20,    19,    13,    31,     0,    21,
+      32,    15,     0,    36,    12,    30,     0,    20,    39,     0,
+       0,     0,     0,     0,     0,    43,    42,    36,    44,    45,
+      46,    47,    48,    11,    17,    56,     0,    38,     0,     0,
+       0,    87,    89,     0,     0,     0,     0,     0,    63,    65,
+      67,    80,    70,    73,    84,     0,     0,    25,    35,     0,
+      58,     0,     0,     0,     0,    56,    91,    68,     0,    85,
+      86,     0,    80,    49,     0,     0,     0,     0,     0,     0,
+       0,     0,     0,     0,     0,     0,     0,    61,     0,    60,
+       0,     0,     0,    55,    37,     0,     0,     0,     0,     0,
+      69,    88,    64,    66,    74,    75,    76,    77,    78,    79,
+      72,    71,    81,    82,    83,     0,     0,    41,    58,    40,
+      36,    52,    54,    90,    59,    62,    57,     0,     0,    50,
+      53,    51
   };
 
-  const signed char
+  const short
   Parser::yypgoto_[] =
   {
-      -6,    -6,    -2,    -6,    14,     0,     1
+    -131,  -131,  -131,     7,    -6,   116,    -7,  -131,   117,  -131,
+       4,  -131,   128,  -131,  -131,   118,   121,  -131,   -67,    80,
+    -131,  -131,  -131,  -131,  -131,  -131,  -131,  -130,  -131,    44,
+      -2,  -131,  -131,  -131,   -60,    71,    49,   -78,   -37,  -131,
+     -53,   -81
   };
 
-  const signed char
+  const unsigned char
   Parser::yydefgoto_[] =
   {
-       0,     4,     5,     6,     7,     8,     9
+       0,     2,     3,    16,    17,    22,     9,    49,    23,    43,
+      13,    14,    24,    15,    31,    41,    32,    33,    64,    77,
+      78,    65,    66,    67,    68,    69,   169,   161,    70,    99,
+     133,    71,   128,    72,   100,    88,    89,    90,    91,    92,
+      93,    94
   };
 
-  const signed char
+  const short
   Parser::yytable_[] =
   {
-      13,    14,    11,     1,    12,    17,     2,     3,    13,    14,
-      18,    15,    16,    19,    20,    10,    21,    22
+      98,    87,    18,   109,   110,   107,   -34,   162,    30,   122,
+     123,    18,    29,     8,     1,   114,   101,   141,    26,   103,
+     104,   122,   123,    81,    28,    82,   127,    81,    37,    82,
+       4,    81,   140,    82,     5,   129,    28,   143,   171,    54,
+      53,     6,   135,   152,   153,   154,    83,    54,    73,   112,
+      83,    11,    12,    84,    85,     7,    10,    84,    85,    27,
+      86,    84,    85,    19,    86,    20,    25,    21,   108,   150,
+     151,   139,   158,    58,   124,   125,   126,    34,    35,   144,
+     145,   146,   147,   148,   149,    59,    39,    60,    61,    62,
+      63,    36,    19,   167,   116,   117,   118,   119,   120,   121,
+     122,   123,    20,    75,    21,    76,    40,    42,   141,   116,
+     117,   118,   119,   120,   121,   122,   123,   105,    44,    76,
+      21,    46,    30,    48,    50,    52,    56,    57,    74,    79,
+      80,    95,    96,    97,   114,   102,   130,   131,   115,   136,
+     113,   132,   134,   137,   155,   156,   157,   160,   163,   138,
+     159,   168,    45,   164,   170,    38,   166,   111,     0,   165,
+      51,    47,   106,   142,     0,    55
   };
 
-  const signed char
+  const short
   Parser::yycheck_[] =
   {
-       3,     4,     0,     7,     9,     8,    10,    11,     3,     4,
-      12,     5,     6,    13,    14,     1,    15,    16
+      67,    61,     9,    84,    85,    83,    14,   137,    16,    33,
+      34,    18,    18,     6,    13,    24,    76,    41,    14,    79,
+      80,    33,    34,     3,    17,     5,     6,     3,    24,     5,
+       5,     3,    41,     5,     0,    95,    29,   115,   168,    46,
+      46,    38,   102,   124,   125,   126,    26,    54,    54,    86,
+      26,    14,    15,    33,    34,    14,     5,    33,    34,     5,
+      40,    33,    34,    40,    40,    42,    39,    44,    40,   122,
+     123,   108,   132,     5,    35,    36,    37,     3,     5,   116,
+     117,   118,   119,   120,   121,    17,    41,    19,    20,    21,
+      22,    45,    40,   160,    27,    28,    29,    30,    31,    32,
+      33,    34,    42,    40,    44,    42,    44,    14,    41,    27,
+      28,    29,    30,    31,    32,    33,    34,    40,    43,    42,
+      44,    38,    16,    42,     5,    14,     3,     5,    43,    40,
+      40,    40,    40,    39,    24,    23,     5,    41,    25,    41,
+      45,    44,    43,    41,    41,    41,    45,    38,    41,   105,
+      45,    18,    35,    45,    39,    27,   158,    86,    -1,    45,
+      44,    40,    82,   114,    -1,    47
   };
 
   const signed char
   Parser::yystos_[] =
   {
-       0,     7,    10,    11,    14,    15,    16,    17,    18,    19,
-      17,     0,     9,     3,     4,     5,     6,     8,    15,    18,
-      18,    19,    19
+       0,    13,    50,    51,     5,     0,    38,    14,    52,    55,
+       5,    14,    15,    59,    60,    62,    52,    53,    55,    40,
+      42,    44,    54,    57,    61,    39,    59,     5,    52,    53,
+      16,    63,    65,    66,     3,     5,    45,    59,    61,    41,
+      44,    64,    14,    58,    43,    57,    38,    65,    42,    56,
+       5,    54,    14,    53,    55,    64,     3,     5,     5,    17,
+      19,    20,    21,    22,    67,    70,    71,    72,    73,    74,
+      77,    80,    82,    53,    43,    40,    42,    68,    69,    40,
+      40,     3,     5,    26,    33,    34,    40,    83,    84,    85,
+      86,    87,    88,    89,    90,    40,    40,    39,    67,    78,
+      83,    83,    23,    83,    83,    40,    68,    86,    40,    90,
+      90,    84,    87,    45,    24,    25,    27,    28,    29,    30,
+      31,    32,    33,    34,    35,    36,    37,     6,    81,    83,
+       5,    41,    44,    79,    43,    83,    41,    41,    78,    87,
+      41,    41,    85,    86,    87,    87,    87,    87,    87,    87,
+      89,    89,    90,    90,    90,    41,    41,    45,    83,    45,
+      38,    76,    76,    41,    45,    45,    79,    67,    18,    75,
+      39,    76
   };
 
   const signed char
   Parser::yyr1_[] =
   {
-       0,    13,    14,    14,    15,    16,    16,    17,    17,    17,
-      18,    18,    18,    19,    19,    19
+       0,    49,    50,    51,    52,    52,    52,    52,    52,    52,
+      52,    53,    53,    53,    54,    55,    55,    56,    56,    57,
+      57,    58,    59,    59,    60,    61,    62,    62,    63,    63,
+      64,    64,    65,    66,    66,    67,    67,    68,    69,    69,
+      70,    71,    72,    72,    72,    72,    72,    72,    72,    73,
+      74,    75,    75,    76,    77,    78,    78,    79,    79,    80,
+      81,    81,    82,    83,    84,    84,    85,    85,    86,    86,
+      86,    87,    87,    87,    88,    88,    88,    88,    88,    88,
+      88,    89,    89,    89,    89,    90,    90,    90,    90,    90,
+      90,    90
   };
 
   const signed char
   Parser::yyr2_[] =
   {
-       0,     2,     2,     0,     1,     3,     1,     3,     3,     1,
-       3,     3,     1,     1,     3,     1
+       0,     2,     1,     6,     4,     3,     3,     2,     2,     1,
+       0,     2,     1,     0,     2,     6,     3,     3,     0,     3,
+       0,     2,     2,     0,     3,     7,     1,     1,     2,     0,
+       3,     0,     3,     1,     0,     2,     0,     3,     1,     0,
+       5,     5,     1,     1,     1,     1,     1,     1,     1,     3,
+       6,     2,     0,     3,     5,     2,     0,     3,     0,     5,
+       1,     1,     5,     1,     3,     1,     3,     1,     2,     3,
+       1,     3,     3,     1,     3,     3,     3,     3,     3,     3,
+       1,     3,     3,     3,     1,     2,     2,     1,     3,     1,
+       4,     2
   };
 
 
@@ -1283,20 +2203,43 @@ namespace Expr {
   const char*
   const Parser::yytname_[] =
   {
-  "\"end of file\"", "error", "\"invalid token\"", "\"+\"", "\"-\"",
-  "\"*\"", "\"/\"", "OPEN_PAR", "CLOSE_PAR", "SEMICOLON", "\"number\"",
-  "\"identifier\"", "\"unknown\"", "$accept", "input", "statement",
-  "statement_list", "expr", "term", "factor", YY_NULLPTR
+  "\"end of file\"", "error", "\"invalid token\"", "INT_CONST",
+  "CONSTANT", "IDENTIFIER", "STRING_LITERAL", "EndOfFile", "Error", "Hex",
+  "Oct", "Dec", "Bin", "KW_CLASS", "KW_INT", "KW_VOID", "KW_REF", "KW_IF",
+  "KW_ELSE", "KW_WHILE", "KW_RETURN", "KW_PRINT", "KW_READ", "OP_ASSIGN",
+  "OP_BOOL_OR", "OP_BOOL_AND", "OP_BOOL_NOT", "OP_EQUAL", "OP_NOT_EQUAL",
+  "OP_LESS_THAN", "OP_GREATER_THAN", "OP_LESS_EQUAL", "OP_GREATER_EQUAL",
+  "OP_ADD", "OP_SUB", "OP_MUL", "OP_DIV", "OP_MOD", "OPEN_CURLY",
+  "CLOSE_CURLY", "OPEN_PAR", "CLOSE_PAR", "OPEN_BRACKET", "CLOSE_BRACKET",
+  "COMMA", "SEMICOLON", "COMMENT", "ERROR", "LOWER_THAN_OPEN_PAR",
+  "$accept", "input", "program", "varmethod_decl_list",
+  "variable_decl_list", "variable_decl_Body", "variable_decl",
+  "array_optional", "ident_list", "type", "method_decl_list",
+  "method_decl", "method_body", "method_type", "opt_param_decl_list",
+  "param_list", "param_decl", "ref_optional", "stmt_list", "array_access",
+  "array_access_opt", "assign_stmt", "call_stmt", "stmt", "return_stmt",
+  "if_stmt", "else_optional", "block", "while_stmt", "call_param_list",
+  "call_param_rest", "print_stmt", "print_param", "read_stmt",
+  "expression", "boolean_expression", "boolean_term", "boolean_factor",
+  "arithmetic_expression", "relational_expression", "term", "factor", YY_NULLPTR
   };
 #endif
 
 
 #if YYDEBUG
-  const unsigned char
+  const short
   Parser::yyrline_[] =
   {
-       0,    61,    61,    65,    72,    76,    84,    95,    98,   101,
-     107,   110,   113,   119,   123,   132
+       0,    77,    77,    81,    89,    93,    97,   100,   104,   107,
+     110,   114,   117,   120,   124,   130,   133,   140,   143,   147,
+     150,   154,   161,   165,   169,   175,   181,   184,   190,   193,
+     197,   200,   204,   210,   213,   217,   220,   224,   231,   232,
+     237,   244,   249,   253,   257,   260,   263,   266,   269,   275,
+     281,   287,   290,   294,   300,   308,   311,   315,   318,   322,
+     328,   331,   337,   343,   348,   351,   358,   361,   367,   370,
+     373,   379,   382,   385,   391,   394,   397,   400,   403,   406,
+     409,   415,   418,   421,   424,   431,   434,   438,   441,   442,
+     445,   448
   };
 
   void
@@ -1361,10 +2304,14 @@ namespace Expr {
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     1,     2,     3,     4,
-       5,     6,     7,     8,     9,    10,    11,    12
+       5,     6,     7,     8,     9,    10,    11,    12,    13,    14,
+      15,    16,    17,    18,    19,    20,    21,    22,    23,    24,
+      25,    26,    27,    28,    29,    30,    31,    32,    33,    34,
+      35,    36,    37,    38,    39,    40,    41,    42,    43,    44,
+      45,    46,    47,    48
     };
     // Last valid token kind.
-    const int code_max = 267;
+    const int code_max = 303;
 
     if (t <= 0)
       return symbol_kind::S_YYEOF;
@@ -1376,6 +2323,7 @@ namespace Expr {
 
 #line 10 "SimpleParser.y"
 } // Expr
-#line 1380 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 2327 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
 
-#line 138 "SimpleParser.y"
+#line 453 "SimpleParser.y"
+

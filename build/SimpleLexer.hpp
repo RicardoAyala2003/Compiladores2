@@ -16,6 +16,7 @@
 #define REFLEX_OPTION_lexer               SimpleLexer
 #define REFLEX_OPTION_outfile             "SimpleLexer.cpp"
 #define REFLEX_OPTION_params              Expr::Parser::value_type *yylval
+#define REFLEX_OPTION_yylineno            true
 
 ////////////////////////////////////////////////////////////////////////////////
 //                                                                            //

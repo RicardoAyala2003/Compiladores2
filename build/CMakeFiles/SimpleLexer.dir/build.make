@@ -135,26 +135,26 @@ CMakeFiles/SimpleLexer.dir/ExprAst.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/SimpleLexer.dir/ExprAst.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/ExprAst.cpp -o CMakeFiles/SimpleLexer.dir/ExprAst.cpp.s
 
-CMakeFiles/SimpleLexer.dir/Main.cpp.o: CMakeFiles/SimpleLexer.dir/flags.make
-CMakeFiles/SimpleLexer.dir/Main.cpp.o: /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/Main.cpp
-CMakeFiles/SimpleLexer.dir/Main.cpp.o: CMakeFiles/SimpleLexer.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/SimpleLexer.dir/Main.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/SimpleLexer.dir/Main.cpp.o -MF CMakeFiles/SimpleLexer.dir/Main.cpp.o.d -o CMakeFiles/SimpleLexer.dir/Main.cpp.o -c /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/Main.cpp
+CMakeFiles/SimpleLexer.dir/main.cpp.o: CMakeFiles/SimpleLexer.dir/flags.make
+CMakeFiles/SimpleLexer.dir/main.cpp.o: /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/main.cpp
+CMakeFiles/SimpleLexer.dir/main.cpp.o: CMakeFiles/SimpleLexer.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/SimpleLexer.dir/main.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/SimpleLexer.dir/main.cpp.o -MF CMakeFiles/SimpleLexer.dir/main.cpp.o.d -o CMakeFiles/SimpleLexer.dir/main.cpp.o -c /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/main.cpp
 
-CMakeFiles/SimpleLexer.dir/Main.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/SimpleLexer.dir/Main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/Main.cpp > CMakeFiles/SimpleLexer.dir/Main.cpp.i
+CMakeFiles/SimpleLexer.dir/main.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/SimpleLexer.dir/main.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/main.cpp > CMakeFiles/SimpleLexer.dir/main.cpp.i
 
-CMakeFiles/SimpleLexer.dir/Main.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/SimpleLexer.dir/Main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/Main.cpp -o CMakeFiles/SimpleLexer.dir/Main.cpp.s
+CMakeFiles/SimpleLexer.dir/main.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/SimpleLexer.dir/main.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/main.cpp -o CMakeFiles/SimpleLexer.dir/main.cpp.s
 
 # Object files for target SimpleLexer
 SimpleLexer_OBJECTS = \
 "CMakeFiles/SimpleLexer.dir/SimpleLexer.cpp.o" \
 "CMakeFiles/SimpleLexer.dir/SimpleParser.cpp.o" \
 "CMakeFiles/SimpleLexer.dir/ExprAst.cpp.o" \
-"CMakeFiles/SimpleLexer.dir/Main.cpp.o"
+"CMakeFiles/SimpleLexer.dir/main.cpp.o"
 
 # External object files for target SimpleLexer
 SimpleLexer_EXTERNAL_OBJECTS =
@@ -162,7 +162,7 @@ SimpleLexer_EXTERNAL_OBJECTS =
 SimpleLexer: CMakeFiles/SimpleLexer.dir/SimpleLexer.cpp.o
 SimpleLexer: CMakeFiles/SimpleLexer.dir/SimpleParser.cpp.o
 SimpleLexer: CMakeFiles/SimpleLexer.dir/ExprAst.cpp.o
-SimpleLexer: CMakeFiles/SimpleLexer.dir/Main.cpp.o
+SimpleLexer: CMakeFiles/SimpleLexer.dir/main.cpp.o
 SimpleLexer: CMakeFiles/SimpleLexer.dir/build.make
 SimpleLexer: /usr/local/lib/libreflex_static_lib.a
 SimpleLexer: CMakeFiles/SimpleLexer.dir/link.txt

@@ -46,14 +46,14 @@ BISON_TARGET(SimpleParser SimpleParser.y ${CMAKE_BINARY_DIR}/SimpleParser.cpp
             DEFINES_FILE ${CMAKE_BINARY_DIR}/SimpleParser.hpp
 )
 
-add_executable(${PROJECT_NAME} tokens.hpp 
+add_executable(${PROJECT_NAME} Tokens.hpp 
                                SimpleLexer.cpp 
                                SimpleLexer.hpp 
                                SimpleParser.cpp
                                SimpleParser.hpp 
                                ExprAst.cpp
                                ExprAst.hpp
-                               Main.cpp)
+                               main.cpp)
 
 
 target_link_libraries(${PROJECT_NAME} PRIVATE Reflex::ReflexLibStatic)

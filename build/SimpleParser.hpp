@@ -383,17 +383,54 @@ namespace Expr {
     /// An auxiliary type to compute the largest semantic type.
     union union_type
     {
-      // statement
-      // statement_list
-      // expr
+      // program
+      // varmethod_decl_list
+      // variable_decl_list
+      // variable_decl_Body
+      // variable_decl
+      // array_optional
+      // ident_list
+      // type
+      // method_decl_list
+      // method_decl
+      // method_body
+      // method_type
+      // opt_param_decl_list
+      // param_list
+      // param_decl
+      // ref_optional
+      // stmt_list
+      // array_access
+      // array_access_opt
+      // assign_stmt
+      // call_stmt
+      // stmt
+      // return_stmt
+      // if_stmt
+      // else_optional
+      // block
+      // while_stmt
+      // call_param_list
+      // call_param_rest
+      // print_stmt
+      // print_param
+      // read_stmt
+      // expression
+      // boolean_expression
+      // boolean_term
+      // boolean_factor
+      // arithmetic_expression
+      // relational_expression
       // term
       // factor
       char dummy1[sizeof (Ast::Node *)];
 
-      // "number"
+      // INT_CONST
+      // CONSTANT
       char dummy2[sizeof (int)];
 
-      // "identifier"
+      // IDENTIFIER
+      // STRING_LITERAL
       char dummy3[sizeof (std::string)];
     };
 
@@ -438,16 +475,52 @@ namespace Expr {
     YYEOF = 0,                     // "end of file"
     YYerror = 256,                 // error
     YYUNDEF = 257,                 // "invalid token"
-    OP_ADD = 258,                  // "+"
-    OP_SUB = 259,                  // "-"
-    OP_MUL = 260,                  // "*"
-    OP_DIV = 261,                  // "/"
-    OPEN_PAR = 262,                // OPEN_PAR
-    CLOSE_PAR = 263,               // CLOSE_PAR
-    SEMICOLON = 264,               // SEMICOLON
-    INT_CONST = 265,               // "number"
-    IDENTIFIER = 266,              // "identifier"
-    ERROR = 267                    // "unknown"
+    INT_CONST = 258,               // INT_CONST
+    CONSTANT = 259,                // CONSTANT
+    IDENTIFIER = 260,              // IDENTIFIER
+    STRING_LITERAL = 261,          // STRING_LITERAL
+    EndOfFile = 262,               // EndOfFile
+    Error = 263,                   // Error
+    Hex = 264,                     // Hex
+    Oct = 265,                     // Oct
+    Dec = 266,                     // Dec
+    Bin = 267,                     // Bin
+    KW_CLASS = 268,                // KW_CLASS
+    KW_INT = 269,                  // KW_INT
+    KW_VOID = 270,                 // KW_VOID
+    KW_REF = 271,                  // KW_REF
+    KW_IF = 272,                   // KW_IF
+    KW_ELSE = 273,                 // KW_ELSE
+    KW_WHILE = 274,                // KW_WHILE
+    KW_RETURN = 275,               // KW_RETURN
+    KW_PRINT = 276,                // KW_PRINT
+    KW_READ = 277,                 // KW_READ
+    OP_ASSIGN = 278,               // OP_ASSIGN
+    OP_BOOL_OR = 279,              // OP_BOOL_OR
+    OP_BOOL_AND = 280,             // OP_BOOL_AND
+    OP_BOOL_NOT = 281,             // OP_BOOL_NOT
+    OP_EQUAL = 282,                // OP_EQUAL
+    OP_NOT_EQUAL = 283,            // OP_NOT_EQUAL
+    OP_LESS_THAN = 284,            // OP_LESS_THAN
+    OP_GREATER_THAN = 285,         // OP_GREATER_THAN
+    OP_LESS_EQUAL = 286,           // OP_LESS_EQUAL
+    OP_GREATER_EQUAL = 287,        // OP_GREATER_EQUAL
+    OP_ADD = 288,                  // OP_ADD
+    OP_SUB = 289,                  // OP_SUB
+    OP_MUL = 290,                  // OP_MUL
+    OP_DIV = 291,                  // OP_DIV
+    OP_MOD = 292,                  // OP_MOD
+    OPEN_CURLY = 293,              // OPEN_CURLY
+    CLOSE_CURLY = 294,             // CLOSE_CURLY
+    OPEN_PAR = 295,                // OPEN_PAR
+    CLOSE_PAR = 296,               // CLOSE_PAR
+    OPEN_BRACKET = 297,            // OPEN_BRACKET
+    CLOSE_BRACKET = 298,           // CLOSE_BRACKET
+    COMMA = 299,                   // COMMA
+    SEMICOLON = 300,               // SEMICOLON
+    COMMENT = 301,                 // COMMENT
+    ERROR = 302,                   // ERROR
+    LOWER_THAN_OPEN_PAR = 303      // LOWER_THAN_OPEN_PAR
       };
       /// Backward compatibility alias (Bison 3.6).
       typedef token_kind_type yytokentype;
@@ -464,28 +537,99 @@ namespace Expr {
     {
       enum symbol_kind_type
       {
-        YYNTOKENS = 13, ///< Number of tokens.
+        YYNTOKENS = 49, ///< Number of tokens.
         S_YYEMPTY = -2,
         S_YYEOF = 0,                             // "end of file"
         S_YYerror = 1,                           // error
         S_YYUNDEF = 2,                           // "invalid token"
-        S_OP_ADD = 3,                            // "+"
-        S_OP_SUB = 4,                            // "-"
-        S_OP_MUL = 5,                            // "*"
-        S_OP_DIV = 6,                            // "/"
-        S_OPEN_PAR = 7,                          // OPEN_PAR
-        S_CLOSE_PAR = 8,                         // CLOSE_PAR
-        S_SEMICOLON = 9,                         // SEMICOLON
-        S_INT_CONST = 10,                        // "number"
-        S_IDENTIFIER = 11,                       // "identifier"
-        S_ERROR = 12,                            // "unknown"
-        S_YYACCEPT = 13,                         // $accept
-        S_input = 14,                            // input
-        S_statement = 15,                        // statement
-        S_statement_list = 16,                   // statement_list
-        S_expr = 17,                             // expr
-        S_term = 18,                             // term
-        S_factor = 19                            // factor
+        S_INT_CONST = 3,                         // INT_CONST
+        S_CONSTANT = 4,                          // CONSTANT
+        S_IDENTIFIER = 5,                        // IDENTIFIER
+        S_STRING_LITERAL = 6,                    // STRING_LITERAL
+        S_EndOfFile = 7,                         // EndOfFile
+        S_Error = 8,                             // Error
+        S_Hex = 9,                               // Hex
+        S_Oct = 10,                              // Oct
+        S_Dec = 11,                              // Dec
+        S_Bin = 12,                              // Bin
+        S_KW_CLASS = 13,                         // KW_CLASS
+        S_KW_INT = 14,                           // KW_INT
+        S_KW_VOID = 15,                          // KW_VOID
+        S_KW_REF = 16,                           // KW_REF
+        S_KW_IF = 17,                            // KW_IF
+        S_KW_ELSE = 18,                          // KW_ELSE
+        S_KW_WHILE = 19,                         // KW_WHILE
+        S_KW_RETURN = 20,                        // KW_RETURN
+        S_KW_PRINT = 21,                         // KW_PRINT
+        S_KW_READ = 22,                          // KW_READ
+        S_OP_ASSIGN = 23,                        // OP_ASSIGN
+        S_OP_BOOL_OR = 24,                       // OP_BOOL_OR
+        S_OP_BOOL_AND = 25,                      // OP_BOOL_AND
+        S_OP_BOOL_NOT = 26,                      // OP_BOOL_NOT
+        S_OP_EQUAL = 27,                         // OP_EQUAL
+        S_OP_NOT_EQUAL = 28,                     // OP_NOT_EQUAL
+        S_OP_LESS_THAN = 29,                     // OP_LESS_THAN
+        S_OP_GREATER_THAN = 30,                  // OP_GREATER_THAN
+        S_OP_LESS_EQUAL = 31,                    // OP_LESS_EQUAL
+        S_OP_GREATER_EQUAL = 32,                 // OP_GREATER_EQUAL
+        S_OP_ADD = 33,                           // OP_ADD
+        S_OP_SUB = 34,                           // OP_SUB
+        S_OP_MUL = 35,                           // OP_MUL
+        S_OP_DIV = 36,                           // OP_DIV
+        S_OP_MOD = 37,                           // OP_MOD
+        S_OPEN_CURLY = 38,                       // OPEN_CURLY
+        S_CLOSE_CURLY = 39,                      // CLOSE_CURLY
+        S_OPEN_PAR = 40,                         // OPEN_PAR
+        S_CLOSE_PAR = 41,                        // CLOSE_PAR
+        S_OPEN_BRACKET = 42,                     // OPEN_BRACKET
+        S_CLOSE_BRACKET = 43,                    // CLOSE_BRACKET
+        S_COMMA = 44,                            // COMMA
+        S_SEMICOLON = 45,                        // SEMICOLON
+        S_COMMENT = 46,                          // COMMENT
+        S_ERROR = 47,                            // ERROR
+        S_LOWER_THAN_OPEN_PAR = 48,              // LOWER_THAN_OPEN_PAR
+        S_YYACCEPT = 49,                         // $accept
+        S_input = 50,                            // input
+        S_program = 51,                          // program
+        S_varmethod_decl_list = 52,              // varmethod_decl_list
+        S_variable_decl_list = 53,               // variable_decl_list
+        S_variable_decl_Body = 54,               // variable_decl_Body
+        S_variable_decl = 55,                    // variable_decl
+        S_array_optional = 56,                   // array_optional
+        S_ident_list = 57,                       // ident_list
+        S_type = 58,                             // type
+        S_method_decl_list = 59,                 // method_decl_list
+        S_method_decl = 60,                      // method_decl
+        S_method_body = 61,                      // method_body
+        S_method_type = 62,                      // method_type
+        S_opt_param_decl_list = 63,              // opt_param_decl_list
+        S_param_list = 64,                       // param_list
+        S_param_decl = 65,                       // param_decl
+        S_ref_optional = 66,                     // ref_optional
+        S_stmt_list = 67,                        // stmt_list
+        S_array_access = 68,                     // array_access
+        S_array_access_opt = 69,                 // array_access_opt
+        S_assign_stmt = 70,                      // assign_stmt
+        S_call_stmt = 71,                        // call_stmt
+        S_stmt = 72,                             // stmt
+        S_return_stmt = 73,                      // return_stmt
+        S_if_stmt = 74,                          // if_stmt
+        S_else_optional = 75,                    // else_optional
+        S_block = 76,                            // block
+        S_while_stmt = 77,                       // while_stmt
+        S_call_param_list = 78,                  // call_param_list
+        S_call_param_rest = 79,                  // call_param_rest
+        S_print_stmt = 80,                       // print_stmt
+        S_print_param = 81,                      // print_param
+        S_read_stmt = 82,                        // read_stmt
+        S_expression = 83,                       // expression
+        S_boolean_expression = 84,               // boolean_expression
+        S_boolean_term = 85,                     // boolean_term
+        S_boolean_factor = 86,                   // boolean_factor
+        S_arithmetic_expression = 87,            // arithmetic_expression
+        S_relational_expression = 88,            // relational_expression
+        S_term = 89,                             // term
+        S_factor = 90                            // factor
       };
     };
 
@@ -520,19 +664,56 @@ namespace Expr {
       {
         switch (this->kind ())
     {
-      case symbol_kind::S_statement: // statement
-      case symbol_kind::S_statement_list: // statement_list
-      case symbol_kind::S_expr: // expr
+      case symbol_kind::S_program: // program
+      case symbol_kind::S_varmethod_decl_list: // varmethod_decl_list
+      case symbol_kind::S_variable_decl_list: // variable_decl_list
+      case symbol_kind::S_variable_decl_Body: // variable_decl_Body
+      case symbol_kind::S_variable_decl: // variable_decl
+      case symbol_kind::S_array_optional: // array_optional
+      case symbol_kind::S_ident_list: // ident_list
+      case symbol_kind::S_type: // type
+      case symbol_kind::S_method_decl_list: // method_decl_list
+      case symbol_kind::S_method_decl: // method_decl
+      case symbol_kind::S_method_body: // method_body
+      case symbol_kind::S_method_type: // method_type
+      case symbol_kind::S_opt_param_decl_list: // opt_param_decl_list
+      case symbol_kind::S_param_list: // param_list
+      case symbol_kind::S_param_decl: // param_decl
+      case symbol_kind::S_ref_optional: // ref_optional
+      case symbol_kind::S_stmt_list: // stmt_list
+      case symbol_kind::S_array_access: // array_access
+      case symbol_kind::S_array_access_opt: // array_access_opt
+      case symbol_kind::S_assign_stmt: // assign_stmt
+      case symbol_kind::S_call_stmt: // call_stmt
+      case symbol_kind::S_stmt: // stmt
+      case symbol_kind::S_return_stmt: // return_stmt
+      case symbol_kind::S_if_stmt: // if_stmt
+      case symbol_kind::S_else_optional: // else_optional
+      case symbol_kind::S_block: // block
+      case symbol_kind::S_while_stmt: // while_stmt
+      case symbol_kind::S_call_param_list: // call_param_list
+      case symbol_kind::S_call_param_rest: // call_param_rest
+      case symbol_kind::S_print_stmt: // print_stmt
+      case symbol_kind::S_print_param: // print_param
+      case symbol_kind::S_read_stmt: // read_stmt
+      case symbol_kind::S_expression: // expression
+      case symbol_kind::S_boolean_expression: // boolean_expression
+      case symbol_kind::S_boolean_term: // boolean_term
+      case symbol_kind::S_boolean_factor: // boolean_factor
+      case symbol_kind::S_arithmetic_expression: // arithmetic_expression
+      case symbol_kind::S_relational_expression: // relational_expression
       case symbol_kind::S_term: // term
       case symbol_kind::S_factor: // factor
         value.move< Ast::Node * > (std::move (that.value));
         break;
 
-      case symbol_kind::S_INT_CONST: // "number"
+      case symbol_kind::S_INT_CONST: // INT_CONST
+      case symbol_kind::S_CONSTANT: // CONSTANT
         value.move< int > (std::move (that.value));
         break;
 
-      case symbol_kind::S_IDENTIFIER: // "identifier"
+      case symbol_kind::S_IDENTIFIER: // IDENTIFIER
+      case symbol_kind::S_STRING_LITERAL: // STRING_LITERAL
         value.move< std::string > (std::move (that.value));
         break;
 
@@ -617,19 +798,56 @@ namespace Expr {
         // Value type destructor.
 switch (yykind)
     {
-      case symbol_kind::S_statement: // statement
-      case symbol_kind::S_statement_list: // statement_list
-      case symbol_kind::S_expr: // expr
+      case symbol_kind::S_program: // program
+      case symbol_kind::S_varmethod_decl_list: // varmethod_decl_list
+      case symbol_kind::S_variable_decl_list: // variable_decl_list
+      case symbol_kind::S_variable_decl_Body: // variable_decl_Body
+      case symbol_kind::S_variable_decl: // variable_decl
+      case symbol_kind::S_array_optional: // array_optional
+      case symbol_kind::S_ident_list: // ident_list
+      case symbol_kind::S_type: // type
+      case symbol_kind::S_method_decl_list: // method_decl_list
+      case symbol_kind::S_method_decl: // method_decl
+      case symbol_kind::S_method_body: // method_body
+      case symbol_kind::S_method_type: // method_type
+      case symbol_kind::S_opt_param_decl_list: // opt_param_decl_list
+      case symbol_kind::S_param_list: // param_list
+      case symbol_kind::S_param_decl: // param_decl
+      case symbol_kind::S_ref_optional: // ref_optional
+      case symbol_kind::S_stmt_list: // stmt_list
+      case symbol_kind::S_array_access: // array_access
+      case symbol_kind::S_array_access_opt: // array_access_opt
+      case symbol_kind::S_assign_stmt: // assign_stmt
+      case symbol_kind::S_call_stmt: // call_stmt
+      case symbol_kind::S_stmt: // stmt
+      case symbol_kind::S_return_stmt: // return_stmt
+      case symbol_kind::S_if_stmt: // if_stmt
+      case symbol_kind::S_else_optional: // else_optional
+      case symbol_kind::S_block: // block
+      case symbol_kind::S_while_stmt: // while_stmt
+      case symbol_kind::S_call_param_list: // call_param_list
+      case symbol_kind::S_call_param_rest: // call_param_rest
+      case symbol_kind::S_print_stmt: // print_stmt
+      case symbol_kind::S_print_param: // print_param
+      case symbol_kind::S_read_stmt: // read_stmt
+      case symbol_kind::S_expression: // expression
+      case symbol_kind::S_boolean_expression: // boolean_expression
+      case symbol_kind::S_boolean_term: // boolean_term
+      case symbol_kind::S_boolean_factor: // boolean_factor
+      case symbol_kind::S_arithmetic_expression: // arithmetic_expression
+      case symbol_kind::S_relational_expression: // relational_expression
       case symbol_kind::S_term: // term
       case symbol_kind::S_factor: // factor
         value.template destroy< Ast::Node * > ();
         break;
 
-      case symbol_kind::S_INT_CONST: // "number"
+      case symbol_kind::S_INT_CONST: // INT_CONST
+      case symbol_kind::S_CONSTANT: // CONSTANT
         value.template destroy< int > ();
         break;
 
-      case symbol_kind::S_IDENTIFIER: // "identifier"
+      case symbol_kind::S_IDENTIFIER: // IDENTIFIER
+      case symbol_kind::S_STRING_LITERAL: // STRING_LITERAL
         value.template destroy< std::string > ();
         break;
 
@@ -837,111 +1055,6 @@ switch (yykind)
 #if 201103L <= YY_CPLUSPLUS
       static
       symbol_type
-      make_OP_ADD ()
-      {
-        return symbol_type (token::OP_ADD);
-      }
-#else
-      static
-      symbol_type
-      make_OP_ADD ()
-      {
-        return symbol_type (token::OP_ADD);
-      }
-#endif
-#if 201103L <= YY_CPLUSPLUS
-      static
-      symbol_type
-      make_OP_SUB ()
-      {
-        return symbol_type (token::OP_SUB);
-      }
-#else
-      static
-      symbol_type
-      make_OP_SUB ()
-      {
-        return symbol_type (token::OP_SUB);
-      }
-#endif
-#if 201103L <= YY_CPLUSPLUS
-      static
-      symbol_type
-      make_OP_MUL ()
-      {
-        return symbol_type (token::OP_MUL);
-      }
-#else
-      static
-      symbol_type
-      make_OP_MUL ()
-      {
-        return symbol_type (token::OP_MUL);
-      }
-#endif
-#if 201103L <= YY_CPLUSPLUS
-      static
-      symbol_type
-      make_OP_DIV ()
-      {
-        return symbol_type (token::OP_DIV);
-      }
-#else
-      static
-      symbol_type
-      make_OP_DIV ()
-      {
-        return symbol_type (token::OP_DIV);
-      }
-#endif
-#if 201103L <= YY_CPLUSPLUS
-      static
-      symbol_type
-      make_OPEN_PAR ()
-      {
-        return symbol_type (token::OPEN_PAR);
-      }
-#else
-      static
-      symbol_type
-      make_OPEN_PAR ()
-      {
-        return symbol_type (token::OPEN_PAR);
-      }
-#endif
-#if 201103L <= YY_CPLUSPLUS
-      static
-      symbol_type
-      make_CLOSE_PAR ()
-      {
-        return symbol_type (token::CLOSE_PAR);
-      }
-#else
-      static
-      symbol_type
-      make_CLOSE_PAR ()
-      {
-        return symbol_type (token::CLOSE_PAR);
-      }
-#endif
-#if 201103L <= YY_CPLUSPLUS
-      static
-      symbol_type
-      make_SEMICOLON ()
-      {
-        return symbol_type (token::SEMICOLON);
-      }
-#else
-      static
-      symbol_type
-      make_SEMICOLON ()
-      {
-        return symbol_type (token::SEMICOLON);
-      }
-#endif
-#if 201103L <= YY_CPLUSPLUS
-      static
-      symbol_type
       make_INT_CONST (int v)
       {
         return symbol_type (token::INT_CONST, std::move (v));
@@ -952,6 +1065,21 @@ switch (yykind)
       make_INT_CONST (const int& v)
       {
         return symbol_type (token::INT_CONST, v);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_CONSTANT (int v)
+      {
+        return symbol_type (token::CONSTANT, std::move (v));
+      }
+#else
+      static
+      symbol_type
+      make_CONSTANT (const int& v)
+      {
+        return symbol_type (token::CONSTANT, v);
       }
 #endif
 #if 201103L <= YY_CPLUSPLUS
@@ -972,6 +1100,621 @@ switch (yykind)
 #if 201103L <= YY_CPLUSPLUS
       static
       symbol_type
+      make_STRING_LITERAL (std::string v)
+      {
+        return symbol_type (token::STRING_LITERAL, std::move (v));
+      }
+#else
+      static
+      symbol_type
+      make_STRING_LITERAL (const std::string& v)
+      {
+        return symbol_type (token::STRING_LITERAL, v);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_EndOfFile ()
+      {
+        return symbol_type (token::EndOfFile);
+      }
+#else
+      static
+      symbol_type
+      make_EndOfFile ()
+      {
+        return symbol_type (token::EndOfFile);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_Error ()
+      {
+        return symbol_type (token::Error);
+      }
+#else
+      static
+      symbol_type
+      make_Error ()
+      {
+        return symbol_type (token::Error);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_Hex ()
+      {
+        return symbol_type (token::Hex);
+      }
+#else
+      static
+      symbol_type
+      make_Hex ()
+      {
+        return symbol_type (token::Hex);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_Oct ()
+      {
+        return symbol_type (token::Oct);
+      }
+#else
+      static
+      symbol_type
+      make_Oct ()
+      {
+        return symbol_type (token::Oct);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_Dec ()
+      {
+        return symbol_type (token::Dec);
+      }
+#else
+      static
+      symbol_type
+      make_Dec ()
+      {
+        return symbol_type (token::Dec);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_Bin ()
+      {
+        return symbol_type (token::Bin);
+      }
+#else
+      static
+      symbol_type
+      make_Bin ()
+      {
+        return symbol_type (token::Bin);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_KW_CLASS ()
+      {
+        return symbol_type (token::KW_CLASS);
+      }
+#else
+      static
+      symbol_type
+      make_KW_CLASS ()
+      {
+        return symbol_type (token::KW_CLASS);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_KW_INT ()
+      {
+        return symbol_type (token::KW_INT);
+      }
+#else
+      static
+      symbol_type
+      make_KW_INT ()
+      {
+        return symbol_type (token::KW_INT);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_KW_VOID ()
+      {
+        return symbol_type (token::KW_VOID);
+      }
+#else
+      static
+      symbol_type
+      make_KW_VOID ()
+      {
+        return symbol_type (token::KW_VOID);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_KW_REF ()
+      {
+        return symbol_type (token::KW_REF);
+      }
+#else
+      static
+      symbol_type
+      make_KW_REF ()
+      {
+        return symbol_type (token::KW_REF);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_KW_IF ()
+      {
+        return symbol_type (token::KW_IF);
+      }
+#else
+      static
+      symbol_type
+      make_KW_IF ()
+      {
+        return symbol_type (token::KW_IF);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_KW_ELSE ()
+      {
+        return symbol_type (token::KW_ELSE);
+      }
+#else
+      static
+      symbol_type
+      make_KW_ELSE ()
+      {
+        return symbol_type (token::KW_ELSE);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_KW_WHILE ()
+      {
+        return symbol_type (token::KW_WHILE);
+      }
+#else
+      static
+      symbol_type
+      make_KW_WHILE ()
+      {
+        return symbol_type (token::KW_WHILE);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_KW_RETURN ()
+      {
+        return symbol_type (token::KW_RETURN);
+      }
+#else
+      static
+      symbol_type
+      make_KW_RETURN ()
+      {
+        return symbol_type (token::KW_RETURN);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_KW_PRINT ()
+      {
+        return symbol_type (token::KW_PRINT);
+      }
+#else
+      static
+      symbol_type
+      make_KW_PRINT ()
+      {
+        return symbol_type (token::KW_PRINT);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_KW_READ ()
+      {
+        return symbol_type (token::KW_READ);
+      }
+#else
+      static
+      symbol_type
+      make_KW_READ ()
+      {
+        return symbol_type (token::KW_READ);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_OP_ASSIGN ()
+      {
+        return symbol_type (token::OP_ASSIGN);
+      }
+#else
+      static
+      symbol_type
+      make_OP_ASSIGN ()
+      {
+        return symbol_type (token::OP_ASSIGN);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_OP_BOOL_OR ()
+      {
+        return symbol_type (token::OP_BOOL_OR);
+      }
+#else
+      static
+      symbol_type
+      make_OP_BOOL_OR ()
+      {
+        return symbol_type (token::OP_BOOL_OR);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_OP_BOOL_AND ()
+      {
+        return symbol_type (token::OP_BOOL_AND);
+      }
+#else
+      static
+      symbol_type
+      make_OP_BOOL_AND ()
+      {
+        return symbol_type (token::OP_BOOL_AND);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_OP_BOOL_NOT ()
+      {
+        return symbol_type (token::OP_BOOL_NOT);
+      }
+#else
+      static
+      symbol_type
+      make_OP_BOOL_NOT ()
+      {
+        return symbol_type (token::OP_BOOL_NOT);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_OP_EQUAL ()
+      {
+        return symbol_type (token::OP_EQUAL);
+      }
+#else
+      static
+      symbol_type
+      make_OP_EQUAL ()
+      {
+        return symbol_type (token::OP_EQUAL);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_OP_NOT_EQUAL ()
+      {
+        return symbol_type (token::OP_NOT_EQUAL);
+      }
+#else
+      static
+      symbol_type
+      make_OP_NOT_EQUAL ()
+      {
+        return symbol_type (token::OP_NOT_EQUAL);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_OP_LESS_THAN ()
+      {
+        return symbol_type (token::OP_LESS_THAN);
+      }
+#else
+      static
+      symbol_type
+      make_OP_LESS_THAN ()
+      {
+        return symbol_type (token::OP_LESS_THAN);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_OP_GREATER_THAN ()
+      {
+        return symbol_type (token::OP_GREATER_THAN);
+      }
+#else
+      static
+      symbol_type
+      make_OP_GREATER_THAN ()
+      {
+        return symbol_type (token::OP_GREATER_THAN);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_OP_LESS_EQUAL ()
+      {
+        return symbol_type (token::OP_LESS_EQUAL);
+      }
+#else
+      static
+      symbol_type
+      make_OP_LESS_EQUAL ()
+      {
+        return symbol_type (token::OP_LESS_EQUAL);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_OP_GREATER_EQUAL ()
+      {
+        return symbol_type (token::OP_GREATER_EQUAL);
+      }
+#else
+      static
+      symbol_type
+      make_OP_GREATER_EQUAL ()
+      {
+        return symbol_type (token::OP_GREATER_EQUAL);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_OP_ADD ()
+      {
+        return symbol_type (token::OP_ADD);
+      }
+#else
+      static
+      symbol_type
+      make_OP_ADD ()
+      {
+        return symbol_type (token::OP_ADD);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_OP_SUB ()
+      {
+        return symbol_type (token::OP_SUB);
+      }
+#else
+      static
+      symbol_type
+      make_OP_SUB ()
+      {
+        return symbol_type (token::OP_SUB);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_OP_MUL ()
+      {
+        return symbol_type (token::OP_MUL);
+      }
+#else
+      static
+      symbol_type
+      make_OP_MUL ()
+      {
+        return symbol_type (token::OP_MUL);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_OP_DIV ()
+      {
+        return symbol_type (token::OP_DIV);
+      }
+#else
+      static
+      symbol_type
+      make_OP_DIV ()
+      {
+        return symbol_type (token::OP_DIV);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_OP_MOD ()
+      {
+        return symbol_type (token::OP_MOD);
+      }
+#else
+      static
+      symbol_type
+      make_OP_MOD ()
+      {
+        return symbol_type (token::OP_MOD);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_OPEN_CURLY ()
+      {
+        return symbol_type (token::OPEN_CURLY);
+      }
+#else
+      static
+      symbol_type
+      make_OPEN_CURLY ()
+      {
+        return symbol_type (token::OPEN_CURLY);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_CLOSE_CURLY ()
+      {
+        return symbol_type (token::CLOSE_CURLY);
+      }
+#else
+      static
+      symbol_type
+      make_CLOSE_CURLY ()
+      {
+        return symbol_type (token::CLOSE_CURLY);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_OPEN_PAR ()
+      {
+        return symbol_type (token::OPEN_PAR);
+      }
+#else
+      static
+      symbol_type
+      make_OPEN_PAR ()
+      {
+        return symbol_type (token::OPEN_PAR);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_CLOSE_PAR ()
+      {
+        return symbol_type (token::CLOSE_PAR);
+      }
+#else
+      static
+      symbol_type
+      make_CLOSE_PAR ()
+      {
+        return symbol_type (token::CLOSE_PAR);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_OPEN_BRACKET ()
+      {
+        return symbol_type (token::OPEN_BRACKET);
+      }
+#else
+      static
+      symbol_type
+      make_OPEN_BRACKET ()
+      {
+        return symbol_type (token::OPEN_BRACKET);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_CLOSE_BRACKET ()
+      {
+        return symbol_type (token::CLOSE_BRACKET);
+      }
+#else
+      static
+      symbol_type
+      make_CLOSE_BRACKET ()
+      {
+        return symbol_type (token::CLOSE_BRACKET);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_COMMA ()
+      {
+        return symbol_type (token::COMMA);
+      }
+#else
+      static
+      symbol_type
+      make_COMMA ()
+      {
+        return symbol_type (token::COMMA);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_SEMICOLON ()
+      {
+        return symbol_type (token::SEMICOLON);
+      }
+#else
+      static
+      symbol_type
+      make_SEMICOLON ()
+      {
+        return symbol_type (token::SEMICOLON);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_COMMENT ()
+      {
+        return symbol_type (token::COMMENT);
+      }
+#else
+      static
+      symbol_type
+      make_COMMENT ()
+      {
+        return symbol_type (token::COMMENT);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
       make_ERROR ()
       {
         return symbol_type (token::ERROR);
@@ -982,6 +1725,21 @@ switch (yykind)
       make_ERROR ()
       {
         return symbol_type (token::ERROR);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_LOWER_THAN_OPEN_PAR ()
+      {
+        return symbol_type (token::LOWER_THAN_OPEN_PAR);
+      }
+#else
+      static
+      symbol_type
+      make_LOWER_THAN_OPEN_PAR ()
+      {
+        return symbol_type (token::LOWER_THAN_OPEN_PAR);
       }
 #endif
 
@@ -1012,7 +1770,7 @@ switch (yykind)
 
 
     /// Stored state numbers (used for stacks).
-    typedef signed char state_type;
+    typedef unsigned char state_type;
 
     /// The arguments of the error message.
     int yy_syntax_error_arguments_ (const context& yyctx,
@@ -1034,7 +1792,7 @@ switch (yykind)
     /// \param yyvalue   the value to check
     static bool yy_table_value_is_error_ (int yyvalue) YY_NOEXCEPT;
 
-    static const signed char yypact_ninf_;
+    static const short yypact_ninf_;
     static const signed char yytable_ninf_;
 
     /// Convert a scanner token kind \a t to a symbol kind.
@@ -1052,7 +1810,7 @@ switch (yykind)
     // Tables.
     // YYPACT[STATE-NUM] -- Index in YYTABLE of the portion describing
     // STATE-NUM.
-    static const signed char yypact_[];
+    static const short yypact_[];
 
     // YYDEFACT[STATE-NUM] -- Default reduction number in state STATE-NUM.
     // Performed when YYTABLE does not specify something else to do.  Zero
@@ -1060,17 +1818,17 @@ switch (yykind)
     static const signed char yydefact_[];
 
     // YYPGOTO[NTERM-NUM].
-    static const signed char yypgoto_[];
+    static const short yypgoto_[];
 
     // YYDEFGOTO[NTERM-NUM].
-    static const signed char yydefgoto_[];
+    static const unsigned char yydefgoto_[];
 
     // YYTABLE[YYPACT[STATE-NUM]] -- What to do in state STATE-NUM.  If
     // positive, shift that token.  If negative, reduce the rule whose
     // number is the opposite.  If YYTABLE_NINF, syntax error.
-    static const signed char yytable_[];
+    static const short yytable_[];
 
-    static const signed char yycheck_[];
+    static const short yycheck_[];
 
     // YYSTOS[STATE-NUM] -- The symbol kind of the accessing symbol of
     // state STATE-NUM.
@@ -1085,7 +1843,7 @@ switch (yykind)
 
 #if YYDEBUG
     // YYRLINE[YYN] -- Source line where rule number YYN was defined.
-    static const unsigned char yyrline_[];
+    static const short yyrline_[];
     /// Report on the debug stream that the rule \a r is going to be reduced.
     virtual void yy_reduce_print_ (int r) const;
     /// Print the state stack on the debug stream.
@@ -1312,9 +2070,9 @@ switch (yykind)
     /// Constants.
     enum
     {
-      yylast_ = 17,     ///< Last index in yytable_.
-      yynnts_ = 7,  ///< Number of nonterminal symbols.
-      yyfinal_ = 11 ///< Termination state number.
+      yylast_ = 165,     ///< Last index in yytable_.
+      yynnts_ = 42,  ///< Number of nonterminal symbols.
+      yyfinal_ = 5 ///< Termination state number.
     };
 
 
@@ -1327,7 +2085,7 @@ switch (yykind)
 
 #line 10 "SimpleParser.y"
 } // Expr
-#line 1331 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.hpp"
+#line 2089 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.hpp"
 
 
 

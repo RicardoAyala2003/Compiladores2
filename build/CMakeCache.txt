@@ -233,9 +233,6 @@ SimpleLexer_SOURCE_DIR:STATIC=/home/ricardo/Compi2/RE-flex-master/RE-flex-master
 //Path to a program.
 TREECC_EXECUTABLE:FILEPATH=/usr/local/bin/treecc
 
-//The directory containing a CMake configuration file for TreeCC.
-TreeCC_DIR:PATH=TreeCC_DIR-NOTFOUND
-
 
 ########################
 # INTERNAL cache entries

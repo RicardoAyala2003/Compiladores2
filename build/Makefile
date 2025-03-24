@@ -153,30 +153,6 @@ ExprAst.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/SimpleLexer.dir/build.make CMakeFiles/SimpleLexer.dir/ExprAst.cpp.s
 .PHONY : ExprAst.cpp.s
 
-Main.o: Main.cpp.o
-.PHONY : Main.o
-
-# target to build an object file
-Main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/SimpleLexer.dir/build.make CMakeFiles/SimpleLexer.dir/Main.cpp.o
-.PHONY : Main.cpp.o
-
-Main.i: Main.cpp.i
-.PHONY : Main.i
-
-# target to preprocess a source file
-Main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/SimpleLexer.dir/build.make CMakeFiles/SimpleLexer.dir/Main.cpp.i
-.PHONY : Main.cpp.i
-
-Main.s: Main.cpp.s
-.PHONY : Main.s
-
-# target to generate assembly for a file
-Main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/SimpleLexer.dir/build.make CMakeFiles/SimpleLexer.dir/Main.cpp.s
-.PHONY : Main.cpp.s
-
 SimpleLexer.o: SimpleLexer.cpp.o
 .PHONY : SimpleLexer.o
 
@@ -225,6 +201,30 @@ SimpleParser.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/SimpleLexer.dir/build.make CMakeFiles/SimpleLexer.dir/SimpleParser.cpp.s
 .PHONY : SimpleParser.cpp.s
 
+main.o: main.cpp.o
+.PHONY : main.o
+
+# target to build an object file
+main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SimpleLexer.dir/build.make CMakeFiles/SimpleLexer.dir/main.cpp.o
+.PHONY : main.cpp.o
+
+main.i: main.cpp.i
+.PHONY : main.i
+
+# target to preprocess a source file
+main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SimpleLexer.dir/build.make CMakeFiles/SimpleLexer.dir/main.cpp.i
+.PHONY : main.cpp.i
+
+main.s: main.cpp.s
+.PHONY : main.s
+
+# target to generate assembly for a file
+main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SimpleLexer.dir/build.make CMakeFiles/SimpleLexer.dir/main.cpp.s
+.PHONY : main.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -237,15 +237,15 @@ help:
 	@echo "... ExprAst.o"
 	@echo "... ExprAst.i"
 	@echo "... ExprAst.s"
-	@echo "... Main.o"
-	@echo "... Main.i"
-	@echo "... Main.s"
 	@echo "... SimpleLexer.o"
 	@echo "... SimpleLexer.i"
 	@echo "... SimpleLexer.s"
 	@echo "... SimpleParser.o"
 	@echo "... SimpleParser.i"
 	@echo "... SimpleParser.s"
+	@echo "... main.o"
+	@echo "... main.i"
+	@echo "... main.s"
 .PHONY : help
 
 
