@@ -20,8 +20,21 @@ class Sorter {
         int i;
         i = 0;
         while (i < 5) {
+           
             print(arr[i]);
             i = i + 1;
         }
+    }
+
+    int main() {
+        int arr[5];
+        arr[0] = 64;
+        arr[1] = 34;
+        arr[2] = 25;
+        arr[3] = 12;
+        arr[4] = 22;
+        bubbleSort(arr);
+        printArray(arr);
+        return 0;
     }
 }

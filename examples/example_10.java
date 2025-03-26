@@ -1,5 +1,4 @@
 class NestedMethodCalls {
-
     int square(int x) {
         return x * x;
     }
@@ -12,5 +11,10 @@ class NestedMethodCalls {
         int result;
         result = calculateExpression(2, 3, 4);
         print(result);
+    }
+
+    int main() {
+        displayResult();
+        return 0;
     }
 }

@@ -1,24 +1,18 @@
 /* ExprAst.cpp.  Generated automatically by treecc */
-#line 72 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
+#line 64 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
 
     #include "ExprAst.hpp"
-    #include "exceptions.hpp"
-
-    
 
     std::string newVariable(){
         static int index = 0;
 
         return "t" + std::to_string(index++);
     }
-
     std::string newLabel(){
         static int index = 0;
 
         return "L" + std::to_string(index++);
     }
-
-
     std::string newFmts(){
         static int index = 0;
 
@@ -26,12 +20,7 @@
     }
 
 
-
-
-    
-
-
-#line 35 "ExprAst.cpp"
+#line 24 "ExprAst.cpp"
 
 #include <cstddef>
 
@@ -315,7 +304,7 @@ long YYNODESTATE::currLinenum() const
 }
 
 #endif
-#line 319 "ExprAst.cpp"
+#line 308 "ExprAst.cpp"
 void *Node::operator new(size_t size__)
 {
 	return YYNODESTATE::getState()->alloc(size__);
@@ -365,19 +354,6 @@ Program::~Program()
 	// not used
 }
 
-string_t Program::toString()
-#line 354 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
-{
-    std::ostringstream os;
-
- 
-    os << "Program "
-  << ")";
-    
-    return os.str();
-}
-#line 380 "ExprAst.cpp"
-
 int Program::isA(int kind) const
 {
 	if(kind == Program_kind)
@@ -404,20 +380,6 @@ VarMethodDeclList::~VarMethodDeclList()
 	// not used
 }
 
-string_t VarMethodDeclList::toString()
-#line 364 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
-{
-    if (!first_decl) return "VariableDeclList()";
-    std::ostringstream os;
-    os << "VariableDeclList(" << first_decl->toString();
-    if (rest_decls) os << ", " << rest_decls->toString();
-    os << ")";
-
-
-    return os.str();
-}
-#line 420 "ExprAst.cpp"
-
 int VarMethodDeclList::isA(int kind) const
 {
 	if(kind == VarMethodDeclList_kind)
@@ -443,23 +405,6 @@ VariableDeclList::~VariableDeclList()
 {
 	// not used
 }
-
-string_t VariableDeclList::toString()
-#line 375 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
-{
-   
-
-
-    if (!first_decl) return "VariableDeclList()";
-    std::ostringstream os;
-    os << "VariableDeclList(" << first_decl->toString();
-    if (rest_decls) os << ", " << rest_decls->toString();
-    os << ")";
-
-
-    return os.str();
-}
-#line 463 "ExprAst.cpp"
 
 int VariableDeclList::isA(int kind) const
 {
@@ -488,15 +433,6 @@ VariableDecl::~VariableDecl()
 	// not used
 }
 
-string_t VariableDecl::toString()
-#line 389 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
-{
-    std::ostringstream os;
-  os << "VARIABLEDECL" ;
-    return os.str();
-}
-#line 499 "ExprAst.cpp"
-
 int VariableDecl::isA(int kind) const
 {
 	if(kind == VariableDecl_kind)
@@ -521,16 +457,6 @@ VariableDecl_Body::~VariableDecl_Body()
 {
 	// not used
 }
-
-string_t VariableDecl_Body::toString()
-#line 395 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
-{
-    std::ostringstream os;
-    os << "VariableDecl_Body(" <<  ")";
-
-    return os.str();
-}
-#line 534 "ExprAst.cpp"
 
 int VariableDecl_Body::isA(int kind) const
 {
@@ -558,16 +484,6 @@ IdentList::~IdentList()
 	// not used
 }
 
-string_t IdentList::toString()
-#line 402 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
-{
-    
-    std::ostringstream os;
-    os << "IdentList(" <<  ")";
-    return os.str();
-}
-#line 570 "ExprAst.cpp"
-
 int IdentList::isA(int kind) const
 {
 	if(kind == IdentList_kind)
@@ -594,17 +510,6 @@ Type::~Type()
 	// not used
 }
 
-string_t Type::toString()
-#line 409 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
-{
-    std::ostringstream os;
-    os << "Type(" << type_name;
-    if (array_optional) os << ", " << array_optional->toString();
-    os << ")";
-    return os.str();
-}
-#line 607 "ExprAst.cpp"
-
 int Type::isA(int kind) const
 {
 	if(kind == Type_kind)
@@ -629,16 +534,6 @@ ArrayOptional::~ArrayOptional()
 {
 	// not used
 }
-
-string_t ArrayOptional::toString()
-#line 417 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
-{
- 
-    std::ostringstream os;
-    os << "ArrayOptional(" <<  ")";
-    return os.str();
-}
-#line 642 "ExprAst.cpp"
 
 int ArrayOptional::isA(int kind) const
 {
@@ -665,16 +560,6 @@ MethodDeclList::~MethodDeclList()
 {
 	// not used
 }
-
-string_t MethodDeclList::toString()
-#line 424 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
-{
-
-    std::ostringstream os;
-    os << "MethodDeclList(" << ")";
-    return os.str();
-}
-#line 678 "ExprAst.cpp"
 
 int MethodDeclList::isA(int kind) const
 {
@@ -703,15 +588,6 @@ MethodDecl::~MethodDecl()
 	// not used
 }
 
-string_t MethodDecl::toString()
-#line 431 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
-{
-    std::ostringstream os;
-    os << "MethodDecl(" << ")";
-    return os.str();
-}
-#line 714 "ExprAst.cpp"
-
 int MethodDecl::isA(int kind) const
 {
 	if(kind == MethodDecl_kind)
@@ -739,15 +615,6 @@ MethodDecl_Body::~MethodDecl_Body()
 	// not used
 }
 
-string_t MethodDecl_Body::toString()
-#line 437 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
-{
-    std::ostringstream os;
-    os << "MethodDecl_Body(" << ")";
-    return os.str();
-}
-#line 750 "ExprAst.cpp"
-
 int MethodDecl_Body::isA(int kind) const
 {
 	if(kind == MethodDecl_Body_kind)
@@ -772,13 +639,6 @@ MethodType::~MethodType()
 {
 	// not used
 }
-
-string_t MethodType::toString()
-#line 443 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
-{
-    return "MethodType()";
-}
-#line 782 "ExprAst.cpp"
 
 int MethodType::isA(int kind) const
 {
@@ -806,18 +666,6 @@ OptParamDeclList::~OptParamDeclList()
 	// not used
 }
 
-string_t OptParamDeclList::toString()
-#line 517 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
-{
-    if (!first_param) return "OptParamDeclList()";
-    std::ostringstream os;
-    os << "OptParamDeclList(" << first_param->toString();
-    if (rest_params) os << ", " << rest_params->toString();
-    os << ")";
-    return os.str();
-}
-#line 820 "ExprAst.cpp"
-
 int OptParamDeclList::isA(int kind) const
 {
 	if(kind == OptParamDeclList_kind)
@@ -843,18 +691,6 @@ ParamList::~ParamList()
 {
 	// not used
 }
-
-string_t ParamList::toString()
-#line 448 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
-{
-    if (first_param) return "ParamList()";
-    std::ostringstream os;
-    os << "ParamList(" << first_param->toString();
-    if (rest_params) os << ", " << rest_params->toString();
-    os << ")";
-    return os.str();
-}
-#line 858 "ExprAst.cpp"
 
 int ParamList::isA(int kind) const
 {
@@ -883,17 +719,6 @@ ParamDecl::~ParamDecl()
 	// not used
 }
 
-string_t ParamDecl::toString()
-#line 457 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
-{
-    std::ostringstream os;
-    os << "ParamDecl(";
-    if (ref_optional) os << ref_optional->toString() << ", ";
-    os << type->toString() << ", " << identifier << ")";
-    return os.str();
-}
-#line 896 "ExprAst.cpp"
-
 int ParamDecl::isA(int kind) const
 {
 	if(kind == ParamDecl_kind)
@@ -918,13 +743,6 @@ RefOptional::~RefOptional()
 {
 	// not used
 }
-
-string_t RefOptional::toString()
-#line 465 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
-{
-    return is_ref ? "RefOptional(ref)" : "RefOptional()";
-}
-#line 928 "ExprAst.cpp"
 
 int RefOptional::isA(int kind) const
 {
@@ -951,18 +769,6 @@ StmtList::~StmtList()
 {
 	// not used
 }
-
-string_t StmtList::toString()
-#line 469 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
-{
-    if (!first_stmt) return "StmtList()";
-    std::ostringstream os;
-    os << "StmtList(" << first_stmt->toString();
-    if (rest_stmts) os << ", " << rest_stmts->toString();
-    os << ")";
-    return os.str();
-}
-#line 966 "ExprAst.cpp"
 
 int StmtList::isA(int kind) const
 {
@@ -1013,14 +819,6 @@ ArrayAccess::~ArrayAccess()
 	// not used
 }
 
-string_t ArrayAccess::toString()
-#line 530 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
-{
-    if (!expression) return "ArrayAccess()";
-    return "ArrayAccess(" + expression->toString() + ")";
-}
-#line 1023 "ExprAst.cpp"
-
 int ArrayAccess::isA(int kind) const
 {
 	if(kind == ArrayAccess_kind)
@@ -1046,14 +844,6 @@ ElseOptional::~ElseOptional()
 	// not used
 }
 
-string_t ElseOptional::toString()
-#line 535 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
-{
-    if (!block) return "ElseOptional()";
-    return "ElseOptional(" + block->toString() + ")";
-}
-#line 1056 "ExprAst.cpp"
-
 int ElseOptional::isA(int kind) const
 {
 	if(kind == ElseOptional_kind)
@@ -1078,13 +868,6 @@ Block::~Block()
 {
 	// not used
 }
-
-string_t Block::toString()
-#line 540 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
-{
-    return "Block(" + stmt_list->toString() + ")";
-}
-#line 1088 "ExprAst.cpp"
 
 int Block::isA(int kind) const
 {
@@ -1112,14 +895,6 @@ CallParamList::~CallParamList()
 	// not used
 }
 
-string_t CallParamList::toString()
-#line 545 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
-{
-  
-    return "CallParamList()";
-}
-#line 1122 "ExprAst.cpp"
-
 int CallParamList::isA(int kind) const
 {
 	if(kind == CallParamList_kind)
@@ -1145,14 +920,6 @@ CallParamRest::~CallParamRest()
 {
 	// not used
 }
-
-string_t CallParamRest::toString()
-#line 550 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
-{
-  
-    return "CallParamRest()";
-}
-#line 1156 "ExprAst.cpp"
 
 int CallParamRest::isA(int kind) const
 {
@@ -1180,13 +947,6 @@ PrintParam::~PrintParam()
 	// not used
 }
 
-string_t PrintParam::toString()
-#line 555 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
-{
-    return "PrintParam()";
-}
-#line 1189 "ExprAst.cpp"
-
 int PrintParam::isA(int kind) const
 {
 	if(kind == PrintParam_kind)
@@ -1213,18 +973,6 @@ BinaryExpr::~BinaryExpr()
 	// not used
 }
 
-string_t BinaryExpr::toString()
-#line 561 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
-{
-    std::ostringstream os;
-    os << "BinaryExpr(" 
-       << left->toString() 
-       << ", " << right->toString() 
-       << ")";
-    return os.str();
-}
-#line 1227 "ExprAst.cpp"
-
 int BinaryExpr::isA(int kind) const
 {
 	if(kind == BinaryExpr_kind)
@@ -1249,18 +997,6 @@ UnaryExpr::~UnaryExpr()
 {
 	// not used
 }
-
-string_t UnaryExpr::toString()
-#line 571 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
-{
-    std::ostringstream os;
-    os << "UnaryExpr(" 
-       << expr->toString() 
-     
-       << ")";
-    return os.str();
-}
-#line 1264 "ExprAst.cpp"
 
 int UnaryExpr::isA(int kind) const
 {
@@ -1312,15 +1048,6 @@ ArrayVariable::~ArrayVariable()
 	// not used
 }
 
-string_t ArrayVariable::toString()
-#line 658 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
-{
-    std::ostringstream os;
-    os << "ArrayVariable(" << name << ", " << indexExpr->toString() << ")";
-    return os.str();
-}
-#line 1323 "ExprAst.cpp"
-
 int ArrayVariable::isA(int kind) const
 {
 	if(kind == ArrayVariable_kind)
@@ -1348,17 +1075,6 @@ AssignStmt::~AssignStmt()
 	// not used
 }
 
-string_t AssignStmt::toString()
-#line 478 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
-{
-    std::ostringstream os;
-    os << "AssignStmt(" << identifier;
-    if (array_access) os << array_access->toString();
-    os << ", " << expression->toString() << ")";
-    return os.str();
-}
-#line 1361 "ExprAst.cpp"
-
 int AssignStmt::isA(int kind) const
 {
 	if(kind == AssignStmt_kind)
@@ -1383,13 +1099,6 @@ ReturnStmt::~ReturnStmt()
 {
 	// not used
 }
-
-string_t ReturnStmt::toString()
-#line 486 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
-{
-    return "ReturnStmt(" + expression->toString() + ")";
-}
-#line 1393 "ExprAst.cpp"
 
 int ReturnStmt::isA(int kind) const
 {
@@ -1418,17 +1127,6 @@ IfStmt::~IfStmt()
 	// not used
 }
 
-string_t IfStmt::toString()
-#line 490 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
-{
-    std::ostringstream os;
-    os << "IfStmt(" << expression->toString() << ", " << block->toString();
-    if (else_optional) os << ", " << else_optional->toString();
-    os << ")";
-    return os.str();
-}
-#line 1431 "ExprAst.cpp"
-
 int IfStmt::isA(int kind) const
 {
 	if(kind == IfStmt_kind)
@@ -1454,13 +1152,6 @@ WhileStmt::~WhileStmt()
 {
 	// not used
 }
-
-string_t WhileStmt::toString()
-#line 498 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
-{
-    return "WhileStmt(" + expression->toString() + ", " + block->toString() + ")";
-}
-#line 1464 "ExprAst.cpp"
 
 int WhileStmt::isA(int kind) const
 {
@@ -1488,17 +1179,6 @@ CallStmt::~CallStmt()
 	// not used
 }
 
-string_t CallStmt::toString()
-#line 502 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
-{
-    std::ostringstream os;
-    os << "CallStmt(" << identifier << ", ";
-    if (call_param_list) os << call_param_list->toString();
-    os << ")";
-    return os.str();
-}
-#line 1501 "ExprAst.cpp"
-
 int CallStmt::isA(int kind) const
 {
 	if(kind == CallStmt_kind)
@@ -1524,13 +1204,6 @@ PrintStmt::~PrintStmt()
 	// not used
 }
 
-string_t PrintStmt::toString()
-#line 510 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
-{
-    return "PrintStmt(" + print_param->toString() + ")";
-}
-#line 1533 "ExprAst.cpp"
-
 int PrintStmt::isA(int kind) const
 {
 	if(kind == PrintStmt_kind)
@@ -1555,13 +1228,6 @@ ReadStmt::~ReadStmt()
 {
 	// not used
 }
-
-string_t ReadStmt::toString()
-#line 526 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
-{
-    return "ReadStmt(" + identifier + ")";
-}
-#line 1565 "ExprAst.cpp"
 
 int ReadStmt::isA(int kind) const
 {
@@ -1589,17 +1255,6 @@ FunctionCall::~FunctionCall()
 	// not used
 }
 
-string_t FunctionCall::toString()
-#line 663 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
-{
-    std::ostringstream os;
-    os << "FunctionCall(" << identifier << ", ";
-    if (call_param_list) os << call_param_list->toString();
-    os << ")";
-    return os.str();
-}
-#line 1602 "ExprAst.cpp"
-
 int FunctionCall::isA(int kind) const
 {
 	if(kind == FunctionCall_kind)
@@ -1623,13 +1278,6 @@ EqualBoolean::~EqualBoolean()
 {
 	// not used
 }
-
-string_t EqualBoolean::toString()
-#line 581 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
-{
-    return "EqualBoolean(" + left->toString() + " == " + right->toString() + ")";
-}
-#line 1633 "ExprAst.cpp"
 
 int EqualBoolean::isA(int kind) const
 {
@@ -1655,13 +1303,6 @@ NEqualBoolean::~NEqualBoolean()
 	// not used
 }
 
-string_t NEqualBoolean::toString()
-#line 585 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
-{
-    return "NEqualBoolean(" + left->toString() + " != " + right->toString() + ")";
-}
-#line 1664 "ExprAst.cpp"
-
 int NEqualBoolean::isA(int kind) const
 {
 	if(kind == NEqualBoolean_kind)
@@ -1685,13 +1326,6 @@ Less_ThanBoolean::~Less_ThanBoolean()
 {
 	// not used
 }
-
-string_t Less_ThanBoolean::toString()
-#line 589 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
-{
-    return "Less_ThanBoolean(" + left->toString() + " < " + right->toString() + ")";
-}
-#line 1695 "ExprAst.cpp"
 
 int Less_ThanBoolean::isA(int kind) const
 {
@@ -1717,13 +1351,6 @@ Greater_ThanBoolean::~Greater_ThanBoolean()
 	// not used
 }
 
-string_t Greater_ThanBoolean::toString()
-#line 593 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
-{
-    return "Greater_ThanBoolean(" + left->toString() + " > " + right->toString() + ")";
-}
-#line 1726 "ExprAst.cpp"
-
 int Greater_ThanBoolean::isA(int kind) const
 {
 	if(kind == Greater_ThanBoolean_kind)
@@ -1747,13 +1374,6 @@ LessEqualBoolean::~LessEqualBoolean()
 {
 	// not used
 }
-
-string_t LessEqualBoolean::toString()
-#line 597 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
-{
-    return "LessEqualBoolean(" + left->toString() + " <= " + right->toString() + ")";
-}
-#line 1757 "ExprAst.cpp"
 
 int LessEqualBoolean::isA(int kind) const
 {
@@ -1779,13 +1399,6 @@ GreaterEqualBoolean::~GreaterEqualBoolean()
 	// not used
 }
 
-string_t GreaterEqualBoolean::toString()
-#line 601 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
-{
-    return "GreaterEqualBoolean(" + left->toString() + " >= " + right->toString() + ")";
-}
-#line 1788 "ExprAst.cpp"
-
 int GreaterEqualBoolean::isA(int kind) const
 {
 	if(kind == GreaterEqualBoolean_kind)
@@ -1809,13 +1422,6 @@ OrBoolean::~OrBoolean()
 {
 	// not used
 }
-
-string_t OrBoolean::toString()
-#line 606 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
-{
-    return "OrBoolean(" + left->toString() + " || " + right->toString() + ")";
-}
-#line 1819 "ExprAst.cpp"
 
 int OrBoolean::isA(int kind) const
 {
@@ -1841,13 +1447,6 @@ AndBoolean::~AndBoolean()
 	// not used
 }
 
-string_t AndBoolean::toString()
-#line 610 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
-{
-    return "AndBoolean(" + left->toString() + " && " + right->toString() + ")";
-}
-#line 1850 "ExprAst.cpp"
-
 int AndBoolean::isA(int kind) const
 {
 	if(kind == AndBoolean_kind)
@@ -1871,13 +1470,6 @@ SumExpr::~SumExpr()
 {
 	// not used
 }
-
-string_t SumExpr::toString()
-#line 618 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
-{
-    return "SumExpr(" + left->toString() + " + " + right->toString() + ")";
-}
-#line 1881 "ExprAst.cpp"
 
 int SumExpr::isA(int kind) const
 {
@@ -1903,13 +1495,6 @@ SubExpr::~SubExpr()
 	// not used
 }
 
-string_t SubExpr::toString()
-#line 622 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
-{
-    return "SubExpr(" + left->toString() + " - " + right->toString() + ")";
-}
-#line 1912 "ExprAst.cpp"
-
 int SubExpr::isA(int kind) const
 {
 	if(kind == SubExpr_kind)
@@ -1933,13 +1518,6 @@ MulExpr::~MulExpr()
 {
 	// not used
 }
-
-string_t MulExpr::toString()
-#line 626 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
-{
-    return "MulExpr(" + left->toString() + " * " + right->toString() + ")";
-}
-#line 1943 "ExprAst.cpp"
 
 int MulExpr::isA(int kind) const
 {
@@ -1965,13 +1543,6 @@ DivExpr::~DivExpr()
 	// not used
 }
 
-string_t DivExpr::toString()
-#line 630 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
-{
-    return "DivExpr(" + left->toString() + " / " + right->toString() + ")";
-}
-#line 1974 "ExprAst.cpp"
-
 int DivExpr::isA(int kind) const
 {
 	if(kind == DivExpr_kind)
@@ -1995,13 +1566,6 @@ ModExpr::~ModExpr()
 {
 	// not used
 }
-
-string_t ModExpr::toString()
-#line 634 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
-{
-    return "ModExpr(" + left->toString() + " % " + right->toString() + ")";
-}
-#line 2005 "ExprAst.cpp"
 
 int ModExpr::isA(int kind) const
 {
@@ -2027,13 +1591,6 @@ UnaryNotBoolean::~UnaryNotBoolean()
 	// not used
 }
 
-string_t UnaryNotBoolean::toString()
-#line 614 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
-{
-    return "UnaryNotBoolean(!" + expr->toString() + ")";
-}
-#line 2036 "ExprAst.cpp"
-
 int UnaryNotBoolean::isA(int kind) const
 {
 	if(kind == UnaryNotBoolean_kind)
@@ -2058,13 +1615,6 @@ UnaryAddExpr::~UnaryAddExpr()
 	// not used
 }
 
-string_t UnaryAddExpr::toString()
-#line 638 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
-{
-    return "UnaryAddExpr(" + expr->toString() + ")";
-}
-#line 2067 "ExprAst.cpp"
-
 int UnaryAddExpr::isA(int kind) const
 {
 	if(kind == UnaryAddExpr_kind)
@@ -2088,13 +1638,6 @@ UnarySubExpr::~UnarySubExpr()
 {
 	// not used
 }
-
-string_t UnarySubExpr::toString()
-#line 642 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
-{
-    return "UnarySubExpr(-" + expr->toString() + ")";
-}
-#line 2098 "ExprAst.cpp"
 
 int UnarySubExpr::isA(int kind) const
 {
@@ -2121,15 +1664,6 @@ Number::~Number()
 	// not used
 }
 
-string_t Number::toString()
-#line 646 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
-{
-    std::ostringstream os;
-    os << "Number(" << value << ")";
-    return os.str();
-}
-#line 2132 "ExprAst.cpp"
-
 int Number::isA(int kind) const
 {
 	if(kind == Number_kind)
@@ -2155,15 +1689,6 @@ Identifier::~Identifier()
 	// not used
 }
 
-string_t Identifier::toString()
-#line 652 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
-{
-    std::ostringstream os;
-    os << "Identifier(" << name << ")";
-    return os.str();
-}
-#line 2166 "ExprAst.cpp"
-
 int Identifier::isA(int kind) const
 {
 	if(kind == Identifier_kind)
@@ -2178,24 +1703,19 @@ const char *Identifier::getKindName() const
 }
 
 static CodegenResult exprCompile_1__(Program *root, symbol_table & vars, Method_Table & methodTable, arguments & args, ArrayVariables_Table & arrayvarTable, string_t actualmethodName, Texts_Table & textsTable, int paramPos)
-#line 676 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
+#line 303 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
 {
-    // string_t class_name;
-    // Node *variable_decls;
-    // Node *method_decls;
 
     std::ostringstream os;
     os << "\n\ndeclare i32 @printf(i8*, ...)\n";
     os << "declare i32 @exit(i32)\n";
-    // os << "define i32 @main() {\n";
+  
        
     if(root->varmethod_decls) {
          CodegenResult r2 = exprCompile(root->varmethod_decls, vars, methodTable, args, arrayvarTable, actualmethodName, textsTable, paramPos);
            os << r2.code << "\n";
-        //    os << r2.place;
-           std::cout << "SIII HAY METODOS" << std::endl;
     }else{
-        std::cout << "NO HAY METODOS" << std::endl;
+        std::cout << "sin metodos" << std::endl;
     }
 
         
@@ -2216,26 +1736,20 @@ static CodegenResult exprCompile_1__(Program *root, symbol_table & vars, Method_
 
     return { os.str(), "" };
 }
-#line 2220 "ExprAst.cpp"
+#line 1740 "ExprAst.cpp"
 
 static CodegenResult exprCompile_2__(VarMethodDeclList *root, symbol_table & vars, Method_Table & methodTable, arguments & args, ArrayVariables_Table & arrayvarTable, string_t actualmethodName, Texts_Table & textsTable, int paramPos)
-#line 715 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
+#line 337 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
 {
-    // Node *first_decl;   variables 
-    // Node *rest_decls;   metodos
+
     std::ostringstream os;
     std::string NoMethod;
     CodegenResult r;
-    // Variables
+
     Ast::MethodDeclList* Method_DLIST = dynamic_cast<Ast::MethodDeclList*>(root->first_decl);
     Ast::MethodDeclList* Method_DLIST_2 = dynamic_cast<Ast::MethodDeclList*>(root->rest_decls);
-  // os << "ITERACION " << "\n";
   CodegenResult r1 =exprCompile(root->first_decl, vars, methodTable, args, arrayvarTable, actualmethodName, textsTable, paramPos);
     if(Method_DLIST ){
-        std::cout << "ES METOODO ------------ antes de declarar variables" << std::endl;
-        // os << "ES METOODO";
-        // os << "ret i32 0\n";
-        // os << "}\n\n";
 
         for (const auto& [var, variable] : vars) {
             if (variable.methodIdentifier == actualmethodName) {
@@ -2251,26 +1765,23 @@ static CodegenResult exprCompile_2__(VarMethodDeclList *root, symbol_table & var
 
         for (const auto& [arrVarIdent, arrayVariable] : arrayvarTable) {
             if (arrayVariable.methodIdentifier == actualmethodName) {
-                if(arrayVariable.methodIdentifier.empty()){ // son globales
+                if(arrayVariable.methodIdentifier.empty()){
                     os << "    @" << arrVarIdent << " = global ["<< arrayVariable.values.size() <<" x i32] zeroinitializer\n";
                  
-                    // @global_array = global [10 x i32] zeroinitializer
+
                 }else{
                     os << "    %" << arrVarIdent << " = alloca i32, align 4\n";
-                       // %array = alloca [10 x i32], align 4 
                 }
                
             }
         }
 
     }else{
-        std::cout << "ES METOODO ------------ antes de declarar variables" << std::endl;
         NoMethod="";
         for (const auto& [var, variable] : vars) {
             if (variable.methodIdentifier == actualmethodName) {
                 if(variable.methodIdentifier.empty()){ // son globales
                     NoMethod  +="    @" +  var + " = global i32 zeroinitializer\n";
-                    // @x = global i32 0 
                 }else{
                     NoMethod  += "    %" +  var +  " = alloca i32, align 4\n";
                 }
@@ -2282,11 +1793,9 @@ static CodegenResult exprCompile_2__(VarMethodDeclList *root, symbol_table & var
             if (arrayVariable.methodIdentifier == actualmethodName) {
                 if(arrayVariable.methodIdentifier.empty()){ // son globales
                     NoMethod += "    @" + arrVarIdent +  " = global ["+ std::to_string(arrayVariable.values.size()) +" x i32] zeroinitializer\n";
-                 
-                    // @global_array = global [10 x i32] zeroinitializer
+              
                 }else{
                     NoMethod  += "    %" + arrVarIdent +  " = alloca i32, align 4\n";
-                       // %array = alloca [10 x i32], align 4 
                 }
                
             }
@@ -2310,13 +1819,11 @@ static CodegenResult exprCompile_2__(VarMethodDeclList *root, symbol_table & var
 
     return r;
 }
-#line 2314 "ExprAst.cpp"
+#line 1823 "ExprAst.cpp"
 
 static CodegenResult exprCompile_3__(VariableDeclList *root, symbol_table & vars, Method_Table & methodTable, arguments & args, ArrayVariables_Table & arrayvarTable, string_t actualmethodName, Texts_Table & textsTable, int paramPos)
-#line 807 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
+#line 418 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
 {
-    // Node *first_decl;
-    // Node *rest_decls;
     std::ostringstream os;
 
     if (root->first_decl) {
@@ -2330,14 +1837,11 @@ static CodegenResult exprCompile_3__(VariableDeclList *root, symbol_table & vars
 
     return {os.str(), ""};
 }
-#line 2334 "ExprAst.cpp"
+#line 1841 "ExprAst.cpp"
 
 static CodegenResult exprCompile_4__(VariableDecl *root, symbol_table & vars, Method_Table & methodTable, arguments & args, ArrayVariables_Table & arrayvarTable, string_t actualmethodName, Texts_Table & textsTable, int paramPos)
-#line 824 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
+#line 433 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
 {
-    // Node *type;
-    // string_t identifier;
-    // Node *variableDecl_Body;
     std::ostringstream os;
 
     Ast::Type* arrayAccessNode = dynamic_cast<Ast::Type*>(root->type);
@@ -2354,7 +1858,6 @@ static CodegenResult exprCompile_4__(VariableDecl *root, symbol_table & vars, Me
 
         CodegenResult r = exprCompile( arrayAccessNode->array_optional, vars, methodTable, args, arrayvarTable, actualmethodName, textsTable, paramPos);
         arrayvarTable[root->identifier + actualmethodName] = {actualmethodName, std::vector<std::optional<int>> (std::stoi(r.code), std::nullopt), nullptr}; 
-        std::cout << "ARRAY CREADO 1" << root->identifier + actualmethodName << std::endl;
     } else {
 
         auto it = vars.find(root->identifier + actualmethodName);
@@ -2369,7 +1872,6 @@ static CodegenResult exprCompile_4__(VariableDecl *root, symbol_table & vars, Me
 
         vars[root->identifier + actualmethodName] = {actualmethodName, std::nullopt, nullptr};
         
-        std::cout << "VARIABLE CREADA" << root->identifier + actualmethodName << std::endl;
 
     }
     if (root->variableDecl_Body) {
@@ -2381,25 +1883,22 @@ static CodegenResult exprCompile_4__(VariableDecl *root, symbol_table & vars, Me
 
     return {os.str(), ""};
 }
-#line 2385 "ExprAst.cpp"
+#line 1887 "ExprAst.cpp"
 
 static CodegenResult exprCompile_5__(VariableDecl_Body *root, symbol_table & vars, Method_Table & methodTable, arguments & args, ArrayVariables_Table & arrayvarTable, string_t actualmethodName, Texts_Table & textsTable, int paramPos)
-#line 872 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
+#line 476 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
 {
-    // Node *ident_list;
     std::ostringstream os;
     if(root->ident_list) {
         os << exprCompile(root->ident_list, vars, methodTable, args, arrayvarTable, actualmethodName, textsTable, paramPos).code;
     }
     return {os.str(), ""};
 }
-#line 2397 "ExprAst.cpp"
+#line 1898 "ExprAst.cpp"
 
 static CodegenResult exprCompile_6__(IdentList *root, symbol_table & vars, Method_Table & methodTable, arguments & args, ArrayVariables_Table & arrayvarTable, string_t actualmethodName, Texts_Table & textsTable, int paramPos)
-#line 881 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
+#line 484 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
 {
-    // string_t identifier;
-    // Node *IdentListParam;
     std::ostringstream os;
     vars[root->identifier + actualmethodName] ={actualmethodName, std::nullopt, nullptr}; 
 
@@ -2407,48 +1906,37 @@ static CodegenResult exprCompile_6__(IdentList *root, symbol_table & vars, Metho
     os << "";
     return {os.str(), ""};
 }
-#line 2411 "ExprAst.cpp"
+#line 1910 "ExprAst.cpp"
 
 static CodegenResult exprCompile_7__(Type *root, symbol_table & vars, Method_Table & methodTable, arguments & args, ArrayVariables_Table & arrayvarTable, string_t actualmethodName, Texts_Table & textsTable, int paramPos)
-#line 892 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
+#line 493 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
 {
-    // string_t type_name;
-    // Node *array_optional;
     std::ostringstream os;
-    // os << "Type(" << root->type_name;
-
     CodegenResult r;
     r.place = "";
-    // os << root->type_name;
     if(root->array_optional){
-        // os << exprCompile(root->array_optional, vars, methodTable, args, arrayvarTable, actualmethodName, textsTable, paramPos).code;
         r.place = "arr";
     }
     if(root->type_name == "INT"){
        r.code = " i32";
     }
-
-    
-        // os << ")";
     return r;
 }
-#line 2436 "ExprAst.cpp"
+#line 1926 "ExprAst.cpp"
 
 static CodegenResult exprCompile_8__(ArrayOptional *root, symbol_table & vars, Method_Table & methodTable, arguments & args, ArrayVariables_Table & arrayvarTable, string_t actualmethodName, Texts_Table & textsTable, int paramPos)
-#line 914 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
+#line 506 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
 {
-    // int size;
+
     std::ostringstream os;
     os << std::to_string(root->size);
     return {os.str(), ""};
 }
-#line 2446 "ExprAst.cpp"
+#line 1936 "ExprAst.cpp"
 
 static CodegenResult exprCompile_9__(MethodDeclList *root, symbol_table & vars, Method_Table & methodTable, arguments & args, ArrayVariables_Table & arrayvarTable, string_t actualmethodName, Texts_Table & textsTable, int paramPos)
-#line 921 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
+#line 513 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
 {
-    // Node *first_decl;
-    // Node *rest_decls;
     std::ostringstream os;
  
     if(root->first_decl)
@@ -2458,49 +1946,27 @@ static CodegenResult exprCompile_9__(MethodDeclList *root, symbol_table & vars, 
   
     return {os.str(), ""};
 }
-#line 2462 "ExprAst.cpp"
+#line 1950 "ExprAst.cpp"
 
 static CodegenResult exprCompile_10__(MethodDecl *root, symbol_table & vars, Method_Table & methodTable, arguments & args, ArrayVariables_Table & arrayvarTable, string_t actualmethodName, Texts_Table & textsTable, int paramPos)
-#line 933 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
+#line 523 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
 {
     std::ostringstream os;
-
- 
-
-    // Obtener el tipo del método
     CodegenResult r = exprCompile(root->method_type, vars, methodTable, args, arrayvarTable, actualmethodName, textsTable, paramPos);
     
     os << "define " << r.code;
     os << "@" << root->identifier;
 
-    // Corrección: Verificar el dynamic_cast
     auto *methodBody = dynamic_cast<MethodDecl_Body*>(root->MethodDecl_Body);
     if (!methodBody) {
         throw std::runtime_error("Invalid method body structure");
     }
 
-    // Extraer parámetros del método
+
     std::vector<std::string> paramTypes;
-    // Node *paramNode = methodBody->opt_param_decl_list;
-    // while (paramNode) {
-    //     // Verificar tipo antes de acceder
-    //     auto *paramDeclList = dynamic_cast<OptParamDeclList*>(paramNode);
-    //     if (!paramDeclList) break;
-
-    //     auto *paramDecl = dynamic_cast<ParamDecl*>(paramDeclList->first_param);
-    //     if (paramDecl) { // Solo procesar si el cast es válido
-    //         CodegenResult paramResult = exprCompile(paramDecl, vars, methodTable, args, arrayvarTable, root->identifier, textsTable, paramPos);
-    //         paramTypes.push_back(paramResult.code);
-    //     }
-
-    //     paramNode = paramDeclList->rest_params;
-    // }
-
    
-    // Buscar el método en la tabla
     auto it = methodTable.find(root->identifier);
     if (it == methodTable.end()) {
-        // Insertar el nuevo método en la tabla
         methodVariable newMethod;
         newMethod.methodName = root->identifier;
         newMethod.Type = r.code; // Tipo de retorno
@@ -2515,7 +1981,6 @@ static CodegenResult exprCompile_10__(MethodDecl *root, symbol_table & vars, Met
     }
 
  
-     // Compilar el cuerpo del método
      os << exprCompile(root->MethodDecl_Body, vars, methodTable, args, arrayvarTable, root->identifier, textsTable, paramPos).code;
 
 
@@ -2527,33 +1992,7 @@ static CodegenResult exprCompile_10__(MethodDecl *root, symbol_table & vars, Met
         }
      
      Ast::MethodDecl_Body* MethodBodyNode = dynamic_cast<Ast::MethodDecl_Body*>(root->MethodDecl_Body);
-
-
-      
-        
-    // YA NO ES NECESARIO HACER ESTO
-        // if(MethodBodyNode->stmt_list){
-        //     hasReturns = false;
-        //     Ast::StmtList* StmtListNode = dynamic_cast<Ast::StmtList*>(MethodBodyNode->stmt_list);
-            
-        //     while(StmtListNode){
-        //         Ast::Stmt* Statement = dynamic_cast<Ast::Stmt*>(StmtListNode->first_stmt);
-               
-        //         if(Statement){
-        //             std::cout << "STATEMENT" << std::endl;
-        //             if(dynamic_cast<Ast::ReturnStmt*>(Statement)){
-        //                 hasReturns = true;
-        //                 break;
-        //             }
-
-        //             StmtListNode = dynamic_cast<Ast::StmtList*>(StmtListNode->rest_stmts);
-        //         }
-        //     }
-               
-        // }
-        
-
-     
+ 
     if (r.code == "i32 ") {
 
         if (!hasReturns) {
@@ -2572,14 +2011,12 @@ static CodegenResult exprCompile_10__(MethodDecl *root, symbol_table & vars, Met
 
     return {os.str(), ""};
 }
-#line 2576 "ExprAst.cpp"
+#line 2015 "ExprAst.cpp"
 
 static CodegenResult exprCompile_11__(MethodDecl_Body *root, symbol_table & vars, Method_Table & methodTable, arguments & args, ArrayVariables_Table & arrayvarTable, string_t actualmethodName, Texts_Table & textsTable, int paramPos)
-#line 1047 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
+#line 588 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
 {
-    // Node *opt_param_decl_list;
-    // Node *variable_decls;
-    // Node *stmt_list;
+
     std::ostringstream os;
     os << "(";
     if(root->opt_param_decl_list){
@@ -2605,10 +2042,9 @@ static CodegenResult exprCompile_11__(MethodDecl_Body *root, symbol_table & vars
                 if(arrayVariable.methodIdentifier.empty()){ // son globales
                     os << "    @" << arrVarIdent << " = global ["<< arrayVariable.values.size() <<" x i32] zeroinitializer\n";
                  
-                    // @global_array = global [10 x i32] zeroinitializer
+
                 }else{
                     os << "    %" << arrVarIdent << " = alloca ["<< arrayVariable.values.size() <<" x i32], align 4\n";
-                       // %array = alloca [10 x i32], align 4 
                 }
                
             }
@@ -2616,18 +2052,18 @@ static CodegenResult exprCompile_11__(MethodDecl_Body *root, symbol_table & vars
     }
     if(root->stmt_list)
         os << exprCompile(root->stmt_list, vars, methodTable, args, arrayvarTable, actualmethodName, textsTable, paramPos).code;
-    // os << ")";
+
 
     return {os.str(), ""};
 }
-#line 2624 "ExprAst.cpp"
+#line 2060 "ExprAst.cpp"
 
 static CodegenResult exprCompile_12__(MethodType *root, symbol_table & vars, Method_Table & methodTable, arguments & args, ArrayVariables_Table & arrayvarTable, string_t actualmethodName, Texts_Table & textsTable, int paramPos)
-#line 1092 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
+#line 630 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
 {
-    // string_t type;
+
     std::ostringstream os;
-    // os << "MethodType(" << root->type << ")";
+
 
     if(root->type == "INT" ){
         os << "i32 ";
@@ -2637,50 +2073,44 @@ static CodegenResult exprCompile_12__(MethodType *root, symbol_table & vars, Met
 
     return {os.str(), ""};
 }
-#line 2641 "ExprAst.cpp"
+#line 2077 "ExprAst.cpp"
 
 static CodegenResult exprCompile_13__(OptParamDeclList *root, symbol_table & vars, Method_Table & methodTable, arguments & args, ArrayVariables_Table & arrayvarTable, string_t actualmethodName, Texts_Table & textsTable, int paramPos)
-#line 1106 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
+#line 644 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
 {
-    // Node *first_param;
-    // Node *rest_params;
+
     std::ostringstream os;
-    // os << "OptParamDeclList(";
+
     if(root->first_param){
         os << exprCompile(root->first_param, vars, methodTable, args, arrayvarTable, actualmethodName, textsTable, paramPos).code;
     }
     if(root->rest_params){
         os << exprCompile(root->rest_params, vars, methodTable, args, arrayvarTable, actualmethodName, textsTable, paramPos).code;
     }
-        // os << ")";
+
     return {os.str(), ""};
 }
-#line 2659 "ExprAst.cpp"
+#line 2094 "ExprAst.cpp"
 
 static CodegenResult exprCompile_14__(ParamList *root, symbol_table & vars, Method_Table & methodTable, arguments & args, ArrayVariables_Table & arrayvarTable, string_t actualmethodName, Texts_Table & textsTable, int paramPos)
-#line 1174 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
+#line 705 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
 {
-    // Node *first_param;
-    // Node *rest_params;
+
     std::ostringstream os;
-    // os << "ParamList(";
     os << ", ";
     if(root->first_param)
         os << exprCompile(root->first_param, vars, methodTable, args, arrayvarTable, actualmethodName, textsTable, paramPos).code;
    
     if(root->rest_params)
         os << exprCompile(root->rest_params, vars, methodTable, args, arrayvarTable, actualmethodName, textsTable, paramPos).code;
-    // os << ")";
     return {os.str(), ""};
 }
-#line 2677 "ExprAst.cpp"
+#line 2109 "ExprAst.cpp"
 
 static CodegenResult exprCompile_15__(ParamDecl *root, symbol_table & vars, Method_Table & methodTable, arguments & args, ArrayVariables_Table & arrayvarTable, string_t actualmethodName, Texts_Table & textsTable, int paramPos)
-#line 1121 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
+#line 658 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
 {
-    // Node *ref_optional;
-    // Node *type;
-    // string_t identifier;
+
     std::ostringstream os;
 
     
@@ -2703,12 +2133,9 @@ static CodegenResult exprCompile_15__(ParamDecl *root, symbol_table & vars, Meth
     os << "%";
     os << root->identifier << actualmethodName;
 
-    // Desconocemos el tamano
+
     if (  r2.place != "") {
     
-       std::cout << "ARRAY CREADO"<< root->identifier + actualmethodName << std::endl;
-        // FIX: DESCONOCEMOS EL TAMANHO DEL ARREGLO
-        // FIX: POSIBLE SOLUCION MARCAR COMO YA TIENEN VALOR LOS PARAMS
         arrayvarTable[root->identifier + actualmethodName] = {actualmethodName, std::vector<std::optional<int>> (1, 1), nullptr, true}; 
         methodTable[actualmethodName].params.push_back("ARRAY");
     } else {
@@ -2716,7 +2143,6 @@ static CodegenResult exprCompile_15__(ParamDecl *root, symbol_table & vars, Meth
         if((r1.code == "true")){
             methodTable[actualmethodName].params.push_back("REF");
             vars[root->identifier+ actualmethodName] = {actualmethodName, 1, nullptr, true, true}; 
-            std::cout << "REF CREADO" << std::endl;
         }else{
             methodTable[actualmethodName].params.push_back("VAR");
             vars[root->identifier+ actualmethodName] = {actualmethodName, 1, nullptr, true, false}; 
@@ -2729,23 +2155,21 @@ static CodegenResult exprCompile_15__(ParamDecl *root, symbol_table & vars, Meth
     
     return {os.str(), ""};
 }
-#line 2733 "ExprAst.cpp"
+#line 2159 "ExprAst.cpp"
 
 static CodegenResult exprCompile_16__(RefOptional *root, symbol_table & vars, Method_Table & methodTable, arguments & args, ArrayVariables_Table & arrayvarTable, string_t actualmethodName, Texts_Table & textsTable, int paramPos)
-#line 1402 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
+#line 896 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
 {
-    // bool is_ref;
     std::ostringstream os;
     os << (root->is_ref ? "true" : "false");
     return {os.str(), ""};
 }
-#line 2743 "ExprAst.cpp"
+#line 2168 "ExprAst.cpp"
 
 static CodegenResult exprCompile_17__(StmtList *root, symbol_table & vars, Method_Table & methodTable, arguments & args, ArrayVariables_Table & arrayvarTable, string_t actualmethodName, Texts_Table & textsTable, int paramPos)
-#line 1409 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
+#line 902 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
 {
-    // Node *first_stmt;
-    // Node *rest_stmts;
+
     std::ostringstream os;
 
     if(root->first_stmt)
@@ -2755,26 +2179,21 @@ static CodegenResult exprCompile_17__(StmtList *root, symbol_table & vars, Metho
 
     return {os.str(), ""};
 }
-#line 2759 "ExprAst.cpp"
+#line 2183 "ExprAst.cpp"
 
 static CodegenResult exprCompile_18__(AssignStmt *root, symbol_table & vars, Method_Table & methodTable, arguments & args, ArrayVariables_Table & arrayvarTable, string_t actualmethodName, Texts_Table & textsTable, int paramPos)
-#line 1191 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
+#line 719 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
 {
-    // string_t identifier;
-    // Node *array_access;
-    // Node *expression;
     std::ostringstream os;
-    // os << "AssignStmt(" << root->identifier;
         if(root->array_access){
             auto it_global = arrayvarTable.find( root->identifier);
 
             if (it_global != arrayvarTable.end()){
                 CodegenResult r;
-                //Valor a Ingresar
+
                 CodegenResult r2 = exprCompile(root->expression, vars, methodTable, args, arrayvarTable, actualmethodName, textsTable, paramPos);
                 os << r2.code << "\n";
 
-                // Indice de Arreglo
                 CodegenResult r1 = exprCompile(root->array_access, vars, methodTable, args, arrayvarTable, actualmethodName, textsTable, paramPos);
                 os << r1.code << "\n";
                 r.place = newVariable();
@@ -2788,11 +2207,8 @@ static CodegenResult exprCompile_18__(AssignStmt *root, symbol_table & vars, Met
                     throw std::runtime_error("Error (AS): Array '" + root->identifier +actualmethodName + "' not declared.");
                 }else{
                     CodegenResult r;
-                    //Valor a Ingresar
                     CodegenResult r2 = exprCompile(root->expression, vars, methodTable, args, arrayvarTable, actualmethodName, textsTable, paramPos);
                     os << r2.code << "\n";
-
-                    // Indice de Arreglo
                     CodegenResult r1 = exprCompile(root->array_access, vars, methodTable, args, arrayvarTable, actualmethodName, textsTable, paramPos);
                     os << r1.code << "\n";
                     r.place = newVariable();
@@ -2803,13 +2219,7 @@ static CodegenResult exprCompile_18__(AssignStmt *root, symbol_table & vars, Met
                 }
 
             }
-               
 
-            // ; Obtener dirección de la posición 2 del array global
-            // %idx = getelementptr [5 x i32], [5 x i32]* @global_array, i32 0, i32 2
-
-            // ; Almacenar el valor 42 en la posición 2
-            // store i32 42, i32* %idx
         }else{
           
 
@@ -2819,8 +2229,6 @@ static CodegenResult exprCompile_18__(AssignStmt *root, symbol_table & vars, Met
                 if (it_global != vars.end()){
                     CodegenResult r = exprCompile(root->expression, vars, methodTable, args, arrayvarTable, actualmethodName, textsTable, paramPos);
                     os << r.code << "\n";
-        
-                    // auto it = vars.find( root->identifier + actualmethodName);
                     if (it_global != vars.end()){ it_global->second.value = 1; //Solucion Posible para determinar que tiene un valor
                     os << "store " << "i32 %" << r.place << ", i32* @" << root->identifier << "\n";
                     }else{
@@ -2842,26 +2250,16 @@ static CodegenResult exprCompile_18__(AssignStmt *root, symbol_table & vars, Met
                 }
                 
                  }
-
-
-
             }
-
-    
-    
-    
     }
-  
-    
-        // os << ")";
+
     return {os.str(), ""};
 }
-#line 2860 "ExprAst.cpp"
+#line 2259 "ExprAst.cpp"
 
 static CodegenResult exprCompile_19__(ReturnStmt *root, symbol_table & vars, Method_Table & methodTable, arguments & args, ArrayVariables_Table & arrayvarTable, string_t actualmethodName, Texts_Table & textsTable, int paramPos)
-#line 1289 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
+#line 792 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
 {
-    // Node *expression;
     std::ostringstream os;
     
     CodegenResult r;
@@ -2878,24 +2276,19 @@ static CodegenResult exprCompile_19__(ReturnStmt *root, symbol_table & vars, Met
     }
     return r;
 }
-#line 2882 "ExprAst.cpp"
+#line 2280 "ExprAst.cpp"
 
 static CodegenResult exprCompile_20__(IfStmt *root, symbol_table & vars, Method_Table & methodTable, arguments & args, ArrayVariables_Table & arrayvarTable, string_t actualmethodName, Texts_Table & textsTable, int paramPos)
-#line 1308 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
+#line 810 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
 {
-    // Node *expression;
-    // Node *block;
-    // Node *else_optional;
     std::ostringstream os;
-    // os << "IfStmt(";
     CodegenResult r;
     CodegenResult rBool = exprCompile(root->expression, vars, methodTable, args, arrayvarTable, actualmethodName, textsTable, paramPos);
-    // os << "br "<< rBool.place << ""
+
     
     std::string ifPart_label = newLabel();
     std::string endif_label = newLabel();
 
-    // CodegenResult rTrueBlock
     CodegenResult rTrue;
     if(root->block){
         rTrue = exprCompile(root->block, vars, methodTable, args, arrayvarTable, actualmethodName, textsTable, paramPos);
@@ -2904,8 +2297,7 @@ static CodegenResult exprCompile_20__(IfStmt *root, symbol_table & vars, Method_
     os << rBool.code << "\n";
     r.place = newVariable();
     os << "%" << r.place << " = icmp ne i32 %" << rBool.place << ", 0\n";
-    // %t4 = icmp ne i32 %t2, 0 
-    
+
     if(root->else_optional){
 
         std::string elsePart_label = newLabel();
@@ -2932,16 +2324,14 @@ static CodegenResult exprCompile_20__(IfStmt *root, symbol_table & vars, Method_
 
 
 
-        // os << ")";
+
     return {os.str(), ""};
 }
-#line 2939 "ExprAst.cpp"
+#line 2331 "ExprAst.cpp"
 
 static CodegenResult exprCompile_21__(WhileStmt *root, symbol_table & vars, Method_Table & methodTable, arguments & args, ArrayVariables_Table & arrayvarTable, string_t actualmethodName, Texts_Table & textsTable, int paramPos)
-#line 1362 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
+#line 858 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
 {
-    // Node *expression;
-    // Node *block;
 
         std::ostringstream os;
         CodegenResult r;
@@ -2978,17 +2368,16 @@ static CodegenResult exprCompile_21__(WhileStmt *root, symbol_table & vars, Meth
     
         return { os.str(), "" };
     }
-#line 2982 "ExprAst.cpp"
+#line 2372 "ExprAst.cpp"
 
 static CodegenResult exprCompile_22__(CallStmt *root, symbol_table & vars, Method_Table & methodTable, arguments & args, ArrayVariables_Table & arrayvarTable, string_t actualmethodName, Texts_Table & textsTable, int paramPos)
-#line 1422 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
+#line 914 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
 {
     std::ostringstream os;
 
     auto it = methodTable.find(root->identifier);
 
     if(it == methodTable.end()){
-        // FIX: IMPLEMENTAR ERRORES NO HAY METODO CON ESE NONBRE
         throw std::runtime_error("Error: Method '" + root->identifier + "' not declared.");
     }
 
@@ -2999,11 +2388,6 @@ static CodegenResult exprCompile_22__(CallStmt *root, symbol_table & vars, Metho
     CodegenResult r1; 
 
     arguments argsMethod = it->second.params; 
-    std::cout << "Method: " << root->identifier << " Arguments" << std::endl;
-    std::cout << "args: " << argsMethod.size() << std::endl;
-    for (int i = 0; i < argsMethod.size(); i++) {
-        std::cout << "args: " << argsMethod[i] << std::endl;
-    }
     paramPos=0;
     args = argsMethod;
     
@@ -3026,31 +2410,21 @@ static CodegenResult exprCompile_22__(CallStmt *root, symbol_table & vars, Metho
     }
 
 
-    //           if(r1.args.size() != args.size()){
-    //     throw std::runtime_error("Error as CallStmt: Argument number mismatch.");
-    // }
-
-
 
     if(root->call_param_list){
         r1 = exprCompile(root->call_param_list, vars, methodTable, args, arrayvarTable, actualmethodName, textsTable, paramPos);
  
     }
 
-    std::cout << "CallStmt: " << root->identifier << " Params" << std::endl;
-    std::cout << "args: " << args.size() << std::endl;
-    std::cout << "args paramPos: " <<  r1.argsNum << std::endl;
-    std::cout << "args paramPos2: " <<  r1.args.size() << std::endl;
-    for (int i = 0; i < r1.args.size(); i++) {
-        std::cout << "args: " << r1.args[i] << std::endl;
-    }
+
+
 
   
   
     r.place = newVariable();
     os << r1.code << "\n";
     os <<"call "<< it->second.Type << "@" << root->identifier <<"(";
-    // os << TIPO;
+
 
     os << r1.place;
     os << ")" << "\n";
@@ -3061,27 +2435,24 @@ static CodegenResult exprCompile_22__(CallStmt *root, symbol_table & vars, Metho
    
     return r;
 }
-#line 3065 "ExprAst.cpp"
+#line 2439 "ExprAst.cpp"
 
 static CodegenResult exprCompile_23__(PrintStmt *root, symbol_table & vars, Method_Table & methodTable, arguments & args, ArrayVariables_Table & arrayvarTable, string_t actualmethodName, Texts_Table & textsTable, int paramPos)
-#line 1643 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
+#line 1104 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
 {
-    // Node *print_param;
     std::ostringstream os;
     if(root->print_param){
- 
-        // os << exprCompile(root->print_param, vars, methodTable, args, arrayvarTable, actualmethodName, textsTable, paramPos).code;
         CodegenResult r = exprCompile(root->print_param, vars, methodTable, args, arrayvarTable, actualmethodName, textsTable, paramPos);
         os << r.code << "\n";
     }
     return {os.str(), ""};
 }
-#line 3080 "ExprAst.cpp"
+#line 2451 "ExprAst.cpp"
 
 static CodegenResult exprCompile_24__(ReadStmt *root, symbol_table & vars, Method_Table & methodTable, arguments & args, ArrayVariables_Table & arrayvarTable, string_t actualmethodName, Texts_Table & textsTable, int paramPos)
-#line 1713 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
+#line 1149 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
 {
-    // string_t identifier;
+ 
 
         std::ostringstream os;
         std::string varName = root->identifier + actualmethodName;
@@ -3112,19 +2483,16 @@ static CodegenResult exprCompile_24__(ReadStmt *root, symbol_table & vars, Metho
     
         return { os.str(), "" };
     }
-#line 3116 "ExprAst.cpp"
+#line 2487 "ExprAst.cpp"
 
 static CodegenResult exprCompile_25__(FunctionCall *root, symbol_table & vars, Method_Table & methodTable, arguments & args, ArrayVariables_Table & arrayvarTable, string_t actualmethodName, Texts_Table & textsTable, int paramPos)
-#line 2289 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
+#line 1650 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
 {
-    // string_t identifier;
-    // Node *call_param_list;
     std::ostringstream os;
 
     auto it = methodTable.find(root->identifier);
 
     if(it == methodTable.end()){
-        // FIX: IMPLEMENTAR ERRORES NO HAY METODO CON ESE NONBRE
         throw std::runtime_error("Error: Method '" + root->identifier + actualmethodName+ "' not declared.");
     }
 
@@ -3135,11 +2503,6 @@ static CodegenResult exprCompile_25__(FunctionCall *root, symbol_table & vars, M
     CodegenResult r1; 
 
     arguments argsMethod = it->second.params; 
-    std::cout << "Method: " << root->identifier << " Arguments" << std::endl;
-    std::cout << "args: " << argsMethod.size() << std::endl;
-    for (int i = 0; i < argsMethod.size(); i++) {
-        std::cout << "args: " << argsMethod[i] << std::endl;
-    }
 
     args = argsMethod;
     paramPos=0;
@@ -3168,13 +2531,6 @@ static CodegenResult exprCompile_25__(FunctionCall *root, symbol_table & vars, M
  
     }
 
-    std::cout << "Function Call: " << root->identifier << " Params" << std::endl;
-    std::cout << "args: " << args.size() << std::endl;
-    std::cout << "args paramPos: " << paramPos << std::endl;
-    std::cout << "args paramPos2: " <<  r1.args.size() << std::endl;
-    for (int i = 0; i < r1.args.size(); i++) {
-        std::cout << "args: " << r1.args[i] << std::endl;
-    }
 
     if(r1.args.size() != args.size()){
         throw std::runtime_error("Error as FunctionCall: Argument number mismatch.");
@@ -3193,16 +2549,14 @@ static CodegenResult exprCompile_25__(FunctionCall *root, symbol_table & vars, M
 
     r.code = os.str();
    
-    
-   
     return r;
 }
-#line 3201 "ExprAst.cpp"
+#line 2555 "ExprAst.cpp"
 
 static CodegenResult exprCompile_26__(ArrayAccess *root, symbol_table & vars, Method_Table & methodTable, arguments & args, ArrayVariables_Table & arrayvarTable, string_t actualmethodName, Texts_Table & textsTable, int paramPos)
-#line 1745 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
+#line 1181 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
 {
-    // Node *expression;
+
     std::ostringstream os;
     
     CodegenResult r;
@@ -3211,56 +2565,48 @@ static CodegenResult exprCompile_26__(ArrayAccess *root, symbol_table & vars, Me
     }
     return r;
 }
-#line 3215 "ExprAst.cpp"
+#line 2569 "ExprAst.cpp"
 
 static CodegenResult exprCompile_27__(ElseOptional *root, symbol_table & vars, Method_Table & methodTable, arguments & args, ArrayVariables_Table & arrayvarTable, string_t actualmethodName, Texts_Table & textsTable, int paramPos)
-#line 1756 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
+#line 1192 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
 {
-    // Node *block;
+
     std::ostringstream os;
-    // os << "ElseOptional(";
     CodegenResult r = exprCompile(root->block, vars, methodTable, args, arrayvarTable, actualmethodName, textsTable, paramPos);
-    // os << ")";
+ 
     return r;
 }
-#line 3227 "ExprAst.cpp"
+#line 2580 "ExprAst.cpp"
 
 static CodegenResult exprCompile_28__(Block *root, symbol_table & vars, Method_Table & methodTable, arguments & args, ArrayVariables_Table & arrayvarTable, string_t actualmethodName, Texts_Table & textsTable, int paramPos)
-#line 1765 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
+#line 1200 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
 {
-    // Node *stmt_list;
     std::ostringstream os;
-    // os << "Block(";
     if(root->stmt_list)
         os << exprCompile(root->stmt_list, vars, methodTable, args, arrayvarTable, actualmethodName, textsTable, paramPos).code;
-    // os << ")";
     return {os.str(), ""};
 }
-#line 3240 "ExprAst.cpp"
+#line 2590 "ExprAst.cpp"
 
 static CodegenResult exprCompile_29__(CallParamList *root, symbol_table & vars, Method_Table & methodTable, arguments & args, ArrayVariables_Table & arrayvarTable, string_t actualmethodName, Texts_Table & textsTable, int paramPos)
-#line 1503 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
+#line 979 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
 {
     CodegenResult r;
-    // std::vector<std::string> localargs;
+    
     if (root->expression) {
         CodegenResult r1 = exprCompile(root->expression, vars, methodTable, args, arrayvarTable, actualmethodName, textsTable, paramPos);
         r.code = r1.code + "\n";
-        // Inferir tipo directamente aquí
         std::string argType = "VAR"; // Valor por defecto
         std::string llvmType = "i32 %";
         
-        // Caso 1: Es un identificador
+
         if (auto* ident = dynamic_cast<Identifier*>(root->expression)) {
-            // Buscar en tablas de símbolos
             if (arrayvarTable.find(ident->name + actualmethodName) != arrayvarTable.end()) {
                 argType = "ARRAY";
                 llvmType = "i32* %";
                 r1.place = ident->name + actualmethodName;
             }
             else if (vars.find(ident->name + actualmethodName) != vars.end()) {
-                // FIX DESHABILITADO TEMPORALMENTE
-                // if(vars[ident->name].isRef ){
                 if(args[paramPos] == "REF"){
                     argType = "REF";
                     llvmType = "i32* %";
@@ -3268,7 +2614,6 @@ static CodegenResult exprCompile_29__(CallParamList *root, symbol_table & vars, 
                 }else{
                     argType = "VAR";
                     llvmType = "i32 %";
-                    std::cout << "32B: " << ident->name << std::endl;
                 }
                 
             
@@ -3277,13 +2622,12 @@ static CodegenResult exprCompile_29__(CallParamList *root, symbol_table & vars, 
                 throw std::runtime_error("Variable no declarada: " + ident->name);
             }
         }
-        // Caso 2: Acceso a array (arr[5])
+
         else if (dynamic_cast<ArrayVariable*>(root->expression)) {
             argType = "VAR"; // Tratamos elementos de array como valores
             std::string llvmType = "i32 %";
         }
 
-        // Registrar tipo en args
           r.place += llvmType + r1.place;
           r.args.push_back(argType);
         if(argType != args[paramPos]){
@@ -3291,9 +2635,6 @@ static CodegenResult exprCompile_29__(CallParamList *root, symbol_table & vars, 
         }
         paramPos++;
         r.argsNum = paramPos;
-        std::cout << paramPos << std::endl;
-
-        // Procesar parámetros restantes
         if (root->call_param_rest) {
             CodegenResult r2 = exprCompile(root->call_param_rest, vars, methodTable, args, arrayvarTable, actualmethodName, textsTable, paramPos);
             r.code += r2.code;
@@ -3309,10 +2650,10 @@ static CodegenResult exprCompile_29__(CallParamList *root, symbol_table & vars, 
    
     return r;
 }
-#line 3313 "ExprAst.cpp"
+#line 2654 "ExprAst.cpp"
 
 static CodegenResult exprCompile_30__(CallParamRest *root, symbol_table & vars, Method_Table & methodTable, arguments & args, ArrayVariables_Table & arrayvarTable, string_t actualmethodName, Texts_Table & textsTable, int paramPos)
-#line 1573 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
+#line 1040 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
 {
     CodegenResult r;
 
@@ -3321,7 +2662,7 @@ static CodegenResult exprCompile_30__(CallParamRest *root, symbol_table & vars, 
         r.code = r1.code;
        
 
-        // Misma lógica de inferencia que en CallParamList
+
         std::string argType = "VAR";
         std::string llvmType = "i32 %";
         
@@ -3332,9 +2673,6 @@ static CodegenResult exprCompile_30__(CallParamRest *root, symbol_table & vars, 
                 r1.place = ident->name + actualmethodName;
             }
             else if (vars.find(ident->name+ actualmethodName) != vars.end()) {
-                // FIX DESHABILITADO TEMPORALMENTE
-                // argType = vars[ident->name].isRef ? "REF" : "VAR";
-                // if(vars[ident->name].isRef ){
                 if(args[paramPos] == "REF"){
                     argType = "REF";
                     llvmType = "i32* %";
@@ -3357,7 +2695,6 @@ static CodegenResult exprCompile_30__(CallParamRest *root, symbol_table & vars, 
         
         r.place += llvmType + r1.place;
         r.args.push_back(argType);
-        // args.push_back(argType);
         if(argType != args[paramPos]){
             throw std::runtime_error("Error as CallStmt: Argument type mismatch." + argType + " " + args[paramPos]);
         }
@@ -3365,8 +2702,6 @@ static CodegenResult exprCompile_30__(CallParamRest *root, symbol_table & vars, 
      
         paramPos++;
         r.argsNum = paramPos;
-        // paramPos ++;
-        std::cout <<paramPos << std::endl;
 
         if (root->call_param_rest) {
             CodegenResult r2 = exprCompile(root->call_param_rest, vars, methodTable, args, arrayvarTable, actualmethodName, textsTable, paramPos);
@@ -3381,25 +2716,23 @@ static CodegenResult exprCompile_30__(CallParamRest *root, symbol_table & vars, 
   
     return r;
 }
-#line 3385 "ExprAst.cpp"
+#line 2720 "ExprAst.cpp"
 
 static CodegenResult exprCompile_31__(PrintParam *root, symbol_table & vars, Method_Table & methodTable, arguments & args, ArrayVariables_Table & arrayvarTable, string_t actualmethodName, Texts_Table & textsTable, int paramPos)
-#line 1657 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
+#line 1113 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
 {
-    // Node *expression;
-    // string_t string_literal;
     std::ostringstream os;
 
     CodegenResult r;
 
-    if(root->expression){ //es expresion
+    if(root->expression){ 
         CodegenResult r1 = exprCompile(root->expression, vars, methodTable, args, arrayvarTable, actualmethodName, textsTable, paramPos);
         os << r1.code << "\n";
         os << "call i32(i8*, ...) @printf(i8* @.fmt, i32 %"<< r1.place <<")";
 
 
 
-    }else{ //Es un literal
+    }else{ 
 
         auto it = textsTable.find(root->string_literal);
 
@@ -3412,10 +2745,6 @@ static CodegenResult exprCompile_31__(PrintParam *root, symbol_table & vars, Met
 
             os << "call i32(i8*, ...) @printf(i8* "<< tagt <<")";
 
-            // "call i32(i8*, ...) @printf(i8* @.fmt)"
-        }else{
-            // it.second
-            //FIX: FALTA IMPLEMENTAR
         }
 
    
@@ -3425,28 +2754,12 @@ static CodegenResult exprCompile_31__(PrintParam *root, symbol_table & vars, Met
     return r;
 
 
-
-// Print Literal
-
-// std::ostringstream os;
-
-// auto it - texts.find(root->literal);
-
-// if(it == texts.end()) {
-//    os << "call i32 (i8*, ...)* @printf(i8* )";
-// } else {
-    
-
-
-
 }
-#line 3444 "ExprAst.cpp"
+#line 2759 "ExprAst.cpp"
 
 static CodegenResult exprCompile_32__(EqualBoolean *root, symbol_table & vars, Method_Table & methodTable, arguments & args, ArrayVariables_Table & arrayvarTable, string_t actualmethodName, Texts_Table & textsTable, int paramPos)
-#line 1776 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
+#line 1208 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
 {
-    // Node *left;
-    // Node *right;
     std::ostringstream os;
 
     CodegenResult r;
@@ -3464,13 +2777,11 @@ static CodegenResult exprCompile_32__(EqualBoolean *root, symbol_table & vars, M
     r.code = os.str();
     return r;
 }
-#line 3468 "ExprAst.cpp"
+#line 2781 "ExprAst.cpp"
 
 static CodegenResult exprCompile_33__(NEqualBoolean *root, symbol_table & vars, Method_Table & methodTable, arguments & args, ArrayVariables_Table & arrayvarTable, string_t actualmethodName, Texts_Table & textsTable, int paramPos)
-#line 1797 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
+#line 1227 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
 {
-    // Node *left;
-    // Node *right;
     std::ostringstream os;
 
     CodegenResult r;
@@ -3488,13 +2799,12 @@ static CodegenResult exprCompile_33__(NEqualBoolean *root, symbol_table & vars, 
     r.code = os.str();
     return r;
 }
-#line 3492 "ExprAst.cpp"
+#line 2803 "ExprAst.cpp"
 
 static CodegenResult exprCompile_34__(Less_ThanBoolean *root, symbol_table & vars, Method_Table & methodTable, arguments & args, ArrayVariables_Table & arrayvarTable, string_t actualmethodName, Texts_Table & textsTable, int paramPos)
-#line 1818 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
+#line 1246 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
 {
-    // Node *left;
-    // Node *right;
+
     std::ostringstream os;
 
     CodegenResult r;
@@ -3512,13 +2822,12 @@ static CodegenResult exprCompile_34__(Less_ThanBoolean *root, symbol_table & var
     r.code = os.str();
     return r;
 }
-#line 3516 "ExprAst.cpp"
+#line 2826 "ExprAst.cpp"
 
 static CodegenResult exprCompile_35__(Greater_ThanBoolean *root, symbol_table & vars, Method_Table & methodTable, arguments & args, ArrayVariables_Table & arrayvarTable, string_t actualmethodName, Texts_Table & textsTable, int paramPos)
-#line 1839 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
+#line 1266 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
 {
-    // Node *left;
-    // Node *right;
+
     std::ostringstream os;
 
     CodegenResult r;
@@ -3536,13 +2845,12 @@ static CodegenResult exprCompile_35__(Greater_ThanBoolean *root, symbol_table & 
     r.code = os.str();
     return r;
 }
-#line 3540 "ExprAst.cpp"
+#line 2849 "ExprAst.cpp"
 
 static CodegenResult exprCompile_36__(LessEqualBoolean *root, symbol_table & vars, Method_Table & methodTable, arguments & args, ArrayVariables_Table & arrayvarTable, string_t actualmethodName, Texts_Table & textsTable, int paramPos)
-#line 1860 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
+#line 1286 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
 {
-    // Node *left;
-    // Node *right;
+
     std::ostringstream os;
 
     CodegenResult r;
@@ -3560,13 +2868,12 @@ static CodegenResult exprCompile_36__(LessEqualBoolean *root, symbol_table & var
     r.code = os.str();
     return r;
 }
-#line 3564 "ExprAst.cpp"
+#line 2872 "ExprAst.cpp"
 
 static CodegenResult exprCompile_37__(GreaterEqualBoolean *root, symbol_table & vars, Method_Table & methodTable, arguments & args, ArrayVariables_Table & arrayvarTable, string_t actualmethodName, Texts_Table & textsTable, int paramPos)
-#line 1881 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
+#line 1306 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
 {
-    // Node *left;
-    // Node *right;
+
     std::ostringstream os;
 
     CodegenResult r;
@@ -3584,17 +2891,16 @@ static CodegenResult exprCompile_37__(GreaterEqualBoolean *root, symbol_table & 
     r.code = os.str();
     return r;
 }
-#line 3588 "ExprAst.cpp"
+#line 2895 "ExprAst.cpp"
 
 static CodegenResult exprCompile_38__(OrBoolean *root, symbol_table & vars, Method_Table & methodTable, arguments & args, ArrayVariables_Table & arrayvarTable, string_t actualmethodName, Texts_Table & textsTable, int paramPos)
-#line 1901 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
+#line 1325 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
 {
-     // Node *left;
-    // Node *right;
+
     std::ostringstream os;
     CodegenResult r;
 
-    // Compilar subexpresiones izquierda y derecha
+
     CodegenResult r1 = exprCompile(root->left, vars, methodTable, args, arrayvarTable, actualmethodName, textsTable, paramPos);
     CodegenResult r2 = exprCompile(root->right, vars, methodTable, args, arrayvarTable, actualmethodName, textsTable, paramPos);
     
@@ -3608,13 +2914,12 @@ static CodegenResult exprCompile_38__(OrBoolean *root, symbol_table & vars, Meth
     r.code = os.str();
     return r;
 }
-#line 3612 "ExprAst.cpp"
+#line 2918 "ExprAst.cpp"
 
 static CodegenResult exprCompile_39__(AndBoolean *root, symbol_table & vars, Method_Table & methodTable, arguments & args, ArrayVariables_Table & arrayvarTable, string_t actualmethodName, Texts_Table & textsTable, int paramPos)
-#line 1922 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
+#line 1345 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
 {
-    // Node *left;
-    // Node *right;
+
     std::ostringstream os;
     CodegenResult r;
 
@@ -3632,13 +2937,12 @@ static CodegenResult exprCompile_39__(AndBoolean *root, symbol_table & vars, Met
     r.code = os.str();
     return r;
 }
-#line 3636 "ExprAst.cpp"
+#line 2941 "ExprAst.cpp"
 
 static CodegenResult exprCompile_40__(SumExpr *root, symbol_table & vars, Method_Table & methodTable, arguments & args, ArrayVariables_Table & arrayvarTable, string_t actualmethodName, Texts_Table & textsTable, int paramPos)
-#line 1960 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
+#line 1381 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
 {
-    // Node *left;
-    // Node *right;
+
     std::ostringstream os;
     
     CodegenResult r1 = exprCompile(root->left, vars, methodTable, args, arrayvarTable, actualmethodName, textsTable, paramPos);
@@ -3654,13 +2958,12 @@ static CodegenResult exprCompile_40__(SumExpr *root, symbol_table & vars, Method
     r.code = os.str();
     return r;
 }
-#line 3658 "ExprAst.cpp"
+#line 2962 "ExprAst.cpp"
 
 static CodegenResult exprCompile_41__(SubExpr *root, symbol_table & vars, Method_Table & methodTable, arguments & args, ArrayVariables_Table & arrayvarTable, string_t actualmethodName, Texts_Table & textsTable, int paramPos)
-#line 1979 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
+#line 1399 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
 {
-    // Node *left;
-    // Node *right;
+
     std::ostringstream os;
     
     CodegenResult r1 = exprCompile(root->left, vars, methodTable, args, arrayvarTable, actualmethodName, textsTable, paramPos);
@@ -3677,13 +2980,12 @@ static CodegenResult exprCompile_41__(SubExpr *root, symbol_table & vars, Method
     r.code = os.str();
     return r;
 }
-#line 3681 "ExprAst.cpp"
+#line 2984 "ExprAst.cpp"
 
 static CodegenResult exprCompile_42__(MulExpr *root, symbol_table & vars, Method_Table & methodTable, arguments & args, ArrayVariables_Table & arrayvarTable, string_t actualmethodName, Texts_Table & textsTable, int paramPos)
-#line 1999 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
+#line 1418 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
 {
-    // Node *left;
-    // Node *right;
+
     
      std::ostringstream os;
     
@@ -3701,13 +3003,12 @@ static CodegenResult exprCompile_42__(MulExpr *root, symbol_table & vars, Method
     r.code = os.str();
     return r;
 }
-#line 3705 "ExprAst.cpp"
+#line 3007 "ExprAst.cpp"
 
 static CodegenResult exprCompile_43__(DivExpr *root, symbol_table & vars, Method_Table & methodTable, arguments & args, ArrayVariables_Table & arrayvarTable, string_t actualmethodName, Texts_Table & textsTable, int paramPos)
-#line 2020 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
+#line 1438 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
 {
-    // Node *left;
-    // Node *right;
+
     std::ostringstream os;
     
     CodegenResult r1 = exprCompile(root->left, vars, methodTable, args, arrayvarTable, actualmethodName, textsTable, paramPos);
@@ -3724,13 +3025,11 @@ static CodegenResult exprCompile_43__(DivExpr *root, symbol_table & vars, Method
     r.code = os.str();
     return r;
 }
-#line 3728 "ExprAst.cpp"
+#line 3029 "ExprAst.cpp"
 
 static CodegenResult exprCompile_44__(ModExpr *root, symbol_table & vars, Method_Table & methodTable, arguments & args, ArrayVariables_Table & arrayvarTable, string_t actualmethodName, Texts_Table & textsTable, int paramPos)
-#line 2040 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
+#line 1457 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
 {
-    // Node *left;
-    // Node *right;
     std::ostringstream os;
     
     CodegenResult r1 = exprCompile(root->left, vars, methodTable, args, arrayvarTable, actualmethodName, textsTable, paramPos);
@@ -3745,12 +3044,11 @@ static CodegenResult exprCompile_44__(ModExpr *root, symbol_table & vars, Method
     r.code = os.str();
     return r;
 }
-#line 3749 "ExprAst.cpp"
+#line 3048 "ExprAst.cpp"
 
 static CodegenResult exprCompile_45__(UnaryNotBoolean *root, symbol_table & vars, Method_Table & methodTable, arguments & args, ArrayVariables_Table & arrayvarTable, string_t actualmethodName, Texts_Table & textsTable, int paramPos)
-#line 1943 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
+#line 1365 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
 {
-    // Node *expr;
     std::ostringstream os;
     CodegenResult r;
 
@@ -3765,12 +3063,11 @@ static CodegenResult exprCompile_45__(UnaryNotBoolean *root, symbol_table & vars
     r.code = os.str();
     return r;
 }
-#line 3769 "ExprAst.cpp"
+#line 3067 "ExprAst.cpp"
 
 static CodegenResult exprCompile_46__(UnaryAddExpr *root, symbol_table & vars, Method_Table & methodTable, arguments & args, ArrayVariables_Table & arrayvarTable, string_t actualmethodName, Texts_Table & textsTable, int paramPos)
-#line 2058 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
+#line 1473 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
 {
-        // Node *expr;
     std::ostringstream os;
     CodegenResult r;
 
@@ -3783,13 +3080,11 @@ static CodegenResult exprCompile_46__(UnaryAddExpr *root, symbol_table & vars, M
     r.code = os.str();
     return r;
 }
-#line 3787 "ExprAst.cpp"
+#line 3084 "ExprAst.cpp"
 
 static CodegenResult exprCompile_47__(UnarySubExpr *root, symbol_table & vars, Method_Table & methodTable, arguments & args, ArrayVariables_Table & arrayvarTable, string_t actualmethodName, Texts_Table & textsTable, int paramPos)
-#line 2073 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
+#line 1487 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
 {
-    // Node *expr;
-
         std::ostringstream os;
         CodegenResult r;
     
@@ -3804,31 +3099,23 @@ static CodegenResult exprCompile_47__(UnarySubExpr *root, symbol_table & vars, M
         r.code = os.str();
         return r;
 }
-#line 3808 "ExprAst.cpp"
+#line 3103 "ExprAst.cpp"
 
 static CodegenResult exprCompile_48__(Number *root, symbol_table & vars, Method_Table & methodTable, arguments & args, ArrayVariables_Table & arrayvarTable, string_t actualmethodName, Texts_Table & textsTable, int paramPos)
-#line 2091 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
+#line 1503 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
 {
-    // int value;
     std::ostringstream os;
-    // os << "Number(" << root->value << ")";
-
     CodegenResult r;
-
     r.place = newVariable();
-    // r.code = std::to_string(root->value);
     os << "%" << r.place << " = add i32 " << root->value << ", 0" << "\n";
-    // r.place = std::to_string(root->value);
-    // r.code = "%" + r.place + " = i32 " + std::to_string(root->value);
     r.code = os.str();
     return r;
 }
-#line 3827 "ExprAst.cpp"
+#line 3115 "ExprAst.cpp"
 
 static CodegenResult exprCompile_49__(Identifier *root, symbol_table & vars, Method_Table & methodTable, arguments & args, ArrayVariables_Table & arrayvarTable, string_t actualmethodName, Texts_Table & textsTable, int paramPos)
-#line 2107 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
+#line 1512 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
 {
-    // string_t name;
     std::ostringstream os;
     CodegenResult r; 
     r.place = newVariable();
@@ -3844,21 +3131,17 @@ static CodegenResult exprCompile_49__(Identifier *root, symbol_table & vars, Met
     auto itArray = arrayvarTable.find(arrayKey);
     bool isArray = false;
 
-    // 1. Verificar si es un array
     if (itArray != arrayvarTable.end()) {
         isArray = true;
     } else {
-        // Buscar versión global del array
         itArray = arrayvarTable.find(root->name);
         if (itArray != arrayvarTable.end()) {
             isArray = true;
-        }else{
-            std::cout << "NO Se encontro el array " << root->name << std::endl;
         }
     }
 
     if (isArray) {
-        // Manejar acceso a array
+
         if (itArray->second.isArgument) {
            
             r.place = root->name + actualmethodName; // Acceso directo para argumentos
@@ -3871,12 +3154,6 @@ static CodegenResult exprCompile_49__(Identifier *root, symbol_table & vars, Met
    
     if ( it_global != vars.end() ){
         if (it_global->second.value.has_value()) {
-            //FIX HACE OTRO QUE CONSIDERE LOS REFS
-            // if( it->second.methodIdentifier.empty()){//es global
-            //     os << "%" << r.place << " = load i32, i32* @" << root->name << ", align 4";
-            // }else{
-            //     os << "%" << r.place << " = load i32, i32* %" << root->name << ", align 4";
-            // }
 
             if( it_global->second.methodIdentifier.empty()){//es global
                 
@@ -3886,24 +3163,20 @@ static CodegenResult exprCompile_49__(Identifier *root, symbol_table & vars, Met
             }
            
         } else {
-            // FIX: ERROR TEMPORALY DISABLED
             throw std::runtime_error("Error: Variable '" + root->name+ actualmethodName + "' has no value.");
         }
 
     }else{
 
     if (it == vars.end()) { 
-        // La variable no existe en la tabla de símbolos
-    //FIX: VOLVER A ASIGNAR LOS EXCEPTIONS
          throw std::runtime_error("Error: Variable (ID)'" + root->name + actualmethodName+ "' not declared.");
     }
 
     if (it->second.isArgument) {
-        // Es un argumento del método actual, se debe acceder de manera distinta
+
         if(it->second.isRef){
             os << "%" << r.place << " = load i32, i32* %" << root->name << actualmethodName << ", align 4";
         }else{
-            // os << "%" << r.place << " = add i32 %" << root->name << ", 0";
             r.place = root->name + actualmethodName;
         }
         r.code = os.str();
@@ -3912,25 +3185,15 @@ static CodegenResult exprCompile_49__(Identifier *root, symbol_table & vars, Met
     } 
 
     if (it == vars.end()) { 
-        // La variable no existe en la tabla de símbolos
-    //FIX: VOLVER A ASIGNAR LOS EXCEPTIONS
+
          throw std::runtime_error("Error: Variable (ID) 2'" + root->name + "' not declared.");
     } else if (!it->second.methodIdentifier.empty() && it->second.methodIdentifier != actualmethodName) {
-        // Existe pero no pertenece al método actual ni es global
          throw std::runtime_error("Error: Variable '" + root->name + "' is not accessible in the current scope.");
     } else {
-        // Existe y es alcanzable
+
         
         if (it->second.value.has_value()) {
-            //FIX HACE OTRO QUE CONSIDERE LOS REFS
-            // if( it->second.methodIdentifier.empty()){//es global
-            //     os << "%" << r.place << " = load i32, i32* @" << root->name << ", align 4";
-            // }else{
-            //     os << "%" << r.place << " = load i32, i32* %" << root->name << ", align 4";
-            // }
-
-            if( it->second.methodIdentifier.empty()){//es global
-                
+            if( it->second.methodIdentifier.empty()){
                 os << "%" << r.place << " = load i32, i32* @" << root->name << actualmethodName << ", align 4";
             }else{
                 os << "%" << r.place << " = load i32, i32* %" << root->name << actualmethodName << ", align 4";
@@ -3944,33 +3207,16 @@ static CodegenResult exprCompile_49__(Identifier *root, symbol_table & vars, Met
 
     }
 }
-    // os << "%" << r.place << " = load i32, i32* %" << root->name << ", align 4";
-    // vars.insert({ r.place , variables{"", std::nullopt, nullptr}});
-    
+
     r.code = os.str();
     r.place =  r.place;
     return r;
 }
-#line 3955 "ExprAst.cpp"
+#line 3216 "ExprAst.cpp"
 
 static CodegenResult exprCompile_50__(ArrayVariable *root, symbol_table & vars, Method_Table & methodTable, arguments & args, ArrayVariables_Table & arrayvarTable, string_t actualmethodName, Texts_Table & textsTable, int paramPos)
-#line 2232 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
+#line 1610 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
 {
-    // string_t name;
-    // Node *indexExpr;    array access es el expr que me retorna el indice
-    // x[3]
-
-    // %node ArrayAccess Node = {
-    //     Node *expression;
-    // }
-
-//     ; Escribir un valor en el índice 2
-// %idx = getelementptr [10 x i32], [10 x i32]* %array, i32 0, i32 2
-// store i32 5, i32* %idx, align 4       ; Guardar el valor 5 en la posición 2
-
-// ; Leer el valor en el índice 2
-// %val = load i32, i32* %idx, align 4   ; Cargar el valor almacenado en %idx
-
     std::ostringstream os;
     CodegenResult r;
 
@@ -3978,8 +3224,7 @@ static CodegenResult exprCompile_50__(ArrayVariable *root, symbol_table & vars, 
     auto it_global = arrayvarTable.find( root->name);
 
     if(it_global != arrayvarTable.end()){
-        os<< ";ArrayVariable -----------" << "\n"; //COMMENT
-        // Indice de Arreglo
+        os<< ";ArrayVariable -----------" << "\n";
         CodegenResult r1 = exprCompile(root->indexExpr, vars, methodTable, args, arrayvarTable, actualmethodName, textsTable, paramPos);
         os << r1.code << "\n";
         r.place = newVariable();
@@ -3987,7 +3232,7 @@ static CodegenResult exprCompile_50__(ArrayVariable *root, symbol_table & vars, 
         std::string index = r.place ; 
         r.place = newVariable();
         os << "%" << r.place << " = load i32, i32* %" << index << ", align 4";
-        os<< "\n;FIN - ArrayVariable --------" << "\n"; //COMMENT
+        os<< "\n;FIN - ArrayVariable --------" << "\n"; 
         r.code = os.str();
     }else{
     if (it == arrayvarTable.end()){
@@ -3995,7 +3240,6 @@ static CodegenResult exprCompile_50__(ArrayVariable *root, symbol_table & vars, 
     }else{
 
     os<< ";ArrayVariable -----------" << "\n"; //COMMENT
-     // Indice de Arreglo
      CodegenResult r1 = exprCompile(root->indexExpr, vars, methodTable, args, arrayvarTable, actualmethodName, textsTable, paramPos);
      os << r1.code << "\n";
      r.place = newVariable();
@@ -4009,7 +3253,7 @@ static CodegenResult exprCompile_50__(ArrayVariable *root, symbol_table & vars, 
     }
     return r;
 }
-#line 4013 "ExprAst.cpp"
+#line 3257 "ExprAst.cpp"
 
 CodegenResult exprCompile(Node * root__, symbol_table & vars, Method_Table & methodTable, arguments & args, ArrayVariables_Table & arrayvarTable, string_t actualmethodName, Texts_Table & textsTable, int paramPos)
 {

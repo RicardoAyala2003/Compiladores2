@@ -42,10 +42,8 @@
 #include <iostream>
 #include <stdexcept>
 #include "SimpleLexer.hpp"
-#include "error.h"
 #include "Tokens.hpp" 
 
-// Declaramos la función de análisis léxico.
 int yylex();
 
 #define yylex(arg) lexer.nextToken(arg) 
@@ -67,7 +65,7 @@ void yyerror(const char* msg) {
 
 
 
-#line 71 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 69 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
 
 
 #include "SimpleParser.hpp"
@@ -146,7 +144,7 @@ void yyerror(const char* msg) {
 
 #line 10 "SimpleParser.y"
 namespace Expr {
-#line 150 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 148 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
 
   /// Build a parser object.
   Parser::Parser (SimpleLexer& lexer_yyarg, Ast::Node *&root_yyarg)
@@ -991,697 +989,697 @@ namespace Expr {
           switch (yyn)
             {
   case 2: // input: program
-#line 77 "SimpleParser.y"
+#line 75 "SimpleParser.y"
                { root = yystack_[0].value.as < Ast::Node * > ();}
-#line 997 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 995 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 3: // program: KW_CLASS IDENTIFIER OPEN_CURLY varmethod_decl_list method_decl_list CLOSE_CURLY
-#line 81 "SimpleParser.y"
+#line 79 "SimpleParser.y"
                                                                                       {
              yylhs.value.as < Ast::Node * > () = new Ast::Program(yystack_[4].value.as < std::string > (), yystack_[2].value.as < Ast::Node * > (), yystack_[1].value.as < Ast::Node * > ());
       }
-#line 1005 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1003 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 4: // varmethod_decl_list: KW_INT IDENTIFIER method_body method_decl_list
-#line 89 "SimpleParser.y"
+#line 87 "SimpleParser.y"
                                                      { 
          yylhs.value.as < Ast::Node * > () =  new Ast::VarMethodDeclList(new Ast::MethodDeclList(new Ast::MethodDecl(new Ast::MethodType("INT"), yystack_[2].value.as < std::string > (), yystack_[1].value.as < Ast::Node * > ()) , yystack_[0].value.as < Ast::Node * > ()), nullptr);
       }
-#line 1013 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1011 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 5: // varmethod_decl_list: KW_INT IDENTIFIER method_body
-#line 93 "SimpleParser.y"
+#line 91 "SimpleParser.y"
                                     { 
          yylhs.value.as < Ast::Node * > () = new Ast::VarMethodDeclList(new Ast::MethodDeclList(new Ast::MethodDecl(new Ast::MethodType("INT"), yystack_[1].value.as < std::string > (), yystack_[0].value.as < Ast::Node * > ()) , nullptr), nullptr);     
       }
-#line 1021 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1019 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 6: // varmethod_decl_list: variable_decl variable_decl_list varmethod_decl_list
-#line 97 "SimpleParser.y"
+#line 95 "SimpleParser.y"
                                                           { 
         yylhs.value.as < Ast::Node * > () = new Ast::VarMethodDeclList(new Ast::VariableDeclList(yystack_[2].value.as < Ast::Node * > (), yystack_[1].value.as < Ast::Node * > ()),  yystack_[0].value.as < Ast::Node * > ());
       }
-#line 1029 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1027 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 7: // varmethod_decl_list: variable_decl varmethod_decl_list
-#line 100 "SimpleParser.y"
+#line 98 "SimpleParser.y"
                                          { 
         yylhs.value.as < Ast::Node * > () = new Ast::VarMethodDeclList( new Ast::VariableDeclList(yystack_[1].value.as < Ast::Node * > (), nullptr), yystack_[0].value.as < Ast::Node * > ());
       }
-#line 1037 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1035 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 8: // varmethod_decl_list: variable_decl variable_decl_list
-#line 104 "SimpleParser.y"
+#line 102 "SimpleParser.y"
                                        { 
         yylhs.value.as < Ast::Node * > () = new Ast::VarMethodDeclList(new Ast::VariableDeclList(yystack_[1].value.as < Ast::Node * > (), yystack_[0].value.as < Ast::Node * > ()),  nullptr);
       }
-#line 1045 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1043 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 9: // varmethod_decl_list: variable_decl
-#line 107 "SimpleParser.y"
+#line 105 "SimpleParser.y"
                       {
         yylhs.value.as < Ast::Node * > () = new Ast::VarMethodDeclList(new Ast::VariableDeclList(yystack_[0].value.as < Ast::Node * > (), nullptr),  nullptr);
       }
-#line 1053 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1051 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 10: // varmethod_decl_list: %empty
-#line 110 "SimpleParser.y"
+#line 108 "SimpleParser.y"
                {}
-#line 1059 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1057 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 11: // variable_decl_list: variable_decl variable_decl_list
-#line 114 "SimpleParser.y"
+#line 112 "SimpleParser.y"
                                        { 
         yylhs.value.as < Ast::Node * > () = new Ast::VariableDeclList(yystack_[1].value.as < Ast::Node * > (), yystack_[0].value.as < Ast::Node * > ());
       }
-#line 1067 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1065 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 12: // variable_decl_list: variable_decl
-#line 117 "SimpleParser.y"
+#line 115 "SimpleParser.y"
                      {
       yylhs.value.as < Ast::Node * > () = new Ast::VariableDeclList(yystack_[0].value.as < Ast::Node * > (), nullptr);
       }
-#line 1075 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1073 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 13: // variable_decl_list: %empty
-#line 120 "SimpleParser.y"
+#line 118 "SimpleParser.y"
                {}
-#line 1081 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1079 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 14: // variable_decl_Body: ident_list SEMICOLON
-#line 124 "SimpleParser.y"
+#line 122 "SimpleParser.y"
                        { 
       yylhs.value.as < Ast::Node * > () = new Ast::VariableDecl_Body(yystack_[1].value.as < Ast::Node * > ()); 
       }
-#line 1089 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1087 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 15: // variable_decl: KW_INT IDENTIFIER OPEN_BRACKET INT_CONST CLOSE_BRACKET variable_decl_Body
-#line 130 "SimpleParser.y"
+#line 128 "SimpleParser.y"
                                                                                  {
             yylhs.value.as < Ast::Node * > () = new Ast::VariableDecl(new Ast::Type("INT", new Ast::ArrayOptional(yystack_[2].value.as < int > ())), yystack_[4].value.as < std::string > (), yystack_[0].value.as < Ast::Node * > ());
       }
-#line 1097 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1095 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 16: // variable_decl: KW_INT IDENTIFIER variable_decl_Body
-#line 133 "SimpleParser.y"
+#line 131 "SimpleParser.y"
                                               {
             yylhs.value.as < Ast::Node * > () = new Ast::VariableDecl(new Ast::Type("INT", nullptr), yystack_[1].value.as < std::string > (), yystack_[0].value.as < Ast::Node * > ());
        }
-#line 1105 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1103 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 17: // array_optional: OPEN_BRACKET INT_CONST CLOSE_BRACKET
-#line 140 "SimpleParser.y"
+#line 138 "SimpleParser.y"
                                            { 
             yylhs.value.as < Ast::Node * > () = new Ast::ArrayOptional(yystack_[1].value.as < int > ()); 
       }
-#line 1113 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1111 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 18: // array_optional: %empty
-#line 143 "SimpleParser.y"
+#line 141 "SimpleParser.y"
                {}
-#line 1119 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1117 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 19: // ident_list: COMMA IDENTIFIER ident_list
-#line 147 "SimpleParser.y"
+#line 145 "SimpleParser.y"
                                   { 
             yylhs.value.as < Ast::Node * > () = new Ast::IdentList(yystack_[1].value.as < std::string > (), yystack_[0].value.as < Ast::Node * > ()); 
       }
-#line 1127 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1125 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 20: // ident_list: %empty
-#line 150 "SimpleParser.y"
+#line 148 "SimpleParser.y"
                {}
-#line 1133 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1131 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 21: // type: KW_INT array_optional
-#line 154 "SimpleParser.y"
+#line 152 "SimpleParser.y"
                             { 
             yylhs.value.as < Ast::Node * > () = new Ast::Type("INT", yystack_[0].value.as < Ast::Node * > ()); 
       }
-#line 1141 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1139 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 22: // method_decl_list: method_decl method_decl_list
-#line 161 "SimpleParser.y"
+#line 159 "SimpleParser.y"
                                    {
           yylhs.value.as < Ast::Node * > () = new Ast::MethodDeclList(yystack_[1].value.as < Ast::Node * > (), yystack_[0].value.as < Ast::Node * > ()); 
        
       }
-#line 1150 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1148 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 23: // method_decl_list: %empty
-#line 165 "SimpleParser.y"
+#line 163 "SimpleParser.y"
                  {}
-#line 1156 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1154 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 24: // method_decl: method_type IDENTIFIER method_body
-#line 169 "SimpleParser.y"
+#line 167 "SimpleParser.y"
                                         {
         yylhs.value.as < Ast::Node * > () = new Ast::MethodDecl(yystack_[2].value.as < Ast::Node * > (), yystack_[1].value.as < std::string > (), yystack_[0].value.as < Ast::Node * > ());
       }
-#line 1164 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1162 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 25: // method_body: OPEN_PAR opt_param_decl_list CLOSE_PAR OPEN_CURLY variable_decl_list stmt_list CLOSE_CURLY
-#line 175 "SimpleParser.y"
+#line 173 "SimpleParser.y"
                                                                                                  {
       yylhs.value.as < Ast::Node * > () = new Ast::MethodDecl_Body(yystack_[5].value.as < Ast::Node * > (), yystack_[2].value.as < Ast::Node * > (), yystack_[1].value.as < Ast::Node * > ()); 
       }
-#line 1172 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1170 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 26: // method_type: KW_INT
-#line 181 "SimpleParser.y"
+#line 179 "SimpleParser.y"
              {     
             yylhs.value.as < Ast::Node * > () = new Ast::MethodType("INT");
       }
-#line 1180 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1178 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 27: // method_type: KW_VOID
-#line 184 "SimpleParser.y"
+#line 182 "SimpleParser.y"
               { 
             yylhs.value.as < Ast::Node * > () = new Ast::MethodType("VOID"); 
       }
-#line 1188 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1186 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 28: // opt_param_decl_list: param_decl param_list
-#line 190 "SimpleParser.y"
+#line 188 "SimpleParser.y"
                             {  
          yylhs.value.as < Ast::Node * > () = new Ast::OptParamDeclList(yystack_[1].value.as < Ast::Node * > (), yystack_[0].value.as < Ast::Node * > ()); 
       }
-#line 1196 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1194 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 29: // opt_param_decl_list: %empty
-#line 193 "SimpleParser.y"
+#line 191 "SimpleParser.y"
               {}
-#line 1202 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1200 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 30: // param_list: COMMA param_decl param_list
-#line 197 "SimpleParser.y"
+#line 195 "SimpleParser.y"
                                   {   
             yylhs.value.as < Ast::Node * > () = new Ast::ParamList(yystack_[1].value.as < Ast::Node * > (), yystack_[0].value.as < Ast::Node * > ());
       }
-#line 1210 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1208 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 31: // param_list: %empty
-#line 200 "SimpleParser.y"
+#line 198 "SimpleParser.y"
                 {}
-#line 1216 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1214 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 32: // param_decl: ref_optional type IDENTIFIER
-#line 204 "SimpleParser.y"
+#line 202 "SimpleParser.y"
                                    {    
             yylhs.value.as < Ast::Node * > () = new Ast::ParamDecl(yystack_[2].value.as < Ast::Node * > (), yystack_[1].value.as < Ast::Node * > (), yystack_[0].value.as < std::string > ());
       }
-#line 1224 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1222 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 33: // ref_optional: KW_REF
-#line 210 "SimpleParser.y"
+#line 208 "SimpleParser.y"
              {   
             yylhs.value.as < Ast::Node * > () = new Ast::RefOptional(true); 
       }
-#line 1232 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1230 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 34: // ref_optional: %empty
-#line 213 "SimpleParser.y"
+#line 211 "SimpleParser.y"
                {}
-#line 1238 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1236 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 35: // stmt_list: stmt stmt_list
-#line 217 "SimpleParser.y"
+#line 215 "SimpleParser.y"
                      { 
          yylhs.value.as < Ast::Node * > () = new Ast::StmtList(yystack_[1].value.as < Ast::Node * > (), yystack_[0].value.as < Ast::Node * > ()); 
       }
-#line 1246 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1244 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 36: // stmt_list: %empty
-#line 220 "SimpleParser.y"
+#line 218 "SimpleParser.y"
                  {}
-#line 1252 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1250 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 37: // array_access: OPEN_BRACKET expression CLOSE_BRACKET
-#line 224 "SimpleParser.y"
+#line 222 "SimpleParser.y"
                                             { 
             yylhs.value.as < Ast::Node * > () = new Ast::ArrayAccess(yystack_[1].value.as < Ast::Node * > ());
            
       }
-#line 1261 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1259 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 38: // array_access_opt: array_access
-#line 231 "SimpleParser.y"
+#line 229 "SimpleParser.y"
                    { yylhs.value.as < Ast::Node * > () = yystack_[0].value.as < Ast::Node * > (); }
-#line 1267 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1265 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 39: // array_access_opt: %empty
-#line 232 "SimpleParser.y"
+#line 230 "SimpleParser.y"
              {  }
-#line 1273 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1271 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 40: // assign_stmt: IDENTIFIER array_access_opt OP_ASSIGN expression SEMICOLON
-#line 237 "SimpleParser.y"
+#line 235 "SimpleParser.y"
                                                                  {
             yylhs.value.as < Ast::Node * > () = new Ast::AssignStmt(yystack_[4].value.as < std::string > (), yystack_[3].value.as < Ast::Node * > (), yystack_[1].value.as < Ast::Node * > ());
       }
-#line 1281 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1279 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 41: // call_stmt: IDENTIFIER OPEN_PAR call_param_list CLOSE_PAR SEMICOLON
-#line 244 "SimpleParser.y"
+#line 242 "SimpleParser.y"
                                                             {
          yylhs.value.as < Ast::Node * > () = new Ast::CallStmt(yystack_[4].value.as < std::string > (), yystack_[2].value.as < Ast::Node * > ());
     }
-#line 1289 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1287 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 42: // stmt: call_stmt
-#line 249 "SimpleParser.y"
+#line 247 "SimpleParser.y"
                 {
           yylhs.value.as < Ast::Node * > () = yystack_[0].value.as < Ast::Node * > ();
       }
-#line 1297 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1295 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 43: // stmt: assign_stmt
-#line 253 "SimpleParser.y"
+#line 251 "SimpleParser.y"
                   {
           yylhs.value.as < Ast::Node * > () = yystack_[0].value.as < Ast::Node * > ();
       }
-#line 1305 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1303 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 44: // stmt: return_stmt
-#line 257 "SimpleParser.y"
+#line 255 "SimpleParser.y"
                   {
           yylhs.value.as < Ast::Node * > () = yystack_[0].value.as < Ast::Node * > ();
       }
-#line 1313 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1311 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 45: // stmt: if_stmt
-#line 260 "SimpleParser.y"
+#line 258 "SimpleParser.y"
               {   
           yylhs.value.as < Ast::Node * > () = yystack_[0].value.as < Ast::Node * > ();
       }
-#line 1321 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1319 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 46: // stmt: while_stmt
-#line 263 "SimpleParser.y"
+#line 261 "SimpleParser.y"
                  {  
           yylhs.value.as < Ast::Node * > () = yystack_[0].value.as < Ast::Node * > ();
       }
-#line 1329 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1327 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 47: // stmt: print_stmt
-#line 266 "SimpleParser.y"
+#line 264 "SimpleParser.y"
                  { 
           yylhs.value.as < Ast::Node * > () = yystack_[0].value.as < Ast::Node * > ();
       }
-#line 1337 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1335 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 48: // stmt: read_stmt
-#line 269 "SimpleParser.y"
+#line 267 "SimpleParser.y"
                 {  
           yylhs.value.as < Ast::Node * > () = yystack_[0].value.as < Ast::Node * > ();
       }
-#line 1345 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1343 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 49: // return_stmt: KW_RETURN expression SEMICOLON
-#line 275 "SimpleParser.y"
+#line 273 "SimpleParser.y"
                                      {     
             yylhs.value.as < Ast::Node * > () = new Ast::ReturnStmt(yystack_[1].value.as < Ast::Node * > ()); 
       }
-#line 1353 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1351 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 50: // if_stmt: KW_IF OPEN_PAR expression CLOSE_PAR block else_optional
-#line 281 "SimpleParser.y"
+#line 279 "SimpleParser.y"
                                                               {   
             yylhs.value.as < Ast::Node * > () = new Ast::IfStmt(yystack_[3].value.as < Ast::Node * > (), yystack_[1].value.as < Ast::Node * > (), yystack_[0].value.as < Ast::Node * > ()); 
       }
-#line 1361 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1359 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 51: // else_optional: KW_ELSE block
-#line 287 "SimpleParser.y"
+#line 285 "SimpleParser.y"
                     { 
             yylhs.value.as < Ast::Node * > () = new Ast::ElseOptional(yystack_[0].value.as < Ast::Node * > ());
       }
-#line 1369 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1367 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 52: // else_optional: %empty
-#line 290 "SimpleParser.y"
+#line 288 "SimpleParser.y"
                {}
-#line 1375 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1373 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 53: // block: OPEN_CURLY stmt_list CLOSE_CURLY
-#line 294 "SimpleParser.y"
+#line 292 "SimpleParser.y"
                                        {    
             yylhs.value.as < Ast::Node * > () = new Ast::Block(yystack_[1].value.as < Ast::Node * > ());
       }
-#line 1383 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1381 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 54: // while_stmt: KW_WHILE OPEN_PAR expression CLOSE_PAR block
-#line 300 "SimpleParser.y"
+#line 298 "SimpleParser.y"
                                                    {        
             yylhs.value.as < Ast::Node * > () = new Ast::WhileStmt(yystack_[2].value.as < Ast::Node * > (), yystack_[0].value.as < Ast::Node * > ());
       }
-#line 1391 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1389 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 55: // call_param_list: expression call_param_rest
-#line 308 "SimpleParser.y"
+#line 306 "SimpleParser.y"
                                  {       
             yylhs.value.as < Ast::Node * > () = new Ast::CallParamList(yystack_[1].value.as < Ast::Node * > (), yystack_[0].value.as < Ast::Node * > ());
       }
-#line 1399 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1397 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 56: // call_param_list: %empty
-#line 311 "SimpleParser.y"
+#line 309 "SimpleParser.y"
                {}
-#line 1405 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1403 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 57: // call_param_rest: COMMA expression call_param_rest
-#line 315 "SimpleParser.y"
+#line 313 "SimpleParser.y"
                                        {          
             yylhs.value.as < Ast::Node * > () = new Ast::CallParamRest(yystack_[1].value.as < Ast::Node * > (), yystack_[0].value.as < Ast::Node * > ());
       }
-#line 1413 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1411 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 58: // call_param_rest: %empty
-#line 318 "SimpleParser.y"
+#line 316 "SimpleParser.y"
                 {}
-#line 1419 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1417 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 59: // print_stmt: KW_PRINT OPEN_PAR print_param CLOSE_PAR SEMICOLON
-#line 322 "SimpleParser.y"
+#line 320 "SimpleParser.y"
                                                         {
      yylhs.value.as < Ast::Node * > () = new Ast::PrintStmt(yystack_[2].value.as < Ast::Node * > ()); 
       }
-#line 1427 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1425 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 60: // print_param: expression
-#line 328 "SimpleParser.y"
+#line 326 "SimpleParser.y"
                  {      
       yylhs.value.as < Ast::Node * > () = new Ast::PrintParam(yystack_[0].value.as < Ast::Node * > (), ""); 
       }
-#line 1435 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1433 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 61: // print_param: STRING_LITERAL
-#line 331 "SimpleParser.y"
+#line 329 "SimpleParser.y"
                      {    
        yylhs.value.as < Ast::Node * > () = new Ast::PrintParam(nullptr, yystack_[0].value.as < std::string > ());
    }
-#line 1443 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1441 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 62: // read_stmt: KW_READ OPEN_PAR IDENTIFIER CLOSE_PAR SEMICOLON
-#line 337 "SimpleParser.y"
+#line 335 "SimpleParser.y"
                                                       {           
             yylhs.value.as < Ast::Node * > () = new Ast::ReadStmt(yystack_[2].value.as < std::string > ()); 
       }
-#line 1451 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1449 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 63: // expression: boolean_expression
-#line 343 "SimpleParser.y"
+#line 341 "SimpleParser.y"
                          {            
             yylhs.value.as < Ast::Node * > () = yystack_[0].value.as < Ast::Node * > (); 
       }
-#line 1459 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1457 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 64: // boolean_expression: boolean_expression OP_BOOL_OR boolean_term
-#line 348 "SimpleParser.y"
+#line 346 "SimpleParser.y"
                                                  { 
              yylhs.value.as < Ast::Node * > () = new Ast::OrBoolean(yystack_[2].value.as < Ast::Node * > (), yystack_[0].value.as < Ast::Node * > ());
         }
-#line 1467 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1465 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 65: // boolean_expression: boolean_term
-#line 351 "SimpleParser.y"
+#line 349 "SimpleParser.y"
                      {      
             yylhs.value.as < Ast::Node * > () = yystack_[0].value.as < Ast::Node * > ();
       }
-#line 1475 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1473 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 66: // boolean_term: boolean_term OP_BOOL_AND boolean_factor
-#line 358 "SimpleParser.y"
+#line 356 "SimpleParser.y"
                                               {            
             yylhs.value.as < Ast::Node * > () = new Ast::AndBoolean(yystack_[2].value.as < Ast::Node * > (), yystack_[0].value.as < Ast::Node * > ());
         }
-#line 1483 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1481 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 67: // boolean_term: boolean_factor
-#line 361 "SimpleParser.y"
+#line 359 "SimpleParser.y"
                        {            
             yylhs.value.as < Ast::Node * > () = yystack_[0].value.as < Ast::Node * > ();
         }
-#line 1491 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1489 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 68: // boolean_factor: OP_BOOL_NOT boolean_factor
-#line 367 "SimpleParser.y"
+#line 365 "SimpleParser.y"
                                  {          
             yylhs.value.as < Ast::Node * > () = new Ast::UnaryNotBoolean(yystack_[0].value.as < Ast::Node * > ()); 
         }
-#line 1499 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1497 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 69: // boolean_factor: OPEN_PAR boolean_expression CLOSE_PAR
-#line 370 "SimpleParser.y"
+#line 368 "SimpleParser.y"
                                               {    
             yylhs.value.as < Ast::Node * > () = yystack_[1].value.as < Ast::Node * > ();
         }
-#line 1507 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1505 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 70: // boolean_factor: relational_expression
-#line 373 "SimpleParser.y"
+#line 371 "SimpleParser.y"
                               {     
             yylhs.value.as < Ast::Node * > () = yystack_[0].value.as < Ast::Node * > (); 
         }
-#line 1515 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1513 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 71: // arithmetic_expression: arithmetic_expression OP_SUB term
-#line 379 "SimpleParser.y"
+#line 377 "SimpleParser.y"
                                         {    
             yylhs.value.as < Ast::Node * > () = new Ast::SubExpr(yystack_[2].value.as < Ast::Node * > (), yystack_[0].value.as < Ast::Node * > ()); 
         }
-#line 1523 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1521 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 72: // arithmetic_expression: arithmetic_expression OP_ADD term
-#line 382 "SimpleParser.y"
+#line 380 "SimpleParser.y"
                                           {        
             yylhs.value.as < Ast::Node * > () = new Ast::SumExpr(yystack_[2].value.as < Ast::Node * > (), yystack_[0].value.as < Ast::Node * > ()); 
         }
-#line 1531 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1529 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 73: // arithmetic_expression: term
-#line 385 "SimpleParser.y"
+#line 383 "SimpleParser.y"
              {   
             yylhs.value.as < Ast::Node * > () = yystack_[0].value.as < Ast::Node * > (); 
         }
-#line 1539 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1537 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 74: // relational_expression: arithmetic_expression OP_EQUAL arithmetic_expression
-#line 391 "SimpleParser.y"
+#line 389 "SimpleParser.y"
                                                                   {                   
                   yylhs.value.as < Ast::Node * > () = new Ast::EqualBoolean(yystack_[2].value.as < Ast::Node * > (), yystack_[0].value.as < Ast::Node * > ());
             }
-#line 1547 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1545 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 75: // relational_expression: arithmetic_expression OP_NOT_EQUAL arithmetic_expression
-#line 394 "SimpleParser.y"
+#line 392 "SimpleParser.y"
                                                                        {      
                   yylhs.value.as < Ast::Node * > () = new Ast::NEqualBoolean(yystack_[2].value.as < Ast::Node * > (), yystack_[0].value.as < Ast::Node * > ());
             }
-#line 1555 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1553 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 76: // relational_expression: arithmetic_expression OP_LESS_THAN arithmetic_expression
-#line 397 "SimpleParser.y"
+#line 395 "SimpleParser.y"
                                                                        {                  
                    yylhs.value.as < Ast::Node * > () = new Ast::Less_ThanBoolean(yystack_[2].value.as < Ast::Node * > (), yystack_[0].value.as < Ast::Node * > ());
             }
-#line 1563 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1561 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 77: // relational_expression: arithmetic_expression OP_GREATER_THAN arithmetic_expression
-#line 400 "SimpleParser.y"
+#line 398 "SimpleParser.y"
                                                                           {                   
                    yylhs.value.as < Ast::Node * > () = new Ast::Greater_ThanBoolean(yystack_[2].value.as < Ast::Node * > (), yystack_[0].value.as < Ast::Node * > ());
             }
-#line 1571 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1569 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 78: // relational_expression: arithmetic_expression OP_LESS_EQUAL arithmetic_expression
-#line 403 "SimpleParser.y"
+#line 401 "SimpleParser.y"
                                                                         {                  
                    yylhs.value.as < Ast::Node * > () = new Ast::LessEqualBoolean(yystack_[2].value.as < Ast::Node * > (), yystack_[0].value.as < Ast::Node * > ());
             }
-#line 1579 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1577 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 79: // relational_expression: arithmetic_expression OP_GREATER_EQUAL arithmetic_expression
-#line 406 "SimpleParser.y"
+#line 404 "SimpleParser.y"
                                                                            {                  
                   yylhs.value.as < Ast::Node * > () = new Ast::GreaterEqualBoolean(yystack_[2].value.as < Ast::Node * > (), yystack_[0].value.as < Ast::Node * > ());
             }
-#line 1587 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1585 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 80: // relational_expression: arithmetic_expression
-#line 409 "SimpleParser.y"
+#line 407 "SimpleParser.y"
                               {                    
                    yylhs.value.as < Ast::Node * > () = yystack_[0].value.as < Ast::Node * > ();
             }
-#line 1595 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1593 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 81: // term: term OP_MUL factor
-#line 415 "SimpleParser.y"
+#line 413 "SimpleParser.y"
                          {            
             yylhs.value.as < Ast::Node * > () = new Ast::MulExpr(yystack_[2].value.as < Ast::Node * > (), yystack_[0].value.as < Ast::Node * > ()); 
         }
-#line 1603 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1601 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 82: // term: term OP_DIV factor
-#line 418 "SimpleParser.y"
+#line 416 "SimpleParser.y"
                            {
             yylhs.value.as < Ast::Node * > () = new Ast::DivExpr(yystack_[2].value.as < Ast::Node * > (), yystack_[0].value.as < Ast::Node * > ()); 
         }
-#line 1611 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1609 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 83: // term: term OP_MOD factor
-#line 421 "SimpleParser.y"
+#line 419 "SimpleParser.y"
                            {           
             yylhs.value.as < Ast::Node * > () = new Ast::ModExpr(yystack_[2].value.as < Ast::Node * > (), yystack_[0].value.as < Ast::Node * > ()); 
         }
-#line 1619 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1617 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 84: // term: factor
-#line 424 "SimpleParser.y"
+#line 422 "SimpleParser.y"
                {      
             yylhs.value.as < Ast::Node * > () = yystack_[0].value.as < Ast::Node * > (); 
         }
-#line 1627 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1625 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 85: // factor: OP_ADD factor
-#line 431 "SimpleParser.y"
+#line 429 "SimpleParser.y"
                       {
             yylhs.value.as < Ast::Node * > () = new Ast::UnaryAddExpr(yystack_[0].value.as < Ast::Node * > ());
       }
-#line 1635 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1633 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 86: // factor: OP_SUB factor
-#line 434 "SimpleParser.y"
+#line 432 "SimpleParser.y"
                       {
             yylhs.value.as < Ast::Node * > () = new Ast::UnarySubExpr(yystack_[0].value.as < Ast::Node * > ()); 
       }
-#line 1643 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1641 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 87: // factor: INT_CONST
-#line 438 "SimpleParser.y"
+#line 436 "SimpleParser.y"
                 { yylhs.value.as < Ast::Node * > () = new Ast::Number(yystack_[0].value.as < int > ());    
             yylhs.value.as < Ast::Node * > () = new Ast::Number(yystack_[0].value.as < int > ()); 
       }
-#line 1651 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1649 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 88: // factor: OPEN_PAR arithmetic_expression CLOSE_PAR
-#line 441 "SimpleParser.y"
+#line 439 "SimpleParser.y"
                                                  { yylhs.value.as < Ast::Node * > () = yystack_[1].value.as < Ast::Node * > (); }
-#line 1657 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1655 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 89: // factor: IDENTIFIER
-#line 442 "SimpleParser.y"
+#line 440 "SimpleParser.y"
                    {
           yylhs.value.as < Ast::Node * > () = new Ast::Identifier(yystack_[0].value.as < std::string > ());  
       }
-#line 1665 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1663 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 90: // factor: IDENTIFIER OPEN_PAR call_param_list CLOSE_PAR
-#line 445 "SimpleParser.y"
+#line 443 "SimpleParser.y"
                                                       { 
             yylhs.value.as < Ast::Node * > () = new Ast::FunctionCall(yystack_[3].value.as < std::string > (), yystack_[1].value.as < Ast::Node * > ()); 
         }
-#line 1673 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1671 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
   case 91: // factor: IDENTIFIER array_access
-#line 448 "SimpleParser.y"
+#line 446 "SimpleParser.y"
                                 {       
             yylhs.value.as < Ast::Node * > () = new Ast::ArrayVariable(yystack_[1].value.as < std::string > (), yystack_[0].value.as < Ast::Node * > ()); 
         }
-#line 1681 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1679 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
     break;
 
 
-#line 1685 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 1683 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
 
             default:
               break;
@@ -2230,16 +2228,16 @@ namespace Expr {
   const short
   Parser::yyrline_[] =
   {
-       0,    77,    77,    81,    89,    93,    97,   100,   104,   107,
-     110,   114,   117,   120,   124,   130,   133,   140,   143,   147,
-     150,   154,   161,   165,   169,   175,   181,   184,   190,   193,
-     197,   200,   204,   210,   213,   217,   220,   224,   231,   232,
-     237,   244,   249,   253,   257,   260,   263,   266,   269,   275,
-     281,   287,   290,   294,   300,   308,   311,   315,   318,   322,
-     328,   331,   337,   343,   348,   351,   358,   361,   367,   370,
-     373,   379,   382,   385,   391,   394,   397,   400,   403,   406,
-     409,   415,   418,   421,   424,   431,   434,   438,   441,   442,
-     445,   448
+       0,    75,    75,    79,    87,    91,    95,    98,   102,   105,
+     108,   112,   115,   118,   122,   128,   131,   138,   141,   145,
+     148,   152,   159,   163,   167,   173,   179,   182,   188,   191,
+     195,   198,   202,   208,   211,   215,   218,   222,   229,   230,
+     235,   242,   247,   251,   255,   258,   261,   264,   267,   273,
+     279,   285,   288,   292,   298,   306,   309,   313,   316,   320,
+     326,   329,   335,   341,   346,   349,   356,   359,   365,   368,
+     371,   377,   380,   383,   389,   392,   395,   398,   401,   404,
+     407,   413,   416,   419,   422,   429,   432,   436,   439,   440,
+     443,   446
   };
 
   void
@@ -2323,7 +2321,7 @@ namespace Expr {
 
 #line 10 "SimpleParser.y"
 } // Expr
-#line 2327 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
+#line 2325 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/build/SimpleParser.cpp"
 
-#line 453 "SimpleParser.y"
+#line 451 "SimpleParser.y"
 

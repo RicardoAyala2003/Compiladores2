@@ -8,7 +8,14 @@ class MathOperations {
     }
 
     void showResults() {
+        print("Results:");
         print(add(5, 10));
         print(addThree(5, 10, 15));
+    }
+
+    int main() {
+
+        showResults();
+        return 0;
     }
 }

@@ -11,4 +11,18 @@ class ArrayMaxFinder {
         }
         return max;
     }
+
+    int main() {
+        int arr[5];
+        int maxim;
+        arr[0] = 64;
+        arr[1] = 34;
+        arr[2] = 25;
+        arr[3] = 12;
+        arr[4] = 22;
+        
+        maxim = findMax(arr);
+        print(maxim);
+        return 0;
+    }
 }

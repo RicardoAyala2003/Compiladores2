@@ -19,10 +19,8 @@
 #include <iostream>
 #include <stdexcept>
 #include "SimpleLexer.hpp"
-#include "error.h"
 #include "Tokens.hpp" 
 
-// Declaramos la función de análisis léxico.
 int yylex();
 
 #define yylex(arg) lexer.nextToken(arg) 

@@ -23,7 +23,6 @@ class FactorialCalculator {
 
         print("Resultado: ");
         print(resultado);
-        print("Fin");
         return 0;
     }
 }

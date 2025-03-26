@@ -1,7 +1,7 @@
 /* ExprAst.hpp.  Generated automatically by treecc */
 #ifndef __yy_ExprAst_hpp
 #define __yy_ExprAst_hpp
-#line 5 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
+#line 3 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
 
     #include <memory> 
     #include <string>
@@ -34,7 +34,7 @@
 
     using ArrayVariables_Table = std::unordered_map<
     std::string, 
-    arrayVariables // Mantener consistencia
+    arrayVariables
     >;
 
     using Texts_Table = std::unordered_map<std::string, std::string>;
@@ -44,7 +44,6 @@
         class Node;
     }
     
-
     struct methodVariable{
         std::string methodName;
         std::string Type;
@@ -52,8 +51,6 @@
         bool hasReturnStmt = false;
     };
 
-    // Luego Method_Table que lo referencia
-    // using Method_Table = std::unordered_map<std::string, Ast::Node*>;
     using Method_Table = std::unordered_map<std::string, methodVariable>;
 
     struct CodegenResult{
@@ -61,12 +58,9 @@
         std::string place;
         std::vector<std::string> args;
         int argsNum = 0;
-    };
+    }; 
 
-    
-    
-
-#line 70 "ExprAst.hpp"
+#line 64 "ExprAst.hpp"
 
 #include <new>
 
@@ -198,7 +192,7 @@ private:
 	struct YYNODESTATE_block *blocks__;
 	struct YYNODESTATE_push *push_stack__;
 	int used__;
-#line 202 "ExprAst.hpp"
+#line 196 "ExprAst.hpp"
 private:
 
 	static YYNODESTATE *state__;
@@ -250,7 +244,6 @@ protected:
 
 public:
 
-	virtual string_t toString() = 0;
 
 	virtual int isA(int kind) const;
 	virtual const char *getKindName() const;
@@ -273,7 +266,6 @@ public:
 	Node * varmethod_decls;
 	Node * method_decls;
 
-	virtual string_t toString();
 
 	virtual int isA(int kind) const;
 	virtual const char *getKindName() const;
@@ -295,7 +287,6 @@ public:
 	Node * first_decl;
 	Node * rest_decls;
 
-	virtual string_t toString();
 
 	virtual int isA(int kind) const;
 	virtual const char *getKindName() const;
@@ -317,7 +308,6 @@ public:
 	Node * first_decl;
 	Node * rest_decls;
 
-	virtual string_t toString();
 
 	virtual int isA(int kind) const;
 	virtual const char *getKindName() const;
@@ -340,7 +330,6 @@ public:
 	string_t identifier;
 	Node * variableDecl_Body;
 
-	virtual string_t toString();
 
 	virtual int isA(int kind) const;
 	virtual const char *getKindName() const;
@@ -361,7 +350,6 @@ public:
 
 	Node * ident_list;
 
-	virtual string_t toString();
 
 	virtual int isA(int kind) const;
 	virtual const char *getKindName() const;
@@ -383,7 +371,6 @@ public:
 	string_t identifier;
 	Node * IdentListParam;
 
-	virtual string_t toString();
 
 	virtual int isA(int kind) const;
 	virtual const char *getKindName() const;
@@ -405,7 +392,6 @@ public:
 	string_t type_name;
 	Node * array_optional;
 
-	virtual string_t toString();
 
 	virtual int isA(int kind) const;
 	virtual const char *getKindName() const;
@@ -426,7 +412,6 @@ public:
 
 	int size;
 
-	virtual string_t toString();
 
 	virtual int isA(int kind) const;
 	virtual const char *getKindName() const;
@@ -448,7 +433,6 @@ public:
 	Node * first_decl;
 	Node * rest_decls;
 
-	virtual string_t toString();
 
 	virtual int isA(int kind) const;
 	virtual const char *getKindName() const;
@@ -471,7 +455,6 @@ public:
 	string_t identifier;
 	Node * MethodDecl_Body;
 
-	virtual string_t toString();
 
 	virtual int isA(int kind) const;
 	virtual const char *getKindName() const;
@@ -494,7 +477,6 @@ public:
 	Node * variable_decls;
 	Node * stmt_list;
 
-	virtual string_t toString();
 
 	virtual int isA(int kind) const;
 	virtual const char *getKindName() const;
@@ -515,7 +497,6 @@ public:
 
 	string_t type;
 
-	virtual string_t toString();
 
 	virtual int isA(int kind) const;
 	virtual const char *getKindName() const;
@@ -537,7 +518,6 @@ public:
 	Node * first_param;
 	Node * rest_params;
 
-	virtual string_t toString();
 
 	virtual int isA(int kind) const;
 	virtual const char *getKindName() const;
@@ -559,7 +539,6 @@ public:
 	Node * first_param;
 	Node * rest_params;
 
-	virtual string_t toString();
 
 	virtual int isA(int kind) const;
 	virtual const char *getKindName() const;
@@ -582,7 +561,6 @@ public:
 	Node * type;
 	string_t identifier;
 
-	virtual string_t toString();
 
 	virtual int isA(int kind) const;
 	virtual const char *getKindName() const;
@@ -603,7 +581,6 @@ public:
 
 	bool is_ref;
 
-	virtual string_t toString();
 
 	virtual int isA(int kind) const;
 	virtual const char *getKindName() const;
@@ -625,7 +602,6 @@ public:
 	Node * first_stmt;
 	Node * rest_stmts;
 
-	virtual string_t toString();
 
 	virtual int isA(int kind) const;
 	virtual const char *getKindName() const;
@@ -644,7 +620,6 @@ protected:
 
 public:
 
-	virtual string_t toString() = 0;
 
 	virtual int isA(int kind) const;
 	virtual const char *getKindName() const;
@@ -665,7 +640,6 @@ public:
 
 	Node * expression;
 
-	virtual string_t toString();
 
 	virtual int isA(int kind) const;
 	virtual const char *getKindName() const;
@@ -686,7 +660,6 @@ public:
 
 	Node * block;
 
-	virtual string_t toString();
 
 	virtual int isA(int kind) const;
 	virtual const char *getKindName() const;
@@ -707,7 +680,6 @@ public:
 
 	Node * stmt_list;
 
-	virtual string_t toString();
 
 	virtual int isA(int kind) const;
 	virtual const char *getKindName() const;
@@ -729,7 +701,6 @@ public:
 	Node * expression;
 	Node * call_param_rest;
 
-	virtual string_t toString();
 
 	virtual int isA(int kind) const;
 	virtual const char *getKindName() const;
@@ -751,7 +722,6 @@ public:
 	Node * expression;
 	Node * call_param_rest;
 
-	virtual string_t toString();
 
 	virtual int isA(int kind) const;
 	virtual const char *getKindName() const;
@@ -773,7 +743,6 @@ public:
 	Node * expression;
 	string_t string_literal;
 
-	virtual string_t toString();
 
 	virtual int isA(int kind) const;
 	virtual const char *getKindName() const;
@@ -795,7 +764,6 @@ public:
 	Node * left;
 	Node * right;
 
-	virtual string_t toString();
 
 	virtual int isA(int kind) const;
 	virtual const char *getKindName() const;
@@ -816,7 +784,6 @@ public:
 
 	Node * expr;
 
-	virtual string_t toString();
 
 	virtual int isA(int kind) const;
 	virtual const char *getKindName() const;
@@ -835,7 +802,6 @@ protected:
 
 public:
 
-	virtual string_t toString() = 0;
 
 	virtual int isA(int kind) const;
 	virtual const char *getKindName() const;
@@ -857,7 +823,6 @@ public:
 	string_t name;
 	Node * indexExpr;
 
-	virtual string_t toString();
 
 	virtual int isA(int kind) const;
 	virtual const char *getKindName() const;
@@ -880,7 +845,6 @@ public:
 	Node * array_access;
 	Node * expression;
 
-	virtual string_t toString();
 
 	virtual int isA(int kind) const;
 	virtual const char *getKindName() const;
@@ -901,7 +865,6 @@ public:
 
 	Node * expression;
 
-	virtual string_t toString();
 
 	virtual int isA(int kind) const;
 	virtual const char *getKindName() const;
@@ -924,7 +887,6 @@ public:
 	Node * block;
 	Node * else_optional;
 
-	virtual string_t toString();
 
 	virtual int isA(int kind) const;
 	virtual const char *getKindName() const;
@@ -946,7 +908,6 @@ public:
 	Node * expression;
 	Node * block;
 
-	virtual string_t toString();
 
 	virtual int isA(int kind) const;
 	virtual const char *getKindName() const;
@@ -968,7 +929,6 @@ public:
 	string_t identifier;
 	Node * call_param_list;
 
-	virtual string_t toString();
 
 	virtual int isA(int kind) const;
 	virtual const char *getKindName() const;
@@ -989,7 +949,6 @@ public:
 
 	Node * print_param;
 
-	virtual string_t toString();
 
 	virtual int isA(int kind) const;
 	virtual const char *getKindName() const;
@@ -1010,7 +969,6 @@ public:
 
 	string_t identifier;
 
-	virtual string_t toString();
 
 	virtual int isA(int kind) const;
 	virtual const char *getKindName() const;
@@ -1032,7 +990,6 @@ public:
 	string_t identifier;
 	Node * call_param_list;
 
-	virtual string_t toString();
 
 	virtual int isA(int kind) const;
 	virtual const char *getKindName() const;
@@ -1051,7 +1008,6 @@ public:
 
 public:
 
-	virtual string_t toString();
 
 	virtual int isA(int kind) const;
 	virtual const char *getKindName() const;
@@ -1070,7 +1026,6 @@ public:
 
 public:
 
-	virtual string_t toString();
 
 	virtual int isA(int kind) const;
 	virtual const char *getKindName() const;
@@ -1089,7 +1044,6 @@ public:
 
 public:
 
-	virtual string_t toString();
 
 	virtual int isA(int kind) const;
 	virtual const char *getKindName() const;
@@ -1108,7 +1062,6 @@ public:
 
 public:
 
-	virtual string_t toString();
 
 	virtual int isA(int kind) const;
 	virtual const char *getKindName() const;
@@ -1127,7 +1080,6 @@ public:
 
 public:
 
-	virtual string_t toString();
 
 	virtual int isA(int kind) const;
 	virtual const char *getKindName() const;
@@ -1146,7 +1098,6 @@ public:
 
 public:
 
-	virtual string_t toString();
 
 	virtual int isA(int kind) const;
 	virtual const char *getKindName() const;
@@ -1165,7 +1116,6 @@ public:
 
 public:
 
-	virtual string_t toString();
 
 	virtual int isA(int kind) const;
 	virtual const char *getKindName() const;
@@ -1184,7 +1134,6 @@ public:
 
 public:
 
-	virtual string_t toString();
 
 	virtual int isA(int kind) const;
 	virtual const char *getKindName() const;
@@ -1203,7 +1152,6 @@ public:
 
 public:
 
-	virtual string_t toString();
 
 	virtual int isA(int kind) const;
 	virtual const char *getKindName() const;
@@ -1222,7 +1170,6 @@ public:
 
 public:
 
-	virtual string_t toString();
 
 	virtual int isA(int kind) const;
 	virtual const char *getKindName() const;
@@ -1241,7 +1188,6 @@ public:
 
 public:
 
-	virtual string_t toString();
 
 	virtual int isA(int kind) const;
 	virtual const char *getKindName() const;
@@ -1260,7 +1206,6 @@ public:
 
 public:
 
-	virtual string_t toString();
 
 	virtual int isA(int kind) const;
 	virtual const char *getKindName() const;
@@ -1279,7 +1224,6 @@ public:
 
 public:
 
-	virtual string_t toString();
 
 	virtual int isA(int kind) const;
 	virtual const char *getKindName() const;
@@ -1298,7 +1242,6 @@ public:
 
 public:
 
-	virtual string_t toString();
 
 	virtual int isA(int kind) const;
 	virtual const char *getKindName() const;
@@ -1317,7 +1260,6 @@ public:
 
 public:
 
-	virtual string_t toString();
 
 	virtual int isA(int kind) const;
 	virtual const char *getKindName() const;
@@ -1336,7 +1278,6 @@ public:
 
 public:
 
-	virtual string_t toString();
 
 	virtual int isA(int kind) const;
 	virtual const char *getKindName() const;
@@ -1357,7 +1298,6 @@ public:
 
 	int value;
 
-	virtual string_t toString();
 
 	virtual int isA(int kind) const;
 	virtual const char *getKindName() const;
@@ -1378,7 +1318,6 @@ public:
 
 	string_t name;
 
-	virtual string_t toString();
 
 	virtual int isA(int kind) const;
 	virtual const char *getKindName() const;
@@ -1393,11 +1332,11 @@ protected:
 CodegenResult exprCompile(Node * root, symbol_table & vars, Method_Table & methodTable, arguments & args, ArrayVariables_Table & arrayvarTable, string_t actualmethodName, Texts_Table & textsTable, int paramPos);
 
 }
-#line 106 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
+#line 87 "/home/ricardo/Compi2/RE-flex-master/RE-flex-master/SimpleLexer/ExprAst.tc"
 
 
  
     using NodeVector = std::vector<Ast::Node*>;
 
-#line 1403 "ExprAst.hpp"
+#line 1342 "ExprAst.hpp"
 #endif
